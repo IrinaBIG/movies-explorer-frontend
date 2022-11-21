@@ -1,0 +1,12 @@
+.chapter {
+    width: 1140px;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000;
+    margin: 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.04em;
+}

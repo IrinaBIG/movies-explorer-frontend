@@ -1,0 +1,12 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/font-face/inter.css);
+@import url(./blocks/body/body.css);
+@import url(./blocks/page/page.css);
+@import url(./blocks/chapter/chapter.css);
+@import url(./components/Main/Main.css);
+@import url(./components/Header/Header.css);
+@import url(./components/Promo/Promo.css);
+@import url(./components/AboutProject/AboutProject.css);
+@import url(./components/Techs/Techs.css);
+@import url(./components/AboutMe/AboutMe.css);
+@import url(./components/Footer/Footer.css);

@@ -1,0 +1,49 @@
+.techs {
+    max-width: 1280px;
+    background-color: #F5F5F5;
+    padding: 100px 70px;
+}
+
+.techs__brief {
+    margin: 91px 270px 0;
+    text-align: center;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 50px;
+    line-height: 58px;
+    color: #000;
+    letter-spacing: -0.04em;
+}
+
+.techs__subtitle {
+    margin-top: 26px;
+    text-align: center;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000;
+    letter-spacing: -0.04em;
+}
+
+.techs__stacks {
+    max-width: 690px;
+    margin: 100px 225px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    column-gap: 10px;
+    
+}
+
+.techs__stack {
+    background: #E8E8E8;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    color: #000;
+}

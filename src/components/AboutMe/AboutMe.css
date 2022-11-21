@@ -1,0 +1,114 @@
+.about-me {
+    max-width: 1280px;
+    background-color: #FFF;
+    padding: 110px 70px 86px;
+}
+
+.about-me__info {
+    max-width: 1280px;
+    min-height: 392px;
+    display: flex;
+    position: relative;
+    margin-bottom: 101px;
+}
+
+.about-me__name {
+    font-weight: 400;
+    font-family: inter;
+    font-size: 50px;
+    line-height: 58px;
+    color: #000;
+    margin: 66px 0 18px;
+    letter-spacing: -0.04em;
+}
+
+.about-me__profession {
+    font-weight: 500;
+    font-family: inter;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000;
+    margin: 0 0 26px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 142px;
+}
+
+.about-me__description {
+    width: 600px;
+    font-weight: 500;
+    font-family: inter;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+    margin: 0 0 99px;
+    mix-blend-mode: normal;
+    position: absolute;
+    top: 188px;
+}
+
+.about-me__content {
+    width: 500px;
+    font-weight: 500;
+    font-family: inter;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+    position: absolute;
+    top: 375px;
+    margin: 0;
+}
+
+.about-me__photo {
+    width: 270px;
+    height: 327px;
+    position: absolute;
+    top: 66px;
+    right: 0;
+    border-radius: 10px;
+}
+
+.about-me__portfolio {
+    width: 250px;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 18px;
+    line-height: 20px;
+    color: #A0A0A0;
+    margin: 0 0 50px;
+}
+
+.about-me__links {
+    display: block;
+    /* justify-content: space-around; */
+}
+
+.about-me__link {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 19px;
+    border-bottom: 1px solid #E8E8E8;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+}
+
+.about-me__link_last {
+    border-bottom: none;
+    margin-top: -4px;
+}
+
+.about-me__static {
+    width: 880px;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 30px;
+    line-height: 50px;
+    color: #000;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.about-me__arrow {
+    width: 18px;
+    height: 52px;
+}
