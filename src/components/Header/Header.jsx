@@ -17,18 +17,21 @@ function Header() {
           </Link>
 
           <Link to="/sign-in" className="header__links">
-          <button className="header__link-exit" type="button">
-            Войти
-          </button>
+            <button className="header__link-exit" type="button">
+              Войти
+            </button>
           </Link>
-
         </div>
       </Route>
-     
+
       <Route path="/sign-in">
         <div className="header">
           <Link to="/" className="header__logo">
-            <img className="logo logo__login" src={headerLogo} alt="логотип Mesto" />
+            <img
+              className="logo logo__login"
+              src={headerLogo}
+              alt="логотип Mesto"
+            />
           </Link>
         </div>
       </Route>
@@ -36,12 +39,14 @@ function Header() {
       <Route path="/sign-up">
         <div className="header">
           <Link to="/" className="header__logo">
-            <img className="logo logo__login" src={headerLogo} alt="логотип Mesto" />
+            <img
+              className="logo logo__login"
+              src={headerLogo}
+              alt="логотип Mesto"
+            />
           </Link>
         </div>
       </Route>
-
-      <Route path="*"></Route>
 
       <Route path="/">
         <div className="header">
@@ -60,10 +65,11 @@ function Header() {
           <Link to="/profile" className="header__link header__link_profile">
             <img src={profile} alt="Ссылка на профиль" />
           </Link>
+
+          <Route path="*"></Route>
+          
         </div>
       </Route>
-
-
     </Switch>
   );
 }
