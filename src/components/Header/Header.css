@@ -1,12 +1,15 @@
 .header {
-    background-color: #073042;
+    background: #FFF;
     max-width: 1280px;
-    /* padding: 18px 70px; */
     margin: 0 auto;
-    /* border: 1px solid yellow; */
     display: flex;
     position: relative;
 }
+
+.header_dark-theme {
+    background-color: #073042;
+}
+
 
 .logo {
     width: 38px;
@@ -15,6 +18,11 @@
     margin-bottom: 18px;
     margin-left: 70px;
 }
+
+.logo__login {
+    margin: 70px 800px 40px 442px;
+}
+
 
 /* @media (max-width: 320px) {
     .logo {
@@ -26,6 +34,34 @@
 } */
 
 .header__link {
+    color: #000;
+    position: absolute;
+    /* right: 176px; */
+    top: 28px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-decoration: none;
+}
+
+.header__link_movies {
+    left: 152px;
+}
+
+.header__link_save {
+    left: 222px;
+}
+
+.header__link_profile {
+    top: 21px;
+    right: 70px;
+    width: 100px;
+    height: 30px;
+}
+
+.header__link_dark-theme {
     color: #fff;
     position: absolute;
     right: 176px;

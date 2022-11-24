@@ -3,9 +3,8 @@ import Promo from '../Promo/Promo';
 import Techs from '../Techs/Techs';
 import AboutProject from '../AboutProject/AboutProject';
 import AboutMe from '../AboutMe/AboutMe';
-import Footer from '../Footer/Footer';
 
-function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardDelete, onCardLike, onCardDeletePopup }) {
+function Main() {
 
     return (
         <div className="content">
@@ -13,7 +12,6 @@ function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onC
            <AboutProject />
            <Techs />
            <AboutMe />
-           <Footer />
         </div>
     );
 }

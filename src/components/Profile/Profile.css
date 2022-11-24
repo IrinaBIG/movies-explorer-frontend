@@ -1,0 +1,120 @@
+.profile-content {
+    max-width: 1280px;
+    min-height: 77vh;
+    padding: 74px 0 70px;
+    background: #FFF;
+    /* opacity: 0.8; */
+}
+
+.form {
+    padding: 0 436px 16px 434px;
+}
+
+.profile__data {
+    width: 100%; 
+    max-width: 410px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__data_end {
+    border: none;
+    padding: 0;
+    margin-bottom: 220px;
+}
+
+.profile__title {
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    padding-bottom: 123px;
+    color: #000000;
+}
+
+.profile__placeholder {
+    width: 100%;
+    max-width: 141px;
+    font-family: 'Inter', Arial, sans-serif; 
+    font-style: normal; 
+    font-weight: 500; 
+    font-size: 11px; 
+    line-height: 13px; 
+    color: #000; 
+    margin: 0;
+    padding-top: 2px;
+    /* border: 1px solid red */
+}
+
+.form__input { 
+    width: 100%; 
+    max-width: 122px;
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif; 
+    font-style: normal; 
+    font-weight: 500; 
+    font-size: 11px; 
+    line-height: 13px; 
+    border: 0; 
+    height: 14px; 
+    color: #000; 
+    background: #FFF; 
+    text-align: right;
+    padding: 0;
+    /* border: 1px solid red */
+}  
+
+.form__input_type_error { 
+    border-bottom-color: #FF0000; 
+    margin-bottom: 4px; 
+} 
+
+.form__button { 
+    width: 100%; 
+    max-width: 410px; 
+    font-family: 'Inter', Arial, sans-serif; 
+    font-size: 13px; 
+    line-height: 16px; 
+    font-weight: 400; 
+    font-style: normal; 
+    cursor: pointer; 
+    height: 16px; 
+    background: #FFF; 
+    color: #000; 
+    border: none; 
+} 
+
+.form__button:hover { 
+    opacity: 0.8; 
+} 
+ 
+.form__error_visible { 
+    font-family: 'Inter', Arial, sans-serif; 
+    font-style: normal; 
+    font-weight: 400; 
+    font-size: 10px; 
+    line-height: 12px; 
+    color: #FF3055; 
+    display: block; 
+    z-index: 1; 
+    height: 17px; 
+    position: relative; 
+}
+
+.profile__out {
+    /* text-align: center; */
+    /* width: 100%; */
+    width: 410px;
+    margin: 0 442px 0 578px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FF3055;
+    text-decoration: none;
+}
