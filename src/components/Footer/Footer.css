@@ -1,7 +1,7 @@
 .footer {
     max-width: 1280px;
     background-color: #FFF;
-    padding: 79px 70px 20px;
+    padding: 76px 70px 20px;
 }
 
 .footer__info {
@@ -14,6 +14,12 @@
     border-bottom: 1px solid #E8E8E8;
     padding-bottom: 20px;
     margin: 0 0 20px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .footer__copyright {

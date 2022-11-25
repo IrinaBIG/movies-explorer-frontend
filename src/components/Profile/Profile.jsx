@@ -12,7 +12,7 @@ function Profile() {
       >
         <h1 className="profile__title">Привет, Виталий!</h1>
         <div className="profile__data">
-          <h2 className="profile__placeholder">Имя</h2>
+          <h2 className="profile__label">Имя</h2>
           <input
             type="text"
             id="name-input"
@@ -31,7 +31,7 @@ function Profile() {
         />
 
         <div className="profile__data profile__data_end">
-          <h2 className="profile__placeholder">E-mail</h2>
+          <h2 className="profile__label">E-mail</h2>
           <input
             type="email"
             id="email-input"

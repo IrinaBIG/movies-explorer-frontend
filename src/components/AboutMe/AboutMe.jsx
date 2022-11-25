@@ -14,7 +14,14 @@ function AboutMe() {
           специальности. <br /> Учусь в ЯндексПрактикум. Хочу стать
           профессиональным веб-разработчиком.
         </p>
-        <p className="about-me__content">Github</p>
+        <a
+          className="about-me__content"
+          href="https://github.com/IrinaBIG"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Github
+        </a>
         <img
           className="about-me__photo"
           src={photoStudents}
@@ -58,6 +65,7 @@ function AboutMe() {
             href="https://github.com/IrinaBIG/react-mesto-api-full"
             target="_blank"
             rel="noreferrer"
+            className=""
           >
             <img
               className="about-me__arrow"

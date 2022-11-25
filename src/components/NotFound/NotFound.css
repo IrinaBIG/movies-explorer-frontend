@@ -3,8 +3,6 @@
     width: 100%;
     max-width: 1280px;
     margin: 0;
-    /* min-height: 70%; */
-    /* display: flex; */
     padding-top: 246px;
 }
 
@@ -19,6 +17,7 @@
     margin-bottom: 5px;
     margin-top: 0;
 }
+
 .not-found__text {
     font-family: 'Inter';
     font-style: normal;
@@ -27,7 +26,14 @@
     line-height: 19px;
     text-align: center;
     color: #000000;
+    margin-top: 0;
     margin-bottom: 184px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .not-found__back {
@@ -37,7 +43,20 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    margin: 0 619px;
+    margin: 0 614px;
     color: #3456F3;
     text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background-color: #FFF;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.not-found__back:hover {
+    opacity: 0.7;
 }

@@ -4,54 +4,56 @@
     margin: 0 auto;
     display: flex;
     position: relative;
+    padding: 19px 70px 15px;
 }
 
 .header_dark-theme {
     background-color: #073042;
 }
 
+.header__place_login {
+    padding: 70px 800px 37px 434px;
+}
 
 .logo {
     width: 38px;
     height: 38px;
-    margin-top: 18px;
-    margin-bottom: 18px;
-    margin-left: 70px;
 }
-
-.logo__login {
-    margin: 70px 800px 40px 442px;
-}
-
-
-/* @media (max-width: 320px) {
-    .logo {
-        width: 103.74px;
-        height: 24.4px;
-        margin-left: 27px;
-        margin-bottom: 27.6px;
-    }
-} */
 
 .header__link {
     color: #000;
     position: absolute;
-    /* right: 176px; */
     top: 28px;
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     text-decoration: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.header__link:hover {
+    opacity: 0.7;
+}
+
+.link-active {
+    font-weight: 500;
 }
 
 .header__link_movies {
-    left: 152px;
+    top: 30px;
+    left: 155px;
 }
 
 .header__link_save {
-    left: 222px;
+    top: 30px;
+    left: 225px;
 }
 
 .header__link_profile {
@@ -72,9 +74,19 @@
     font-size: 12px;
     line-height: 16px;
     text-decoration: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-.header__link-exit {
+.header__link_dark-theme:hover {
+    opacity: .7;
+}
+
+.header__link-login {
     color: #000;
     position: absolute;
     right: 70px;
@@ -91,8 +103,27 @@
     cursor: pointer;
     border-radius: 3px;
     border: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-.header__link-exit:hover {
-    opacity: .7;
+.header__link-login:hover {
+    opacity: 0.8;
 }
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* @media (max-width: 320px) {
+    .logo {
+        width: 103.74px;
+        height: 24.4px;
+        margin-left: 27px;
+        margin-bottom: 27.6px;
+    }
+} */

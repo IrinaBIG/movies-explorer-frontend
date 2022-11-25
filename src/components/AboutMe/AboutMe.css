@@ -20,6 +20,12 @@
     color: #000;
     margin: 66px 0 18px;
     letter-spacing: -0.04em;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .about-me__profession {
@@ -32,6 +38,12 @@
     mix-blend-mode: normal;
     position: absolute;
     top: 142px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .about-me__description {
@@ -45,6 +57,12 @@
     mix-blend-mode: normal;
     position: absolute;
     top: 188px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .about-me__content {
@@ -57,6 +75,17 @@
     position: absolute;
     top: 375px;
     margin: 0;
+    text-decoration: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.about-me__content:hover {
+    opacity: 0.7;
 }
 
 .about-me__photo {
@@ -76,20 +105,25 @@
     line-height: 20px;
     color: #A0A0A0;
     margin: 0 0 50px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .about-me__links {
     display: block;
-    /* justify-content: space-around; */
 }
 
 .about-me__link {
     display: flex;
     justify-content: space-between;
-    padding: 0 0 19px;
+    padding: 0 0 14px;
     border-bottom: 1px solid #E8E8E8;
     letter-spacing: -0.04em;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .about-me__link_last {
@@ -106,9 +140,21 @@
     color: #000;
     margin: 0;
     letter-spacing: -0.04em;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .about-me__arrow {
     width: 18px;
     height: 52px;
+    object-fit: contain;
+    margin-right: 4px;
+}
+
+.about-me__arrow:hover {
+    opacity: 0.8;
 }

@@ -4,9 +4,8 @@
     max-width: 1140px;
     height: fit-content;
     background-color: #FFF;
-    padding: 70px 0px 69px;
+    padding: 61px 0px 69px;
     border-bottom: 1px solid #E8E8E8;
-    
 }
 
 .search__movies {
@@ -22,9 +21,8 @@
     width: 34px;
     height: 34px;
     border: none;
-    margin: 19px 10px 19px;
+    margin: 19px 10px 19px 19px;
 }
-
 
 .search__input {
     width: 870px;
@@ -37,17 +35,29 @@
     color: #000;
     border: none;
     background: #FDFDFD;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-/* .search__input:focus {
-    color: red;
-    outline: solid;
-} */
+.search__input:focus {
+    color: #3456F3;
+    outline: solid 1px;
+    opacity: 0.8;
+}
 
 .search__input-find {
     width: 80px;
     height: 34px;
     margin: 19px 0;
+    cursor: pointer;
+}
+
+.search__input-find:hover {
+    opacity: 0.8;
 }
 
 .search__short-movies {
@@ -57,20 +67,34 @@
     font-size: 13px;
     line-height: 18px;
     color: #000000;
-    margin: 27px 30px 27px 14px;
+    margin: 27px 30px 27px 3px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .search__input-tumb {
-    width: 36px;
-    height: 20px;
-    margin: 26px 0 26px 29px;
-    /* object-fit: cover; */
+    width: 62px;
+    height: 35px;
+    margin: 22px 0 12px 23px;
     background: url(../../images/smalltumb.svg);
     background-size: contain;
+    cursor: pointer;
+}
+
+.search__input-tumb:hover {
+    opacity: 0.8;
 }
 
 .search__input-tumb_off {
     background: url(../../images/checkboxoff.svg);
+}
+
+.search__input-tumb_off:hover {
+    opacity: 0.8;
 }
 
 .search__input-separator {
@@ -79,55 +103,62 @@
     height: 40px;
 }
 
-::-webkit-input-placeholder {
+.search__input::placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
     color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-:-moz-placeholder {
+.search__input::-webkit-input-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
     color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-::-moz-placeholder {
+.search__input::-moz-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
     color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-:-ms-input-placeholder {
+.search__input::-ms-input-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
     color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
-
-.search__input::placeholder { 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 400; 
-    font-size: 18px; 
-    line-height: 20px; 
-    color: #A0A0A0; 
-} 
-
-/*
-.form__item::-webkit-input-placeholder { 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 500; 
-    font-size: 11px; 
-    line-height: 13px; 
-    color: #000; 
-} 
-
-.form__item::-moz-placeholder { 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 500; 
-    font-size: 11px; 
-    line-height: 13px; 
-    color: #000; 
-} 
-
-.form__item::-ms-input-placeholder { 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 500; 
-    font-size: 11px; 
-    line-height: 13px; 
-    color: #000; 
-}  */

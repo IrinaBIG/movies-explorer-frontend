@@ -1,7 +1,7 @@
 .more-movies {
     width: 1280px;
     display: flex;
-    padding: 61px 0px 89px;
+    padding: 61px 0px 82px;
 }
 
 .more-movies__button {
@@ -16,8 +16,14 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-.button:hover {
-    opacity: .7;
+.more-movies__button:hover {
+    opacity: 0.8;
 }

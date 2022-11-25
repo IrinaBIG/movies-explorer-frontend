@@ -1,5 +1,5 @@
-import React from 'react';
-import card from '../../images/card.svg'
+import React from "react";
+import card from "../../images/card.svg";
 import { Route, Switch } from "react-router-dom";
 
 function MoviesCard() {
@@ -16,23 +16,19 @@ function MoviesCard() {
         <div className="movie__buttons">
           <Switch>
             <Route path="/movies">
-            <button
-            className="movie__button"
-            type="button"
-            aria-label="Нравится"
-          ></button>
+              <button
+                className="movie__button"
+                type="button"
+                aria-label="Нравится"
+              ></button>
             </Route>
             <button
-            className="movie__button movie__button_delete"
-            type="button"
-            aria-label="Нравится"
-          ></button>
-            <Route path="/">
-
-            </Route>
-
+              className="movie__button movie__button_delete"
+              type="button"
+              aria-label="Нравится"
+            ></button>
+            <Route path="/"></Route>
           </Switch>
-          
         </div>
       </div>
       <p className="movie__duration">1ч 42м</p>

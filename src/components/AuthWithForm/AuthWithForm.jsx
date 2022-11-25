@@ -1,3 +1,5 @@
+// так больше кода получается
+
 // import React from "react";
 
 // function AuthWithForm ( { name, title, children, }) {

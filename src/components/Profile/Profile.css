@@ -1,28 +1,28 @@
 .profile-content {
     max-width: 1280px;
     min-height: 77vh;
-    padding: 74px 0 70px;
+    padding: 59px 0 70px;
     background: #FFF;
-    /* opacity: 0.8; */
 }
 
 .form {
-    padding: 0 436px 16px 434px;
+    padding: 0 436px 14px 434px;
 }
 
 .profile__data {
-    width: 100%; 
+    width: 100%;
     max-width: 410px;
     display: flex;
     justify-content: space-between;
     padding-bottom: 16px;
     border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 2px;
 }
 
 .profile__data_end {
     border: none;
     padding: 0;
-    margin-bottom: 220px;
+    margin-bottom: 207px;
 }
 
 .profile__title {
@@ -32,84 +32,111 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
-    padding-bottom: 123px;
+    padding-bottom: 105px;
     color: #000000;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-.profile__placeholder {
+.profile__label {
     width: 100%;
     max-width: 141px;
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 500; 
-    font-size: 11px; 
-    line-height: 13px; 
-    color: #000; 
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #000;
     margin: 0;
     padding-top: 2px;
-    /* border: 1px solid red */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
-.form__input { 
-    width: 100%; 
+.form__input {
+    width: 100%;
     max-width: 122px;
     margin: 0;
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 500; 
-    font-size: 11px; 
-    line-height: 13px; 
-    border: 0; 
-    height: 14px; 
-    color: #000; 
-    background: #FFF; 
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    border: 0;
+    height: 14px;
+    color: #000;
+    background: #FFF;
     text-align: right;
     padding: 0;
-    /* border: 1px solid red */
-}  
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
 
-.form__input_type_error { 
-    border-bottom-color: #FF0000; 
-    margin-bottom: 4px; 
-} 
+.form__input_type_error {
+    border-bottom-color: #FF0000;
+    margin-bottom: 4px;
+}
 
-.form__button { 
-    width: 100%; 
-    max-width: 410px; 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-size: 13px; 
-    line-height: 16px; 
-    font-weight: 400; 
-    font-style: normal; 
-    cursor: pointer; 
-    height: 16px; 
-    background: #FFF; 
-    color: #000; 
-    border: none; 
-} 
+.form__button {
+    width: 100%;
+    max-width: 410px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+    height: 16px;
+    background: #FFF;
+    color: #000;
+    border: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
 
-.form__button:hover { 
-    opacity: 0.8; 
-} 
- 
-.form__error_visible { 
-    font-family: 'Inter', Arial, sans-serif; 
-    font-style: normal; 
-    font-weight: 400; 
-    font-size: 10px; 
-    line-height: 12px; 
-    color: #FF3055; 
-    display: block; 
-    z-index: 1; 
-    height: 17px; 
-    position: relative; 
+.form__button:hover {
+    opacity: 0.7;
+}
+
+.form__error_visible {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    display: block;
+    z-index: 1;
+    height: 12px;
+    margin-bottom: 0;
+    /* position: relative; */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }
 
 .profile__out {
-    /* text-align: center; */
-    /* width: 100%; */
     width: 410px;
-    margin: 0 442px 0 578px;
+    margin: 0 442px 0 580px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -117,4 +144,74 @@
     line-height: 16px;
     color: #FF3055;
     text-decoration: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.profile__out:hover {
+    opacity: 0.7;
+}
+
+.form__input:placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.form__input::-webkit-input-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.form__input::-moz-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.form__input::-ms-input-placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
 }

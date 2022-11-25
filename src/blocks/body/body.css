@@ -1,4 +1,5 @@
-.body, html {
+.body,
+html {
     min-height: 100vh;
-    background-color: #fff;;
+    background-color: #fff;
 }

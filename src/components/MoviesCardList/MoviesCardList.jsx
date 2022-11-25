@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import MoviesCard from '../MoviesCard/MoviesCard';
+import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList() {
 
-    const [movies, setMovies] = useState([]);
+  // строки 8-14 сделаны только для демонстрации верстки
+  const [movies, setMovies] = useState([]);
 
-    React.useEffect(() => {
-        fetch('https://api.nomoreparties.co/beatfilm-movies')
-        .then(res => res.json())
-        .then(res => setMovies(res))
-    }, []);
+  React.useEffect(() => {
+    fetch("https://api.nomoreparties.co/beatfilm-movies")
+      .then((res) => res.json())
+      .then((res) => setMovies(res));
+  }, []);
 
   return (
-    <section className='movies-list'>
-      {movies.slice(0,16).map((item) => {
+    <section className="movies-list">
+      {movies.slice(0, 16).map((item) => {
         return (
           <MoviesCard
             card={item}

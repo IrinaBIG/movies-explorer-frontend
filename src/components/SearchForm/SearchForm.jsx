@@ -2,7 +2,6 @@ import React from "react";
 import loupe from "../../images/loupe.svg";
 import find from "../../images/find.svg";
 import separator from "../../images/inputSeparator.svg";
-// import tumb from "../../images/smalltumb.svg";
 
 function SearchForm() {
   return (
@@ -15,7 +14,6 @@ function SearchForm() {
         />
         <input
           type="text"
-          // type="search"
           className="search__input"
           placeholder="Фильм"
         />
@@ -26,7 +24,6 @@ function SearchForm() {
           className="search__input-separator"
         />
         <div className="search__input-tumb"></div>
-        {/* <img src={tumb} alt="бегунок" className="search__input-tumb" /> */}
         <h3 className="search__short-movies">Короткометражки</h3>
       </div>
     </section>
