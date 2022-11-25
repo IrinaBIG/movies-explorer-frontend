@@ -4,6 +4,12 @@ import promoImage from "../../images/promoLogo.svg";
 function Promo() {
   return (
     <section className="promo">
+      <img
+        className="promo__image"
+        src={promoImage}
+        alt="Здесь расположена картинка, 
+                напоминающая землю с материками"
+      />
       <h1 className="promo__title">
         Учебный проект студента факультета <br />
         Веб-разработки.
@@ -11,7 +17,7 @@ function Promo() {
       <p className="promo__subtitle">
         Листайте ниже, чтобы узнать больше про этот проект и его создателя.
       </p>
-      <div className="promo__button-link">
+        <div className="promo__button-link">
         <a
           href="#about_project"
           className="promo__link"
@@ -20,12 +26,7 @@ function Promo() {
           Узнать больше
         </a>
       </div>
-      <img
-        className="promo__image"
-        src={promoImage}
-        alt="Здесь расположена картинка, 
-                напоминающая землю с материками"
-      />
+      
     </section>
   );
 }

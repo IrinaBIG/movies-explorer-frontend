@@ -16,3 +16,9 @@
     -moz-text-size-adjust: 100%;
     text-rendering: auto;
 }
+
+@media (max-width: 1230px) {
+    .chapter {
+        width: 668px;
+    } 
+}

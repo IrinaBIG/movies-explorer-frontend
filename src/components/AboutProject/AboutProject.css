@@ -94,3 +94,43 @@
     -moz-text-size-adjust: 100%;
     text-rendering: auto;
 }
+
+@media (max-width: 1230px) {
+
+    .about-project {
+        max-width: 668px;
+        padding: 90px 50px;
+        margin: 0 auto;
+    }
+
+    .column {
+        width: 319px;
+    }
+
+    .column__title {
+        margin-bottom: 22px;
+    }
+
+    .column__subtitle {
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 93px;
+    }
+
+    .contain__column {
+        width: 140px;
+    }
+
+    .contain__column_front-end {
+        width: 528px;
+    }
+
+    .contain__term {
+        padding: 9px 10px;
+    }
+
+    .contain__title {
+        font-weight: 400;
+    }
+
+}

@@ -7,9 +7,8 @@
 .about-me__info {
     max-width: 1280px;
     min-height: 392px;
-    display: flex;
     position: relative;
-    margin-bottom: 101px;
+    margin-bottom: 35px;
 }
 
 .about-me__name {
@@ -36,8 +35,6 @@
     color: #000;
     margin: 0 0 26px;
     mix-blend-mode: normal;
-    position: absolute;
-    top: 142px;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -48,15 +45,13 @@
 
 .about-me__description {
     width: 600px;
-    font-weight: 500;
+    font-weight: 400;
     font-family: inter;
     font-size: 14px;
     line-height: 22px;
     color: #000;
-    margin: 0 0 99px;
+    margin: 0 0 119px;
     mix-blend-mode: normal;
-    position: absolute;
-    top: 188px;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
@@ -66,14 +61,11 @@
 }
 
 .about-me__content {
-    width: 500px;
     font-weight: 500;
     font-family: inter;
     font-size: 14px;
     line-height: 17px;
     color: #000;
-    position: absolute;
-    top: 375px;
     margin: 0;
     text-decoration: none;
     -moz-osx-font-smoothing: grayscale;
@@ -92,7 +84,7 @@
     width: 270px;
     height: 327px;
     position: absolute;
-    top: 66px;
+    top: 0;
     right: 0;
     border-radius: 10px;
 }
@@ -123,12 +115,12 @@
     padding: 0 0 14px;
     border-bottom: 1px solid #E8E8E8;
     letter-spacing: -0.04em;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .about-me__link_last {
     border-bottom: none;
-    margin-top: -4px;
+    margin-top: 0;
 }
 
 .about-me__static {
@@ -157,4 +149,47 @@
 
 .about-me__arrow:hover {
     opacity: 0.8;
+}
+
+@media (max-width: 1230px) {
+
+    .about-me {
+        max-width: 668px;
+        padding: 90px 50px 58px;
+        margin: 0 auto;
+    }
+
+    .about-me__info {
+        margin-bottom: 5px;
+    }
+
+    .about-me__name {
+        font-size: 40px;
+        line-height: 40px;
+        margin: 66px 0 16px;
+    }
+
+    .about-me__profession {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 20px;
+    }
+    
+    .about-me__description {
+        width: 364px;
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 139px;
+    }
+
+    .about-me__photo {
+        width: 255px;
+        height: 307px;
+    }
+
+    .about-me__static {
+        width: 668px;
+        font-size: 28px;
+    }
+
 }

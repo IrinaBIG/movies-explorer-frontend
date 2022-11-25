@@ -12,15 +12,19 @@ function Header() {
             <img className="logo" src={headerLogo} alt="логотип Mesto" />
           </Link>
 
-          <Link to="/sign-up" className="header__link header__link_dark-theme">
-            Регистрация
-          </Link>
-
-          <Link to="/sign-in" className="header__links">
-            <button className="header__link-login" type="button">
-              Войти
-            </button>
-          </Link>
+          <div className="header__navigate">
+            <Link
+              to="/sign-up"
+              className="header__link header__link_dark-theme"
+            >
+              Регистрация
+            </Link>
+            <Link to="/sign-in" className="header__links">
+              <button className="header__link-login" type="button">
+                Войти
+              </button>
+            </Link>
+          </div>
         </div>
       </Route>
 
@@ -42,27 +46,29 @@ function Header() {
 
       <Route path="/movies">
         <div className="header">
-          <NavLink to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
-          </NavLink>
+          <div className="header__movies">
+            <NavLink to="/" className="header__logo">
+              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            </NavLink>
 
-          <NavLink
-            to="/movies"
-            activeClassName="link-active"
-            className="header__link header__link_movies"
-          >
-            Фильмы
-          </NavLink>
+            <NavLink
+              to="/movies"
+              activeClassName="link-active"
+              className="header__link header__link_movies"
+            >
+              Фильмы
+            </NavLink>
 
-          <NavLink
-            to="/saved-movies"
-            activeClassName="link-active"
-            className="header__link header__link_save"
-          >
-            Сохранённые фильмы
-          </NavLink>
+            <NavLink
+              to="/saved-movies"
+              activeClassName="link-active"
+              className="header__link header__link_save"
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </div>
 
-          <NavLink to="/profile" className="header__link header__link_profile">
+          <NavLink to="/profile" className="header__link">
             <img src={profile} alt="Ссылка на профиль" />
           </NavLink>
         </div>
@@ -70,27 +76,29 @@ function Header() {
 
       <Route path="/saved-movies">
         <div className="header">
-          <NavLink to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
-          </NavLink>
+          <div className="header__movies">
+            <NavLink to="/" className="header__logo">
+              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            </NavLink>
 
-          <NavLink
-            to="/movies"
-            activeClassName="link-active"
-            className="header__link header__link_movies"
-          >
-            Фильмы
-          </NavLink>
+            <NavLink
+              to="/movies"
+              activeClassName="link-active"
+              className="header__link header__link_movies"
+            >
+              Фильмы
+            </NavLink>
 
-          <NavLink
-            to="/saved-movies"
-            activeClassName="link-active"
-            className="header__link header__link_save"
-          >
-            Сохранённые фильмы
-          </NavLink>
+            <NavLink
+              to="/saved-movies"
+              activeClassName="link-active"
+              className="header__link header__link_save"
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </div>
 
-          <NavLink to="/profile" className="header__link header__link_profile">
+          <NavLink to="/profile" className="header__link">
             <img src={profile} alt="Ссылка на профиль" />
           </NavLink>
         </div>
@@ -98,27 +106,29 @@ function Header() {
 
       <Route path="/profile">
         <div className="header">
-          <NavLink to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
-          </NavLink>
+          <div className="header__movies">
+            <NavLink to="/" className="header__logo">
+              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            </NavLink>
 
-          <NavLink
-            to="/movies"
-            activeClassName="link-active"
-            className="header__link header__link_movies"
-          >
-            Фильмы
-          </NavLink>
+            <NavLink
+              to="/movies"
+              activeClassName="link-active"
+              className="header__link header__link_movies"
+            >
+              Фильмы
+            </NavLink>
 
-          <NavLink
-            to="/saved-movies"
-            activeClassName="link-active"
-            className="header__link header__link_save"
-          >
-            Сохранённые фильмы
-          </NavLink>
+            <NavLink
+              to="/saved-movies"
+              activeClassName="link-active"
+              className="header__link header__link_save"
+            >
+              Сохранённые фильмы
+            </NavLink>
+          </div>
 
-          <NavLink to="/profile" className="header__link header__link_profile">
+          <NavLink to="/profile" className="header__link">
             <img src={profile} alt="Ссылка на профиль" />
           </NavLink>
         </div>

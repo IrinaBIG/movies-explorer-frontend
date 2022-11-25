@@ -1,5 +1,5 @@
-.content {
-    /* min-height: 70vh;
-    position: relative; */
+@media (max-width: 1230px) {
+    .content {
+        /* max-width: 768px; */
+    }
 }
-
