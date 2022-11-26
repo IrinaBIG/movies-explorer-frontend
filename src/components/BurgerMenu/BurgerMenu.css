@@ -1,0 +1,93 @@
+.burger-menu {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s, visibility 0.5s;
+    background-color: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.burger-menu__content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 520px;
+    max-height: 1024px;
+    height: 100%;
+    background-color: #FFF;
+    box-sizing: border-box;
+    color: #000;
+    display: block;
+    padding: 159px 0px 92px;
+}
+
+.burger-menu_is-active {
+    visibility: visible;
+    opacity: 1;
+}
+.burger__closeBtn {
+    width: 22px;
+    height: 22px;
+    background: url(../../images/closeBtn.svg) center;
+    object-fit: contain;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 27px;
+    top: 27px;
+}
+
+.burger__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.burger__link {
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000;
+    margin-bottom: 28px;
+}
+
+.burger__link-active {
+   border-bottom: solid 2px #000;
+}
+
+.burger__profileBtn {
+    width: 100px;
+    height: 30px;
+    background: url(../../images/profile.svg) center;
+    object-fit: contain;
+    border: none;
+    margin: 593px 210px 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    .burger-menu__content {
+        max-width: 320px;
+        /* max-height: 780px; */
+        padding: 143px 0px 92px;
+    }
+
+    .burger__closeBtn {
+        right: 18px;
+        top: 18px;
+    }
+
+    .burger__profileBtn {
+        margin: 408px 110px 0;
+    }
+}

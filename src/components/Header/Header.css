@@ -48,6 +48,12 @@
     text-rendering: auto;
 }
 
+.header__link_profile {
+    width: 100px;
+    height: 30px;
+    margin-top: 2px;
+}
+
 .header__link:hover {
     opacity: 0.7;
 }
@@ -74,8 +80,14 @@
 
 .header__movies {
     display: flex;
-    gap: 16px;
+    gap: 19px;
     align-items: center;
+}
+
+.header__link_save {
+    width: 142px;
+    margin-left: 3px;
+    text-align: center;
 }
 
 .header__link-login {
@@ -107,18 +119,16 @@
     font-weight: 500;
 }
 
-.header__link_movies {
-    top: 30px;
-    left: 155px;
-}
-
-.header__link_save {
-    top: 30px;
-    left: 225px;
-}
-
 .logo:hover {
     opacity: 0.8;
+}
+
+.header__burger {
+    display: none;
+}
+
+.header__burger:hover {
+    opacity: 0.7;
 }
 
 @media (max-width: 1230px) {
@@ -128,6 +138,60 @@
         display: flex;
         position: relative;
         padding: 19px 30px 15px;
+    }
+
+    .header__place_login {
+        max-width: 398px;
+        padding: 232px 0px 37px 0px;
+    }
+
+    .header__link_movies {
+        display: none;
+    }
+    
+    .header__link_save {
+        display: none;
+    }
+    
+    .header__link_profile {
+        display: none;
+    }
+    
+    .header__burger {
+        display: block;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: #FFF;
+        cursor: pointer;
+    }
+
+    .header__burger span {
+        position: absolute;
+        background-color: #000;
+        width: 28px;
+        height: 3px;
+        top: 21px;
+        left: 8px;
+    }
+
+    .header__burger:before,
+    .header__burger:after {
+        content: '';
+        background-color: #000;
+        position: absolute;
+        width: 28px;
+        height: 3px;
+        left: 8px;
+    }
+
+    .header__burger:before {
+        top: 11px;
+    }
+
+    .header__burger:after { 
+        bottom: 10px;
     }
 }
 
@@ -145,11 +209,53 @@
         gap: 14px;
     }
 
+    .header__link-login {
+        color: #000;
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+    }
+
+    .header__burger {
+        width: 40px;
+        height: 43px;
+ 
+    }
     
-.header__link-login {
-    color: #000;
-    width: 54px;
-    height: 26px;
-    font-size: 10px;
-}
+    .header__burger span {
+        position: absolute;
+        background-color: #000;
+        width: 22px;
+        height: 2.5px;
+        top: 21.5px;
+        left: 9px;
+    }
+
+    .header__burger:before,
+    .header__burger:after {
+        content: '';
+        background-color: #000;
+        position: absolute;
+        width: 22px;
+        height: 2.5px;
+        left: 9px;
+    }
+
+    .header__burger:before {
+        top: 12.5px;
+    }
+
+    .header__burger:after { 
+        bottom: 10px;
+    }
+
+    .header__place_login {
+        max-width: 38px;
+        padding: 56px 141px 47px;
+        margin: 0 auto;
+    }
+
+    .header__logo {
+        margin-right: 0px;
+    }
 }

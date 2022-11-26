@@ -1,5 +1,5 @@
 .more-movies {
-    width: 1280px;
+    max-width: 1280px;
     display: flex;
     padding: 61px 0px 82px;
 }
@@ -26,4 +26,18 @@
 
 .more-movies__button:hover {
     opacity: 0.8;
+}
+
+@media (max-width: 1230px) {
+    .more-movies {
+        padding: 61px 0px 89px;
+        margin-top: -121px;
+    }
+}
+
+@media (max-width: 767px) {
+    .more-movies {
+        padding: 61px 0px 124px;
+        margin-top: -378px;
+    }
 }

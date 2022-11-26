@@ -3,7 +3,7 @@ import headerLogo from "../../images/logo.svg";
 import profile from "../../images/profile.svg";
 import { Link, Route, Switch, NavLink } from "react-router-dom";
 
-function Header() {
+function Header({ onBurgerMenu }) {
   return (
     <Switch>
       <Route exact path="/">
@@ -68,9 +68,17 @@ function Header() {
             </NavLink>
           </div>
 
-          <NavLink to="/profile" className="header__link">
-            <img src={profile} alt="Ссылка на профиль" />
+          <NavLink to="/profile" className="header__link_profile">
+            <img
+              src={profile}
+              alt="Ссылка на профиль"
+              className="header__link_profile-image"
+            />
           </NavLink>
+
+          <button onClick={onBurgerMenu} className="header__burger">
+            <span></span>
+          </button>
         </div>
       </Route>
 
@@ -98,9 +106,17 @@ function Header() {
             </NavLink>
           </div>
 
-          <NavLink to="/profile" className="header__link">
-            <img src={profile} alt="Ссылка на профиль" />
+          <NavLink to="/profile" className="header__link_profile">
+            <img
+              src={profile}
+              alt="Ссылка на профиль"
+              className="header__link_profile-image"
+            />
           </NavLink>
+
+          <button onClick={onBurgerMenu} className="header__burger">
+            <span></span>
+          </button>
         </div>
       </Route>
 
@@ -128,9 +144,17 @@ function Header() {
             </NavLink>
           </div>
 
-          <NavLink to="/profile" className="header__link">
-            <img src={profile} alt="Ссылка на профиль" />
+          <NavLink to="/profile" className="header__link_profile">
+            <img
+              src={profile}
+              alt="Ссылка на профиль"
+              className="header__link_profile-image"
+            />
           </NavLink>
+
+          <button onClick={onBurgerMenu} className="header__burger">
+            <span></span>
+          </button>
         </div>
       </Route>
 

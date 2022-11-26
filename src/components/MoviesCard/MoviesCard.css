@@ -24,8 +24,8 @@
 .movie__name {
     max-width: 226px;
     max-height: 32px;
-    font-size: 13px;
     font-weight: 500;
+    font-size: 13px;
     line-height: 16px;
     color: #000;
     margin: 14px 0 0;
@@ -37,11 +37,6 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: auto;
-}
-
-.movie__buttons {
-    /* width: 24px;
-    height: 24px; */
 }
 
 .movie__button {
@@ -78,4 +73,18 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: auto;
+}
+
+@media (max-width: 1230px) {
+
+.movie__image {
+    height: 190px;
+}
+   
+}
+
+@media (max-width: 767px) {
+    .movie__image {
+        height: 168px;
+    }
 }

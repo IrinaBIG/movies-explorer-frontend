@@ -57,9 +57,11 @@ function Profile() {
         </button>
       </form>
 
-      <Link to="/sign-in" className="profile__out">
-        Выйти из аккаунта
-      </Link>
+      <div className="profile__out">
+        <Link to="/sign-in" className="profile__out-link">
+          Выйти из аккаунта
+        </Link>
+      </div>
     </div>
   );
 }
