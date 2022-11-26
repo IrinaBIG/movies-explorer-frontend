@@ -5,8 +5,13 @@ import photoStudents from "../../images/iradiploma.jpg";
 function AboutMe() {
   return (
     <section className="about-me">
-      <h2 className="chapter">Студент</h2>
+      <h2 className="chapter chapter__student">Студент</h2>
       <div className="about-me__info">
+        <img
+          className="about-me__photo"
+          src={photoStudents}
+          alt="Фотография студента"
+        />
         <h3 className="about-me__name">Ирина</h3>
         <p className="about-me__profession">Веб-разработчик, 36 лет</p>
         <p className="about-me__description">
@@ -22,11 +27,11 @@ function AboutMe() {
         >
           Github
         </a>
-        <img
+        {/* <img
           className="about-me__photo"
           src={photoStudents}
           alt="Фотография студента"
-        />
+        /> */}
       </div>
       <p className="about-me__portfolio">Портфолио</p>
       <div className="about-me__links">

@@ -132,5 +132,55 @@
     .contain__title {
         font-weight: 400;
     }
+}
 
+
+@media (max-width: 767px) {
+    .about-project {
+        max-width: 284px;
+        padding: 71px 18px;
+        margin: 0 auto;
+    }
+
+    .two-columns {
+        display: block;
+    }
+
+    .column {
+        display: block;
+        width: 284px;
+    }
+
+    .column__title {
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 58px;
+        margin-bottom: 16px;
+    }
+
+    .column__subtitle {
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 59px;
+    }
+
+    .contain__column {
+        width: 100px;
+    }
+
+    .contain__column_front-end {
+        width: 184px;
+    }
+
+    .contain__term {
+        font-size: 11px;
+        line-height: 13px;
+        padding: 11px 10px;
+    }
+    
+    .contain__title {
+        font-size: 11px;
+        line-height: 13px;
+        margin: 10px 0 0;
+    }
 }

@@ -22,3 +22,18 @@
         width: 668px;
     } 
 }
+
+@media (max-width: 767px) {
+
+    .chapter {
+        width: 284px;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 27px;
+        letter-spacing: -0.04em;
+    }
+
+    .chapter__student {
+        width: 292px;
+    }
+}

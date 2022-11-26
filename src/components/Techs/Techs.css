@@ -95,3 +95,37 @@
         line-height: 15px;
     }
 }
+
+
+@media (max-width: 767px) {
+    .techs {
+        max-width: 284px;
+        padding: 70px 18px;
+        margin: 0 auto;
+    }
+
+    .techs__brief {
+        margin: 59px auto 0;
+        font-size: 30px;
+        line-height: 36px;
+    }
+    
+    .techs__subtitle {
+        margin-top: 25px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+    
+    .techs__stacks {
+        max-width: 178px;
+        margin: 50px 53px 0;
+        grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+    
+    .techs__stack {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

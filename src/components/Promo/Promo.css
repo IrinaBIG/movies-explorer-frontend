@@ -118,7 +118,7 @@
 @media (max-width: 767px) {
     .promo {
         max-width: 300px;
-        padding: 75px 10px 30px;
+        padding: 70px 10px 30px;
         position: static;
         justify-content: center;
     }
@@ -127,7 +127,7 @@
         width: 210px;
         height: 206px;
         position: static;
-        margin: 0 55px 44px;
+        margin: 0 45px 40px;
     }
 
     .promo__title {
@@ -139,6 +139,10 @@
     }
 
     .promo__subtitle {
-        margin: 0 30px 80px;
+        margin: 0 20px 78px;
+    }
+    
+    .promo__button-link {
+        margin: 0 84px;
     }
 }
