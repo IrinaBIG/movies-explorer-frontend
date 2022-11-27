@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 function MoviesCard() {
   return (
     <div className="movie__item">
-      <img className="movie__image" src={card} alt="{nameRU}" />
+      <img className="movie__image" src={card} alt="картинка фильма" />
       {/* {isOwn && <button 
                 className={cardDeleteButtonClassName}
                 onClick={handleDeleteClick}
