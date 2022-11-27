@@ -22,12 +22,13 @@ function MoviesCard() {
                 aria-label="Нравится"
               ></button>
             </Route>
-            <button
-              className="movie__button movie__button_delete"
-              type="button"
-              aria-label="Нравится"
-            ></button>
-            <Route path="/"></Route>
+            <Route path="/saved-movies">
+              <button
+                className="movie__button movie__button_delete"
+                type="button"
+                aria-label="Нравится"
+              ></button>
+            </Route>
           </Switch>
         </div>
       </div>
