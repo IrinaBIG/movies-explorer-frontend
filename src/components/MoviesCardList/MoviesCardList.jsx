@@ -19,7 +19,7 @@ function MoviesCardList() {
         return (
           <MoviesCard
             card={item}
-            key={item._id}
+            key={item.id}
             name={item.nameRU}
             link={item.link}
             _id={item._id}

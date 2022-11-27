@@ -8,7 +8,7 @@ function BurgerMenu({ isOpen, isClose }) {
           <button type="button" className="burger__closeBtn" onClick={isClose} ></button>
           <nav className="burger__links">
            
-              <NavLink exact patch to="/" activeClassName="burger__link-active" className="burger__link">
+              <NavLink exact to="/" activeClassName="burger__link-active" className="burger__link">
                 Главная
               </NavLink>
        
