@@ -9,7 +9,7 @@ function Header({ onBurgerMenu }) {
       <Route exact path="/">
         <div className="header header_dark-theme">
           <Link to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
 
           <div className="header__navigate">
@@ -31,7 +31,7 @@ function Header({ onBurgerMenu }) {
       <Route path="/sign-in">
         <div className="header header__place_login">
           <Link to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
         </div>
       </Route>
@@ -39,7 +39,7 @@ function Header({ onBurgerMenu }) {
       <Route path="/sign-up">
         <div className="header header__place_login">
           <Link to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип Mesto" />
+            <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
         </div>
       </Route>
@@ -48,7 +48,7 @@ function Header({ onBurgerMenu }) {
         <div className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
-              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+              <img className="logo" src={headerLogo} alt="логотип" />
             </NavLink>
 
             <NavLink
@@ -86,7 +86,7 @@ function Header({ onBurgerMenu }) {
         <div className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
-              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+              <img className="logo" src={headerLogo} alt="логотип" />
             </NavLink>
 
             <NavLink
@@ -124,7 +124,7 @@ function Header({ onBurgerMenu }) {
         <div className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
-              <img className="logo" src={headerLogo} alt="логотип Mesto" />
+              <img className="logo" src={headerLogo} alt="логотип" />
             </NavLink>
 
             <NavLink

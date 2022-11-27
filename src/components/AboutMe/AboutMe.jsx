@@ -45,7 +45,7 @@ function AboutMe() {
             <img
               className="about-me__arrow"
               src={linkContent}
-              alt="Ссылка на статичный сайт студента"
+              alt="Ссылка на статичный сайт"
             />
           </a>
         </div>
@@ -59,7 +59,7 @@ function AboutMe() {
             <img
               className="about-me__arrow"
               src={linkContent}
-              alt="Ссылка на адаптивный сайт студента"
+              alt="Ссылка на адаптивный сайт"
               target="_blank"
             />
           </a>
@@ -75,7 +75,7 @@ function AboutMe() {
             <img
               className="about-me__arrow"
               src={linkContent}
-              alt="Ссылка на одностраничное студента"
+              alt="Ссылка на одностраничное приложение"
               target="_blank"
             />
           </a>
