@@ -1,7 +1,8 @@
 .footer {
-    max-width: 1280px;
+    max-width: 1140px;
     background-color: #FFF;
     padding: 76px 70px 20px;
+    margin: 0 auto;
 }
 
 .footer__info {
@@ -51,17 +52,17 @@
 
 @media (max-width: 768px) {
     .footer {
-        width: 100%;
+        /* width: 100%; */
         max-width: 708px;
         padding: 70px 30px;
-        margin: 0;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 767px) {
 
     .footer {
-        max-width: 300px;
+        max-width: 320px;
         padding: 36px 10px 50px;
         margin: 0 auto;
     }
@@ -92,5 +93,14 @@
         border-bottom: none;
         padding-bottom: 0;
         margin: 0 0 14px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .footer {
+        width: 320px;
+        padding: 36px 0 50px;
+        margin: 0;
     }
 }

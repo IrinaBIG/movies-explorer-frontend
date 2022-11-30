@@ -5,7 +5,7 @@ import MoreMovies from "../MoreMovies/MoreMovies";
 
 function SavedMovies() {
   return (
-    <main className="movies-content">
+    <main className="main">
       <SearchForm />
       <MoviesCardList />
       <MoreMovies />

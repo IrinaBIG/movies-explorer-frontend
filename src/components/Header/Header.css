@@ -196,10 +196,11 @@
 
 @media (max-width: 768px) {
     .header {
-        width: 100%;
+        /* width: 100%; */
         max-width: 724px;
         padding: 19px 13px 15px 31px;
-        margin: 0;
+        /* margin: 0; */
+        margin: 0 auto;
     }
 
     .header__navigate {
@@ -209,7 +210,7 @@
 
 @media (max-width: 400px) {
     .header {
-        max-width: 292px;
+        width: 292px;
         padding: 18px 14px 18px;
     }
 
@@ -219,6 +220,7 @@
 
     .header__navigate {
         gap: 14px;
+        margin-right: 0; 
     }
 
     .header__link-login {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Profile() {
   return (
-    <main className="profile-content">
+    <main className="main">
       <form
         className="form"
         id="profile-form"

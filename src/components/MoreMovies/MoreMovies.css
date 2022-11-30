@@ -30,6 +30,12 @@
 
 @media (max-width: 1230px) {
     .more-movies {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .more-movies {
         padding: 61px 0px 89px;
         margin-top: -121px;
     }
@@ -39,5 +45,12 @@
     .more-movies {
         padding: 61px 0px 124px;
         margin-top: -378px;
+    }
+}
+
+@media (max-width: 767px) {
+    .more-movies__button {
+        width: 240px;
+        height: 36px;
     }
 }

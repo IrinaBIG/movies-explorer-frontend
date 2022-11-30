@@ -78,7 +78,7 @@
     text-rendering: auto;
 }
 
-@media (max-width: 1230px) {
+@media (max-width: 768px) {
 
 .movie__image {
     height: 190px;
@@ -86,7 +86,7 @@
    
 }
 
-@media (max-width: 767px) {
+@media (max-width: 320px) {
     .movie__image {
         height: 168px;
     }

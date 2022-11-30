@@ -122,10 +122,11 @@
 @media (max-width: 768px) {
 
     .promo {
-        width: 100%;
+        /* width: 100%; */
         max-width: 680px;
         padding: 143px 44px 76px;
-        margin: 0;
+        /* margin: 0; */
+        margin: 0 auto;
     }
 
     .promo__title {
@@ -137,7 +138,7 @@
     }
 
     .promo__subtitle {
-        width: 260px;
+        max-width: 260px;
         margin: 0 auto 92px;
         text-align: center;
     }
@@ -168,7 +169,7 @@
     }
 
     .promo__subtitle {
-        margin: 0 20px 78px;
+        margin: 27px 20px 81px;
     }
     
     .promo__button-link {

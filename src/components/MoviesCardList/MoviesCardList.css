@@ -11,7 +11,7 @@
 }
 
 
-@media (max-width: 1230px) {
+@media (max-width: 768px) {
     .movies-list {
         max-width: 708px;
         padding: 70px 30px 0 30px;
@@ -27,6 +27,15 @@
 }
 
 @media (max-width: 767px) {
+    .movies-list {
+        padding: 70px 10px 0 10px;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+}
+
+
+@media (max-width: 320px) {
     .movies-list {
         max-width: 300px;
         padding: 40px 10px 0;

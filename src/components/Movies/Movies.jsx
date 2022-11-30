@@ -6,7 +6,7 @@ const MoviesCardList = lazy(() => import("../MoviesCardList/MoviesCardList"));
 
 function Movies() {
   return (
-    <main className="movies-content">
+    <main className="main">
       <SearchForm />
       <Suspense fallback={<Preloader />}>
         <MoviesCardList />
