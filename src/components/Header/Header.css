@@ -13,7 +13,8 @@
 }
 
 .header__place_login {
-    padding: 70px 800px 37px 434px;
+    margin: 70px auto 22px;
+    max-width: 405px;
 }
 
 .logo {
@@ -116,6 +117,7 @@
 .header__link-login:hover {
     opacity: 0.8;
 }
+
 .link-active {
     font-weight: 500;
 }
@@ -140,22 +142,23 @@
     }
 
     .header__place_login {
-        max-width: 398px;
-        padding: 232px 0px 37px 0px;
+        margin: 232px auto 37px;
+        max-width: 405px;
+        padding: 0;
     }
 
     .header__link_movies {
         display: none;
     }
-    
+
     .header__link_save {
         display: none;
     }
-    
+
     .header__link_profile {
         display: none;
     }
-    
+
     .header__burger {
         display: block;
         position: relative;
@@ -189,7 +192,7 @@
         top: 11px;
     }
 
-    .header__burger:after { 
+    .header__burger:after {
         bottom: 10px;
     }
 }
@@ -204,7 +207,21 @@
     }
 
     .header__navigate {
-        margin-right: 16px;        
+        margin-right: 16px;
+    }
+
+    .header__place_login {
+        margin: 232px auto 37px;
+        max-width: 405px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .header__place_login {
+        max-width: 38px;
+        padding: 56px 141px 47px;
+        margin: 0 auto;
     }
 }
 
@@ -220,7 +237,7 @@
 
     .header__navigate {
         gap: 14px;
-        margin-right: 0; 
+        margin-right: 0;
     }
 
     .header__link-login {
@@ -234,7 +251,7 @@
         width: 40px;
         height: 43px;
     }
-    
+
     .header__burger span {
         position: absolute;
         background-color: #000;
