@@ -1,13 +1,26 @@
 import React from "react";
+import { useState } from "react";
 import headerLogo from "../../images/logo.svg";
 import profile from "../../images/profile.svg";
 import { Link, Route, Switch, NavLink } from "react-router-dom";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-function Header({ onBurgerMenu }) {
+function Header() {
+
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  function handleBurgerMenuClick() {
+    setIsBurgerMenuOpen(true);
+  }
+
+  function closeBurgerMenu() {
+    setIsBurgerMenuOpen(false);
+  }
+
   return (
     <Switch>
       <Route exact path="/">
-        <div className="header header_dark-theme">
+        <header className="header header_dark-theme">
           <Link to="/" className="header__logo">
             <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
@@ -25,27 +38,27 @@ function Header({ onBurgerMenu }) {
               </button>
             </Link>
           </div>
-        </div>
+        </header>
       </Route>
 
       <Route path="/sign-in">
-        <div className="header header__place_login">
+        <header className="header header__place_login">
           <Link to="/" className="header__logo">
             <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
-        </div>
+        </header>
       </Route>
 
       <Route path="/sign-up">
-        <div className="header header__place_login">
+        <header className="header header__place_login">
           <Link to="/" className="header__logo">
             <img className="logo" src={headerLogo} alt="логотип" />
           </Link>
-        </div>
+        </header>
       </Route>
 
       <Route path="/movies">
-        <div className="header">
+        <header className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
               <img className="logo" src={headerLogo} alt="логотип" />
@@ -75,15 +88,16 @@ function Header({ onBurgerMenu }) {
               className="header__link_profile-image"
             />
           </NavLink>
-
-          <button onClick={onBurgerMenu} className="header__burger">
+     
+          <button onClick={handleBurgerMenuClick} className="header__burger">
             <span></span>
           </button>
-        </div>
+          <BurgerMenu isOpen={isBurgerMenuOpen} isClose={closeBurgerMenu} />
+        </header>
       </Route>
 
       <Route path="/saved-movies">
-        <div className="header">
+        <header className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
               <img className="logo" src={headerLogo} alt="логотип" />
@@ -114,14 +128,15 @@ function Header({ onBurgerMenu }) {
             />
           </NavLink>
 
-          <button onClick={onBurgerMenu} className="header__burger">
+          <button onClick={handleBurgerMenuClick} className="header__burger">
             <span></span>
           </button>
-        </div>
+          <BurgerMenu isOpen={isBurgerMenuOpen} isClose={closeBurgerMenu} />
+        </header>
       </Route>
 
       <Route path="/profile">
-        <div className="header">
+        <header className="header">
           <div className="header__movies">
             <NavLink to="/" className="header__logo">
               <img className="logo" src={headerLogo} alt="логотип" />
@@ -152,10 +167,11 @@ function Header({ onBurgerMenu }) {
             />
           </NavLink>
 
-          <button onClick={onBurgerMenu} className="header__burger">
+          <button onClick={handleBurgerMenuClick} className="header__burger">
             <span></span>
           </button>
-        </div>
+          <BurgerMenu isOpen={isBurgerMenuOpen} isClose={closeBurgerMenu} />
+        </header>
       </Route>
 
       <Route path="*"></Route>

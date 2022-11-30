@@ -2,6 +2,9 @@
     background-color: #FFF;
     overflow: hidden;
     position: relative;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
 }
 
 .movie__image {

@@ -1,5 +1,6 @@
 .chapter {
-    width: 1140px;
+    width: 100%;
+    max-width: 1140px;
     font-weight: 400;
     font-family: inter;
     font-size: 22px;
@@ -17,13 +18,7 @@
     text-rendering: auto;
 }
 
-@media (max-width: 1230px) {
-    .chapter {
-        width: 668px;
-    } 
-}
-
-@media (max-width: 767px) {
+@media (max-width: 400px) {
 
     .chapter {
         width: 284px;

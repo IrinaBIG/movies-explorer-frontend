@@ -5,11 +5,11 @@ import MoreMovies from "../MoreMovies/MoreMovies";
 
 function SavedMovies() {
   return (
-    <div className="movies-content">
+    <main className="movies-content">
       <SearchForm />
       <MoviesCardList />
       <MoreMovies />
-    </div>
+    </main>
   );
 }
 

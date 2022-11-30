@@ -8,25 +8,14 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import NotFound from "../NotFound/NotFound";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useState } from "react";
 
 function App() {
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  function handleBurgerMenuClick() {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  }
-
-  function closeBurgerMenu() {
-    setIsBurgerMenuOpen(false);
-  }
 
   return (
-    <div className="body">
       <div className="page">
-        <Header onBurgerMenu={handleBurgerMenuClick} />
-
+        <Header  />
+        {/* <main> */}
+       
         <Switch>
           <Route exact path="/">
             <Main />
@@ -34,19 +23,16 @@ function App() {
 
           <Route path="/saved-movies">
             <SavedMovies
-            // onBurgerMenu={handleBurgerMenuClick}
             />
           </Route>
 
           <Route path="/movies">
             <Movies
-            //  onBurgerMenu={handleBurgerMenuClick}
             />
           </Route>
 
           <Route path="/profile">
             <Profile
-            // onBurgerMenu={handleBurgerMenuClick}
             />
           </Route>
 
@@ -66,12 +52,10 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
-
+        {/* </main> */}
         <Footer />
 
-        <BurgerMenu isOpen={isBurgerMenuOpen} isClose={closeBurgerMenu} />
       </div>
-    </div>
   );
 }
 

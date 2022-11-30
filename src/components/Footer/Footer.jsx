@@ -5,7 +5,7 @@ function Footer() {
   return (
     <Switch>
       <Route exact path="/">
-        <section className="footer">
+        <footer className="footer">
           <h4 className="footer__info">
             Учебный проект Яндекс.Практикум х BeatFilm.
           </h4>
@@ -18,7 +18,7 @@ function Footer() {
             </p>
             <p className="footer__info footer__info_copyright">Github</p>
           </div>
-        </section>
+        </footer>
       </Route>
 
       <Route path="/profile"></Route>
@@ -26,7 +26,7 @@ function Footer() {
       <Route path="/sign-up"></Route>
 
       <Route path="/movies">
-        <section className="footer">
+        <footer className="footer">
           <h4 className="footer__info">
             Учебный проект Яндекс.Практикум х BeatFilm.
           </h4>
@@ -39,11 +39,11 @@ function Footer() {
             </p>
             <p className="footer__info footer__info_copyright">Github</p>
           </div>
-        </section>
+        </footer>
       </Route>
 
       <Route path="/saved-movies">
-        <section className="footer">
+        <footer className="footer">
           <h4 className="footer__info">
             Учебный проект Яндекс.Практикум х BeatFilm.
           </h4>
@@ -56,7 +56,7 @@ function Footer() {
             </p>
             <p className="footer__info footer__info_copyright">Github</p>
           </div>
-        </section>
+        </footer>
       </Route>
 
       <Route path="*"></Route>

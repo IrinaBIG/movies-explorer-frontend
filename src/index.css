@@ -1,6 +1,5 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/font-face/inter.css);
-@import url(./blocks/body/body.css);
 @import url(./blocks/page/page.css);
 @import url(./blocks/chapter/chapter.css);
 @import url(./components/Main/Main.css);
@@ -19,3 +18,4 @@
 @import url(./components/Login/Login.css);
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/BurgerMenu/BurgerMenu.css);
+@import url(./components/FilterCheckbox/FilterCheckbox.css);

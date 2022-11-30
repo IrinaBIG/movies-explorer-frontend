@@ -27,35 +27,33 @@ function AboutMe() {
         >
           Github
         </a>
-        {/* <img
-          className="about-me__photo"
-          src={photoStudents}
-          alt="Фотография студента"
-        /> */}
       </div>
       <p className="about-me__portfolio">Портфолио</p>
-      <div className="about-me__links">
-        <div className="about-me__link">
-          <h3 className="about-me__static">Статичный сайт</h3>
+      <ul className="about-me__links">
+        <li>
           <a
+            className="about-me__link"
             href="https://github.com/IrinaBIG/how-to-learn"
             target="_blank"
             rel="noreferrer"
           >
+            <h3 className="about-me__static">Статичный сайт</h3>
             <img
               className="about-me__arrow"
               src={linkContent}
               alt="Ссылка на статичный сайт"
             />
           </a>
-        </div>
-        <div className="about-me__link">
-          <h3 className="about-me__static">Адаптивный сайт</h3>
+        </li>
+        <li>
           <a
+            className="about-me__link"
             href="https://github.com/IrinaBIG/russian-travel"
             target="_blank"
             rel="noreferrer"
           >
+            <h3 className="about-me__static">Адаптивный сайт</h3>
+
             <img
               className="about-me__arrow"
               src={linkContent}
@@ -63,15 +61,17 @@ function AboutMe() {
               target="_blank"
             />
           </a>
-        </div>
-        <div className="about-me__link about-me__link_last">
-          <h3 className="about-me__static">Одностраничное приложение</h3>
+        </li>
+
+        <li>
           <a
+            className="about-me__link about-me__link_last"
             href="https://github.com/IrinaBIG/react-mesto-api-full"
             target="_blank"
             rel="noreferrer"
-            className=""
           >
+            <h3 className="about-me__static">Одностраничное приложение</h3>
+
             <img
               className="about-me__arrow"
               src={linkContent}
@@ -79,8 +79,8 @@ function AboutMe() {
               target="_blank"
             />
           </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
   );
 }

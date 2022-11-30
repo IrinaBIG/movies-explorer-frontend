@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Profile() {
   return (
-    <div className="profile-content">
+    <main className="profile-content">
       <form
         className="form"
         id="profile-form"
@@ -62,7 +62,7 @@ function Profile() {
           Выйти из аккаунта
         </Link>
       </div>
-    </div>
+    </main>
   );
 }
 

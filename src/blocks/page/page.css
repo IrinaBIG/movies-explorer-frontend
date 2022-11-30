@@ -1,7 +1,8 @@
-.page {
+.page,
+html {
     font-family: 'inter', Arial, Helvetica, sans-serif;
     min-height: 100vh;
-    max-width: 1280px;
-    min-width: 320px;
+    background-color: #fff;
     margin: 0 auto;
+    
 }

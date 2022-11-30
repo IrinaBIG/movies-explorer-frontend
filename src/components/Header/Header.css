@@ -1,8 +1,9 @@
 .header {
     background: #FFF;
-    max-width: 1280px;
+    max-width: 1140px;
     margin: 0 auto;
     display: flex;
+    flex-direction: row;
     padding: 18px 70px 15px;
     justify-content: space-between;
 }
@@ -131,11 +132,9 @@
     opacity: 0.7;
 }
 
-@media (max-width: 1230px) {
+@media (max-width: 1100px) {
     .header {
-        width: 708px;
-        margin: 0 auto;
-        display: flex;
+        max-width: 840px;
         position: relative;
         padding: 19px 30px 15px;
     }
@@ -195,7 +194,20 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+    .header {
+        width: 100%;
+        max-width: 724px;
+        padding: 19px 13px 15px 31px;
+        margin: 0;
+    }
+
+    .header__navigate {
+        margin-right: 16px;        
+    }
+}
+
+@media (max-width: 400px) {
     .header {
         max-width: 292px;
         padding: 18px 14px 18px;
@@ -219,7 +231,6 @@
     .header__burger {
         width: 40px;
         height: 43px;
- 
     }
     
     .header__burger span {
@@ -243,10 +254,6 @@
 
     .header__burger:before {
         top: 12.5px;
-    }
-
-    .header__burger:after { 
-        bottom: 10px;
     }
 
     .header__place_login {
