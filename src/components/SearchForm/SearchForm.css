@@ -206,8 +206,8 @@
     
     .search {
         display: flex;
-        margin: 0 auto 10px;
-        width: 320px;
+        margin: 0 0 10px;
+        max-width: 320px;
         height: fit-content;
         padding: 76px 0px 108px;
         flex-wrap: wrap;
@@ -219,7 +219,7 @@
     }
 
     .search__input {
-        width: 150px;
+        width: 80px;
         font-size: 11px;
         line-height: 18px;
         margin-left: 27px;
