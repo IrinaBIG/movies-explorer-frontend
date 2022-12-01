@@ -227,8 +227,10 @@
 
 @media (max-width: 400px) {
     .header {
-        width: 292px;
+        /* width: 100%; */
+        max-width: 292px;
         padding: 18px 14px 18px;
+        /* margin: 0 auto; */
     }
 
     .header__link_dark-theme {

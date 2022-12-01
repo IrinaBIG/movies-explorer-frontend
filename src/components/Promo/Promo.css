@@ -150,7 +150,7 @@
 
 @media (max-width: 400px) {
     .promo {
-        width: 300px;
+        max-width: 300px;
         padding: 70px 10px 30px;
     }
 

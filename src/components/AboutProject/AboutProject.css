@@ -163,6 +163,7 @@
 
 @media (max-width: 400px) {
     .about-project {
+        /* width: 100%; */
         max-width: 284px;
         padding: 71px 18px;
         margin: 0 auto;
