@@ -1,0 +1,106 @@
+.not-found {
+    background: #FFF;
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding-top: 246px;
+    align-items: center;
+}
+
+.not-found__error {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 140px;
+    line-height: 169px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.not-found__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 184px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.not-found__button {
+    display: flex;
+}
+
+.not-found__back {
+    max-width: 42px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 0 auto;
+    color: #3456F3;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background-color: #FFF;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+.not-found__back:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 1230px) {
+
+    .not-found {
+        padding-top: 408px;
+    }
+    
+    .not-found__button {
+        display: flex;
+    }
+    
+}
+
+@media (max-width: 767px) {
+
+    .not-found {
+        padding-top: 329px;
+    }
+
+    .not-found__error {
+        font-size: 80px;
+        line-height: 97px;
+        margin-bottom: 10px;
+    }
+    
+    .not-found__text {
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        margin-bottom: 284px;
+    }
+    
+    .not-found__back {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    
+}

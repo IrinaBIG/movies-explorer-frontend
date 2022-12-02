@@ -1,0 +1,34 @@
+.chapter {
+    width: 100%;
+    max-width: 1140px;
+    font-weight: 400;
+    font-family: inter;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000;
+    margin: 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.04em;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
+@media (max-width: 400px) {
+
+    .chapter {
+        width: 284px;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 27px;
+        letter-spacing: -0.04em;
+    }
+
+    .chapter__student {
+        width: 292px;
+    }
+}
