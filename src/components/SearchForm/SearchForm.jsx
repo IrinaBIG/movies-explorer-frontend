@@ -3,10 +3,15 @@ import loupe from "../../images/loupe.svg";
 import separator from "../../images/inputSeparator.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm() {
+function SearchForm({ onInput, onSubmitHandler }) {
+
+  // function handleInput(evt) {
+  //   onInput(evt.target.value);
+  // }
+
   return (
     <section className="search">
-      <form className="search__movies">
+      <form className="search__movies" onSubmit={onSubmitHandler}>
         <img
           src={loupe}
           alt="декоративный элемент - лупа"
@@ -17,8 +22,14 @@ function SearchForm() {
           className="search__input"
           placeholder="Фильм"
           required
+          onInput={onInput}
         />
-        <button type="submit" className="search__input-find"></button>
+        <button 
+        type="submit" 
+        className="search__input-find"
+        // onClick={onInput}
+        >
+        </button>
         <img
           src={separator}
           alt="декоративный элемент - разделитель"

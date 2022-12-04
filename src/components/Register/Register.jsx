@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Register() {
+function Register({ handleRegister }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
+
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleRegister(name, password, email);
+  }
+
   return (
     <main className="main">
       <section className="start-page">
         <p className="start-page__title">Добро пожаловать!</p>
-        <form className="start-page__form">
+        <form onSubmit={handleSubmit} className="start-page__form">
           <h3 className="input__title">Имя</h3>
           <input
             placeholder="Имя"
             name="nameInput"
+            onChange={handleChangeName}
             type="text"
             className="start-page__input"
-            //   value={email}
+            value={name}
             required
           />
           <span
@@ -24,9 +46,10 @@ function Register() {
           <input
             placeholder="E-mail"
             name="emailInput"
+            onChange={handleChangeEmail}
             type="email"
             className="start-page__input"
-            //   value={password}
+            value={email}
             required
           />
           <span
@@ -37,9 +60,10 @@ function Register() {
           <input
             placeholder="Пароль"
             name="passwordInput"
+            onChange={handleChangePassword}
             type="password"
             className="start-page__input"
-            //   value={password}
+            value={password}
             required
           />
           <span

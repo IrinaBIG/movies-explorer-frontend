@@ -1,7 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile({ values, handleUpdateUser }) {
+
+  const currentUser = React.useContext(CurrentUserContext);
+  // console.log(currentUser.data.name);
+
+//   function handleSubmit(e) {
+//     // Запрещаем браузеру переходить по адресу формы
+//     e.preventDefault();
+//     // Передаём значения управляемых компонентов во внешний обработчик
+//     handleUpdateUser({ name: values["firstname"], email: values["email"] });
+// }
+
+
   return (
     <main className="main">
       <form
@@ -10,7 +23,7 @@ function Profile() {
         name="form-in-profile"
         // novalidate
       >
-        <h1 className="profile__title">Привет, Виталий!</h1>
+        <h1 className="profile__title">Привет, {currentUser.data.name}!</h1>
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input
@@ -18,7 +31,7 @@ function Profile() {
             id="name-input"
             className="form__input form__input_type_name"
             name="firstname"
-            // value="Виталий"
+            defaultValue={currentUser.data.name}
             placeholder="Имя"
             required
             minLength="2"
@@ -37,7 +50,7 @@ function Profile() {
             id="email-input"
             className="form__input form__input_type_email"
             name="email"
-            // value="pochta@yandex.ru"
+            defaultValue={currentUser.data.email}
             placeholder="E-mail"
             required
           />
@@ -52,6 +65,7 @@ function Profile() {
           className="form__button"
           name="add"
           aria-label="Редактировать"
+          // onSubmit={handleSubmit}
         >
           Редактировать
         </button>

@@ -20,13 +20,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 13px;
+    padding-bottom: 29px;
     border-bottom: 1px solid #E8E8E8;
 }
 
 .movie__name {
     max-width: 226px;
-    max-height: 32px;
+    min-height: 32px;
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;

@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
-
-  // строки 8-14 сделаны только для демонстрации верстки
-  const [movies, setMovies] = useState([]);
-
-  React.useEffect(() => {
-    fetch("https://api.nomoreparties.co/beatfilm-movies")
-      .then((res) => res.json())
-      .then((res) => setMovies(res));
-  }, []);
+function MoviesCardList({movies}) {
 
   return (
+    
     <section className="movies-list">
       {movies.slice(0, 16).map((item) => {
         return (
@@ -21,9 +13,11 @@ function MoviesCardList() {
             card={item}
             key={item.id}
             name={item.nameRU}
-            link={item.link}
-            _id={item._id}
+            link={`https://api.nomoreparties.co/${item.image.url}`}
+            id={item.id}
             likes={item.likes}
+            duration={item.duration}
+            trailerLink={item.trailerLink}
           />
         );
       })}

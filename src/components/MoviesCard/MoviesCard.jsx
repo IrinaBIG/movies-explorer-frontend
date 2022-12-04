@@ -1,15 +1,15 @@
 import React from "react";
-import card from "../../images/card.svg";
+// import card from "../../images/card.svg";
 import { Route, Switch } from "react-router-dom";
 
-function MoviesCard() {
+function MoviesCard({name, duration, link}) {
   return (
     <ul className="movie__item">
       <li>
-        <img className="movie__image" src={card} alt="картинка фильма" />
+        <img className="movie__image" src={link} alt={name} />
         <div className="movie__data">
           <p className="movie__name">
-            Gimme Danger: История Игги и The Stooges
+            {name}
           </p>
           <div className="movie__buttons">
             <Switch>
@@ -30,7 +30,7 @@ function MoviesCard() {
             </Switch>
           </div>
         </div>
-        <p className="movie__duration">1ч 42м</p>
+        <p className="movie__duration">{duration}</p>
       </li>
     </ul>
   );

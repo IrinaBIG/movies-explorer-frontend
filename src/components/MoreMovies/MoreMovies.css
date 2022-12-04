@@ -4,6 +4,15 @@
     padding: 61px 0px 82px;
 }
 
+/* .more-movies {
+    max-width: 1280px;
+    display: grid;
+    grid-column: 1 / 4 span;
+    padding: 61px 0px 82px;
+} */
+
+
+
 .more-movies__button {
     margin: auto;
     width: 320px;
