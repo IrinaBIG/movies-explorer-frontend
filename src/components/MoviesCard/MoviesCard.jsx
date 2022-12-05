@@ -2,15 +2,15 @@ import React from "react";
 // import card from "../../images/card.svg";
 import { Route, Switch } from "react-router-dom";
 
-function MoviesCard({name, duration, link}) {
+function MoviesCard({ name, duration, link, trailerLink }) {
   return (
     <ul className="movie__item">
       <li>
-        <img className="movie__image" src={link} alt={name} />
+        <a href={trailerLink} target="_blank" rel="noreferrer">
+          <img className="movie__image" src={link} alt={name} />
+        </a>
         <div className="movie__data">
-          <p className="movie__name">
-            {name}
-          </p>
+          <p className="movie__name">{name}</p>
           <div className="movie__buttons">
             <Switch>
               <Route path="/movies">

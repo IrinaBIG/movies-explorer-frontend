@@ -22,10 +22,8 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  // const [isCheckboxActive, setIsCheckboxActive] = useState(true)
   const history = useHistory();
 
   function onInput(evt) {
@@ -47,10 +45,6 @@ function App() {
           : moviesApi;
           console.log(findMovies);
         setMovies(findMovies);
-        //   res.filter((item) => {
-        //     return item.nameRU.toLowerCase().includes(search.toLowerCase());
-        //   })
-        // );
         setIsLoading(false);
         localStorage.setItem("search", search);
         localStorage.setItem("findMovies", JSON.stringify(findMovies));

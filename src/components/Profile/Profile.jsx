@@ -1,19 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({ values, handleUpdateUser }) {
-
   const currentUser = React.useContext(CurrentUserContext);
   // console.log(currentUser.data.name);
 
-//   function handleSubmit(e) {
-//     // Запрещаем браузеру переходить по адресу формы
-//     e.preventDefault();
-//     // Передаём значения управляемых компонентов во внешний обработчик
-//     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-// }
+  //   function handleSubmit(e) {
+  //     // Запрещаем браузеру переходить по адресу формы
+  //     e.preventDefault();
+  //     // Передаём значения управляемых компонентов во внешний обработчик
+  //     handleUpdateUser({ name: values["firstname"], email: values["email"] });
+  // }
 
+  const history = useHistory();
+
+  function onSignOut() {
+    localStorage.removeItem("token");
+    history.push("/sign-in");
+  }
 
   return (
     <main className="main">
@@ -72,7 +77,7 @@ function Profile({ values, handleUpdateUser }) {
       </form>
 
       <div className="profile__out">
-        <Link to="/sign-in" className="profile__out-link">
+        <Link to="/sign-in" className="profile__out-link" onClick={onSignOut}>
           Выйти из аккаунта
         </Link>
       </div>
