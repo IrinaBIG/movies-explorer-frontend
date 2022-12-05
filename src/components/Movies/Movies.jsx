@@ -8,13 +8,15 @@ import Preloader from "../Preloader/Preloader";
 const MoviesCardList = lazy(() => import("../MoviesCardList/MoviesCardList"));
 
 
-function Movies({ movies, onInput, onSubmitHandler}) {
+function Movies({ movies, onInput, handleFindMovieFromApi, isLoading, isChecked, isCheckbox}) {
 
   return (
     <main className="main">
       <SearchForm 
       onInput={onInput}
-      onSubmitHandler={onSubmitHandler}
+      onSubmitHandler={handleFindMovieFromApi}
+      isChecked={isChecked}
+      isCheckbox={isCheckbox}
       />
       <Suspense fallback={<Preloader />}>
         <MoviesCardList

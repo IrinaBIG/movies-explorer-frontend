@@ -14,13 +14,13 @@ class MainApi {
       return Promise.reject(`Возникла ошибка: ${res.status}`);
     }
   
-    getSavedMovies() {
-      return fetch(`${this._url}/movies`, {
-        headers: this._headers
-        // 'authorization': this._token,
-      })
-      .then(this._checkResponse)
-    }
+    // getSavedMovies() {
+    //   return fetch(`${this._url}/movies`, {
+    //     headers: this._headers
+    //     // 'authorization': this._token,
+    //   })
+    //   .then(this._checkResponse)
+    // }
   
     getUser() {
       return fetch(`${this._url}/users/me`, {

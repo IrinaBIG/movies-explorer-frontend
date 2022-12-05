@@ -20,38 +20,53 @@ function App() {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [loadedMovies, setLoadedMovies] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   // const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  // const [isCheckboxActive, setIsCheckboxActive] = useState(true)
   const history = useHistory();
 
   function onInput(evt) {
     setSearch(evt.target.value);
   }
 
-  function onSubmitHandler(evt) {
+  function handleFindMovieFromApi(evt) {
     evt.preventDefault();
-
+    // setIsLoading(true);
     moviesApi
-      .getMoviesFromApi(search)
+      .getMoviesFromApi(search, isChecked)
       .then((res) => {
-        setMovies(
-          res.filter((item) => {
-            return item.nameRU.toLowerCase().includes(search.toLowerCase());
-          })
-        );
+        // console.log(res);
+        const moviesApi = res.filter((item) => {
+          return item.nameRU.toLowerCase().includes(search.toLowerCase());
+        });
+
+        const findMovies = isChecked
+          ? moviesApi.filter((item) => item.duration <= 40)
+          : moviesApi;
+          console.log(findMovies);
+        setMovies(findMovies);
+        //   res.filter((item) => {
+        //     return item.nameRU.toLowerCase().includes(search.toLowerCase());
+        //   })
+        // );
+        localStorage.setItem("search", search);
+        localStorage.setItem("findMovies", JSON.stringify(findMovies));
+        localStorage.setItem("checkBoxStatus", isChecked);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function handleSavedMovies() {
+  function handleAddSavedMovies(data) {
+    setIsLoading(true);
     mainApi
-      .getSavedMovies()
+      .addMovie(data)
       .then((res) => {
-        setSavedMovies(res);
+        setSavedMovies([res, ...savedMovies]);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +86,7 @@ function App() {
   //     });
   // }
 
-  function getUserInfo() {
+  function handleGetUserInfo() {
     mainApi.getUser()
     .then((data) => {
       setLoggedIn(true);
@@ -95,7 +110,7 @@ function App() {
           // console.log(data.token);
           localStorage.setItem("token", data.token);
           setLoggedIn(true);
-          getUserInfo(data);
+          handleGetUserInfo(data);
           history.push("/profile");
         }
       })
@@ -139,6 +154,10 @@ function App() {
       // })
   }
 
+  function handleClickCheckbox() {
+    setIsChecked(!isChecked);
+  }
+
 
 
   useEffect(() => {
@@ -150,7 +169,6 @@ function App() {
       auth.checkToken(jwt)
         .then((res) => {
           if (res) {
-            console.log(res)
             setCurrentUser(res);
             setLoggedIn(true);
             history.push("/profile");
@@ -185,7 +203,10 @@ function App() {
             component={Movies}
             movies={movies}
             onInput={onInput}
-            onSubmitHandler={onSubmitHandler}
+            handleFindMovieFromApi={handleFindMovieFromApi}
+            isLoading={isLoading}
+            isChecked={isChecked}
+            isCheckbox={handleClickCheckbox}
           />
 
           <ProtectedRoute

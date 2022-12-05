@@ -3,7 +3,7 @@ import loupe from "../../images/loupe.svg";
 import separator from "../../images/inputSeparator.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onInput, onSubmitHandler }) {
+function SearchForm({ onInput, onSubmitHandler, isChecked, isCheckbox }) {
 
   // function handleInput(evt) {
   //   onInput(evt.target.value);
@@ -35,7 +35,10 @@ function SearchForm({ onInput, onSubmitHandler }) {
           alt="декоративный элемент - разделитель"
           className="search__input-separator"
         />      
-        <FilterCheckbox />
+        <FilterCheckbox 
+        isChecked={isChecked}
+        isCheckbox={isCheckbox}
+        />
         <h3 className="search__short-movies">Короткометражки</h3>
       </form>
     </section>

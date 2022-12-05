@@ -1,10 +1,15 @@
 import React from "react";
 
-function FilterCheckbox() {
+function FilterCheckbox({ isChecked, isCheckbox }) {
+
+  const handleChangeCheckbox =(evt) => {
+    isCheckbox(evt.target.checked);
+  }
+
   return (
     <section className="checkbox">
        <label className="checkbox">
-          <input type="checkbox" className="checkbox__input"/>
+          <input type="checkbox" checked={isChecked} onChange={handleChangeCheckbox} className="checkbox__input" />
           <span className="checkbox__switch"></span>
         </label>
     </section>
