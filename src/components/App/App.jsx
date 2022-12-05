@@ -34,7 +34,7 @@ function App() {
 
   function handleFindMovieFromApi(evt) {
     evt.preventDefault();
-    // setIsLoading(true);
+    setIsLoading(true);
     moviesApi
       .getMoviesFromApi(search, isChecked)
       .then((res) => {
@@ -42,7 +42,6 @@ function App() {
         const moviesApi = res.filter((item) => {
           return item.nameRU.toLowerCase().includes(search.toLowerCase());
         });
-
         const findMovies = isChecked
           ? moviesApi.filter((item) => item.duration <= 40)
           : moviesApi;
@@ -52,6 +51,7 @@ function App() {
         //     return item.nameRU.toLowerCase().includes(search.toLowerCase());
         //   })
         // );
+        setIsLoading(false);
         localStorage.setItem("search", search);
         localStorage.setItem("findMovies", JSON.stringify(findMovies));
         localStorage.setItem("checkBoxStatus", isChecked);
@@ -111,7 +111,7 @@ function App() {
           localStorage.setItem("token", data.token);
           setLoggedIn(true);
           handleGetUserInfo(data);
-          history.push("/profile");
+          history.push("/movies");
         }
       })
       .catch((err) => console.log(err));
@@ -171,7 +171,7 @@ function App() {
           if (res) {
             setCurrentUser(res);
             setLoggedIn(true);
-            history.push("/profile");
+            history.push("/movies");
           }
         })
         .catch((err) => {
