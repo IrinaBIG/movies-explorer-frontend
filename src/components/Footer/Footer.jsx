@@ -22,8 +22,8 @@ function Footer() {
       </Route>
 
       <Route path="/profile"></Route>
-      <Route path="/sign-in"></Route>
-      <Route path="/sign-up"></Route>
+      <Route path="/signin"></Route>
+      <Route path="/signup"></Route>
 
       <Route path="/movies">
         <footer className="footer">

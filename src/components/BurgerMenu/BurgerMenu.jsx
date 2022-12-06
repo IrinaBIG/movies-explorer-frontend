@@ -16,6 +16,7 @@ function BurgerMenu({ isOpen, isClose }) {
             to="/"
             activeClassName="burger__link-active"
             className="burger__link"
+            onClick={isClose}
           >
             Главная
           </NavLink>
@@ -24,6 +25,7 @@ function BurgerMenu({ isOpen, isClose }) {
             to="/movies"
             activeClassName="burger__link-active"
             className="burger__link"
+            onClick={isClose}
           >
             Фильмы
           </NavLink>
@@ -32,11 +34,12 @@ function BurgerMenu({ isOpen, isClose }) {
             to="/saved-movies"
             activeClassName="burger__link-active"
             className="burger__link"
+            onClick={isClose}
           >
             Сохранённые фильмы
           </NavLink>
         </nav>
-        <Link to="/profile">
+        <Link to="/profile" onClick={isClose}>
           <button type="button" className="burger__profileBtn"></button>
         </Link>
       </div>

@@ -27,12 +27,12 @@ function Header() {
 
           <div className="header__navigate">
             <Link
-              to="/sign-up"
+              to="/signup"
               className="header__link header__link_dark-theme"
             >
               Регистрация
             </Link>
-            <Link to="/sign-in" className="header__links">
+            <Link to="/signin" className="header__links">
               <button className="header__link-login" type="button">
                 Войти
               </button>
@@ -41,7 +41,7 @@ function Header() {
         </header>
       </Route>
 
-      <Route path="/sign-in">
+      <Route path="/signin">
         <header className="header header__place_login">
           <Link to="/" className="header__logo">
             <img className="logo" src={headerLogo} alt="логотип" />
@@ -49,7 +49,7 @@ function Header() {
         </header>
       </Route>
 
-      <Route path="/sign-up">
+      <Route path="/signup">
         <header className="header header__place_login">
           <Link to="/" className="header__logo">
             <img className="logo" src={headerLogo} alt="логотип" />

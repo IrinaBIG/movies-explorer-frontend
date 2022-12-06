@@ -4,20 +4,18 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile({ values, handleUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
-  // console.log(currentUser.data.name);
-
-  //   function handleSubmit(e) {
-  //     // Запрещаем браузеру переходить по адресу формы
-  //     e.preventDefault();
-  //     // Передаём значения управляемых компонентов во внешний обработчик
-  //     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-  // }
-
   const history = useHistory();
 
+    function handleSubmit(e) {
+      e.preventDefault();
+      handleUpdateUser({ name: values["firstname"], email: values["email"] });
+  }
+
   function onSignOut() {
-    localStorage.removeItem("token");
-    history.push("/sign-in");
+    // localStorage.removeItem("token");
+    localStorage.clear();
+    history.push("/");
+    // currentUser('');
   }
 
   return (
@@ -28,7 +26,7 @@ function Profile({ values, handleUpdateUser }) {
         name="form-in-profile"
         // novalidate
       >
-        <h1 className="profile__title">Привет, {currentUser.data.name}!</h1>
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input
@@ -36,7 +34,7 @@ function Profile({ values, handleUpdateUser }) {
             id="name-input"
             className="form__input form__input_type_name"
             name="firstname"
-            defaultValue={currentUser.data.name}
+            defaultValue={currentUser.name}
             placeholder="Имя"
             required
             minLength="2"
@@ -55,7 +53,7 @@ function Profile({ values, handleUpdateUser }) {
             id="email-input"
             className="form__input form__input_type_email"
             name="email"
-            defaultValue={currentUser.data.email}
+            defaultValue={currentUser.email}
             placeholder="E-mail"
             required
           />
@@ -70,14 +68,14 @@ function Profile({ values, handleUpdateUser }) {
           className="form__button"
           name="add"
           aria-label="Редактировать"
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           Редактировать
         </button>
       </form>
 
       <div className="profile__out">
-        <Link to="/sign-in" className="profile__out-link" onClick={onSignOut}>
+        <Link to="/signin" className="profile__out-link" onClick={onSignOut}>
           Выйти из аккаунта
         </Link>
       </div>

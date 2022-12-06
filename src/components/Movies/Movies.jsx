@@ -14,6 +14,8 @@ function Movies({
   isLoading,
   isChecked,
   isCheckbox,
+  onMovieLike,
+ 
 }) {
   return (
     <main className="main">
@@ -29,7 +31,8 @@ function Movies({
         />
       </Suspense> */}
 
-      {isLoading ? ( <Preloader /> ) : ( <MoviesCardList movies={movies} /> )}
+      {isLoading ? ( <Preloader /> ) : ( <MoviesCardList movies={movies} onMovieLike={onMovieLike}  /> )}
+      
 
       <MoreMovies />
     </main>

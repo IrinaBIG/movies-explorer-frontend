@@ -3,7 +3,8 @@ class MainApi {
       this._url = url;
       this._token = token;
       this._headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Accept: "application/json",
       }
     }
   
@@ -24,7 +25,8 @@ class MainApi {
   
     getUser() {
       return fetch(`${this._url}/users/me`, {
-        headers: this._headers
+        headers: this._headers,
+        //  'Authorization': `Bearer ${localStorage.getItem('token')}`,  
       })
       .then(this._checkResponse)
     }
@@ -33,30 +35,34 @@ class MainApi {
       // console.log(data); 
       return fetch(`${this._url}/users/me`, {
         headers: this._headers,
+        // 'Authorization': `Bearer ${localStorage.getItem('token')}`, 
         method: 'PATCH',
         body: JSON.stringify(data)
       })
       .then(this._checkResponse)
     }
   
-    addMovie(data) {
-      
-      return fetch(`${this._url}/movies`, {
-        headers: this._headers,
-        credenyials: 'include',
+    addMovie(movie) {
+      return fetch(`${this._url}/saved-movies`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          Accept: "application/json",
+        },
         method: 'POST',
         body: JSON.stringify({
-          country: data.country,
-          director: data.director,
-          duration: data.duration,
-          year: data.year,
-          description: data.description,
-          image: (`https://api.nomoreparties.co/${data.image.url}`),
-          trailerLink: data.trailerLink,
-          thumbnail: (`https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`),
-          movieId: data.movieId,
-          nameRU: data.nameRU,
-          nameEN: data.nameEN
+          country: movie.country,
+          director: movie.director,
+          duration: movie.duration,
+          year: movie.year,
+          description: movie.description,
+          image: (`https://api.nomoreparties.co/${movie.image.url}`),
+          // image: movie.image,
+          trailerLink: movie.trailerLink,
+          nameRU: movie.nameRU,
+          nameEN: movie.nameEN,
+          thumbnail: (`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`),
+          // thumbnail: movie.thumbnail,
+          movieId: movie.id
         })
       })
       .then(this._checkResponse)
@@ -70,13 +76,13 @@ class MainApi {
       .then(this._checkResponse)
     }
   
-    toggleLike(cardId, isLiked) {
-      return fetch(`${this._url}/cards/${cardId}/likes`, {
-        headers: this._headers,
-        method: isLiked ? 'DELETE' : 'PUT',
-      })
-        .then(this._checkResponse)
-    }
+    // toggleLike(cardId, isLiked) {
+    //   return fetch(`${this._url}/cards/${cardId}/likes`, {
+    //     headers: this._headers,
+    //     method: isLiked ? 'DELETE' : 'PUT',
+    //   })
+    //     .then(this._checkResponse)
+    // }
   
     // updateAvatar(avatarPlace) {
     //   const body = {

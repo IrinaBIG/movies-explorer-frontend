@@ -61,7 +61,7 @@ function handleSubmit(e) {
         </form>
         <div className="start-page__signin start-page__signin_login">
           <p className="start-page__question">Ещё не зарегистрированы?</p>
-          <Link to="/sign-up" className="start-page__register-link">
+          <Link to="/signup" className="start-page__register-link">
             Регистрация
           </Link>
         </div>

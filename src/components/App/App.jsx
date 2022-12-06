@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -24,7 +24,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [btnMoreMovies, setBtnMoreMovies] = useState(0);
+  const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
   const history = useHistory();
+  const location = useLocation();
+ 
 
   function onInput(evt) {
     setSearch(evt.target.value);
@@ -55,11 +59,12 @@ function App() {
       });
   }
 
-  function handleAddSavedMovies(data) {
-    setIsLoading(true);
+  function handleAddSavedMovies(movie) {
+    // setIsLoading(true);
     mainApi
-      .addMovie(data)
+      .addMovie(movie)
       .then((res) => {
+        console.log(res);
         setSavedMovies([res, ...savedMovies]);
       })
       .catch((err) => {
@@ -69,11 +74,11 @@ function App() {
 
   // function handleMovieLike(movie) {
   //   // Снова проверяем, есть ли уже лайк на этой карточке
-  //   const isLiked = movie.likes.some(item => item._id === currentUser._id);
+  //   // const isLiked = movie.likes.some(item => item._id === currentUser._id);
   //   // Отправляем запрос в API и получаем обновлённые данные карточки
-  //   mainApi.toggleLike(movie._id, isLiked)
+  //   mainApi.toggleLike(movie)
   //     .then((newMovie) => {
-  //       setMovies((state) => state.map((c) => (c._id === movie._id ? newMovie : c)));
+  //       setMovies((state) => state.map((c) => (c.id === movie ? newMovie : c)));
   //     })
   //     .catch((err) => {
   //       console.log(err);
@@ -81,9 +86,10 @@ function App() {
   // }
 
   function handleGetUserInfo() {
+    if (loggedIn)
     mainApi.getUser()
     .then((data) => {
-      setLoggedIn(true);
+      // setLoggedIn(true);
       setCurrentUser(data);
       console.log(data);
     })
@@ -92,16 +98,39 @@ function App() {
     })
   }
 
+  function handleRegister(name, email, password) {
+    // if ((name, email, password)) {
+      auth
+        .register(name, password, email)
+        .then((res) => {
+          // if (res.data) {
+            // console.log(res);
+            console.log(res);
+            // setIfRegOk(true);
+            history.push("/signin");
+          // }
+        })
+        .catch((err) => {
+          // setIfRegOk(false);
+          console.log(err);
+        });
+      // .finally(() => {
+      //   handleTooltipPlaceClick();
+      // })
+    // }
+  }
+
   function handleLogin(password, email) {
+  
     if (!password || !email) {
       return;
     }
     auth
       .authorize(password, email)
       .then((data) => {
-        // console.log(data)
+        console.log(data)
         if (data.token) {
-          // console.log(data.token);
+          console.log(data.token);
           localStorage.setItem("token", data.token);
           setLoggedIn(true);
           handleGetUserInfo(data);
@@ -111,27 +140,35 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleRegister(name, password, email) {
-    if ((name, password, email)) {
-      auth
-        .register(name, password, email)
-        .then((res) => {
-          if (res.data) {
-            console.log(res);
-            // setIfRegOk(true);
-            history.push("/sign-in");
-          }
-        })
-        .catch((err) => {
-          // setIfRegOk(false);
-          console.log(err);
-        });
-      // .finally(() => {
-      //   handleTooltipPlaceClick();
-      // })
-    }
+  function handleChangeResize(){
+    setWidthOfScreen(window.innerWidth);
   }
 
+  function handleChangeWidthOfScreen() { 
+
+    const findMovies = JSON.parse(localStorage.getItem("findMovies"));
+    console.log(findMovies);
+    if (findMovies === null) {
+      return;
+    }
+    if ((widthOfScreen <= 1280)) {
+      setMovies(findMovies.slice(0, 16));
+      setBtnMoreMovies(4);
+    } else if ((widthOfScreen === 768)) {
+    setMovies(findMovies.slice(0, 8));
+    setBtnMoreMovies(2);
+  }    else if (widthOfScreen >= 320 && widthOfScreen <= 480) {
+      setMovies(findMovies.slice(0, 5));
+      setBtnMoreMovies(2);
+  }
+  
+   
+  }
+
+  useEffect(()=> {
+    window.addEventListener('resize', handleChangeResize);
+    handleChangeWidthOfScreen();
+  }, [])
 
 
   function handleUpdateUser(data) {
@@ -155,6 +192,7 @@ function App() {
 
 
   useEffect(() => {
+    
     // если у пользователя есть токен в localStorage, 
     // эта функция проверит, действующий он или нет
     const jwt = localStorage.getItem('token');
@@ -162,17 +200,18 @@ function App() {
       // здесь будем проверять токен
       auth.checkToken(jwt)
         .then((res) => {
+          // console.log(res);
           if (res) {
             setCurrentUser(res);
             setLoggedIn(true);
-            history.push("/movies");
+            history.push(location.pathname);
           }
         })
         .catch((err) => {
           console.log(err);
         })
     }
-  }, []);
+  }, [history]);
 
 
   return (
@@ -186,10 +225,15 @@ function App() {
             <Main />
           </Route>
 
-          <ProtectedRoute 
-          loggedIn={loggedIn}
-          path="/saved-movies" 
-          component={SavedMovies} />
+          <ProtectedRoute
+            loggedIn={loggedIn}
+            path="/saved-movies"
+            component={SavedMovies}
+            savedMovies={savedMovies}
+            isLoading={isLoading}
+            isChecked={isChecked}
+            isCheckbox={handleClickCheckbox}
+          />
 
           <ProtectedRoute
             path="/movies"
@@ -201,25 +245,27 @@ function App() {
             isLoading={isLoading}
             isChecked={isChecked}
             isCheckbox={handleClickCheckbox}
+            onMovieLike={handleAddSavedMovies}
+           
           />
 
           <ProtectedRoute
-           path="/profile"
-           loggedIn={loggedIn}
-           component={Profile}
-           handleUpdateUser={handleUpdateUser}
+            path="/profile"
+            loggedIn={loggedIn}
+            component={Profile}
+            handleUpdateUser={handleUpdateUser}
           />
 
-          <Route path="/sign-up">
-          <Register handleRegister={handleRegister} />
+          <Route path="/signup">
+            <Register handleRegister={handleRegister} />
           </Route>
 
-          <Route path="/sign-in">
-          <Login handleLogin={handleLogin} />
+          <Route path="/signin">
+            <Login handleLogin={handleLogin} />
           </Route>
 
           <Route exact path="/">
-            {loggedIn ? <Redirect to="/profile" /> : <Redirect to="/sign-in" />}
+            {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/signin" />}
           </Route>
 
           <Route patch="*">
