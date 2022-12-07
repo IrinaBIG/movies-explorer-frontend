@@ -7,14 +7,14 @@ import { editProfileStartingValues } from "../../utils/constants";
 function Profile({ handleUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
   // console.log(currentUser);
-  const { values, handleChange, errors, setValues } = useFormAndValidation(
+  const { values, handleChange, errors, setValues, isValid } = useFormAndValidation(
     editProfileStartingValues
   );
   const history = useHistory();
   const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
-    if (currentUser.name && currentUser.email) {
+    if (currentUser.name || currentUser.email) {
       setValues({ firstname: currentUser.name, email: currentUser.email });
     }
   }, [currentUser, setValues]);
@@ -55,7 +55,7 @@ function Profile({ handleUpdateUser }) {
             }`}
             name="firstname"
             onChange={handleChange}
-            value={values["firstname"] || [currentUser.name]}
+            value={values["firstname"] || ""}
             placeholder="Имя"
             required
             minLength="2"
@@ -82,7 +82,7 @@ function Profile({ handleUpdateUser }) {
             }`}
             name="email"
             onChange={handleChange}
-            value={values["email"] || [currentUser.email]}
+            value={values["email"] || ""}
             placeholder="E-mail"
             required
           />
@@ -99,7 +99,7 @@ function Profile({ handleUpdateUser }) {
         <button
           type="submit"
           className={`form__button ${
-            isDisabled ? "form__button_disabled" : ""
+            !isValid ? "form__button_disabled" : ""
           }`}
           name="add"
           aria-label="Редактировать"
