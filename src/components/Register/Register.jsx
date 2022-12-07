@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { registerStartingValues } from "../../utils/constants";
 
 function Register({ handleRegister }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, handleChange, errors, setValues, resetForm, isValid } =
+    useFormAndValidation(registerStartingValues);
 
-  // const { values, handleChange, errors, isValid, setValues, resetForm }
-  // = useFormAndValidation(registerStartingValues);
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  // const [isDisabled, setIsDisabled] = useState(false);
+  useEffect(() => {
+    setIsDisabled(
+      errors.nameInput && errors.emailInput && errors.passwordInput
+    );
+  }, [errors.nameInput, errors.emailInput, errors.passwordInput]);
 
-
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
+  useEffect(() => {
+    resetForm();
+    setValues({ nameInput: "", emailInput: "", passwordInput: "" });
+    setIsDisabled(true);
+  }, [resetForm, setValues]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegister(name, password, email);
+    const { name, email, password } = {
+      name: values["nameInput"],
+      email: values["emailInput"],
+      password: values["passwordInput"],
+    };
+    handleRegister(name, email, password);
+    resetForm();
   }
 
   return (
@@ -40,45 +41,71 @@ function Register({ handleRegister }) {
           <input
             placeholder="Имя"
             name="nameInput"
-            onChange={handleChangeName}
+            onChange={handleChange}
             type="text"
-            className="start-page__input"
-            value={name}
+            className={`start-page__input form__input_type_name ${
+              errors["nameInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["nameInput"] || ""}
             required
+            minLength="2"
+            maxLength="30"
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["nameInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["nameInput"]}
+          </span>
           <h3 className="input__title">E-mail</h3>
           <input
             placeholder="E-mail"
             name="emailInput"
-            onChange={handleChangeEmail}
+            onChange={handleChange}
             type="email"
-            className="start-page__input"
-            value={email}
+            className={`start-page__input form__input_type_name ${
+              errors["emailInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["emailInput"] || ""}
             required
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["emailInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["emailInput"]}
+          </span>
           <h3 className="input__title">Пароль</h3>
           <input
             placeholder="Пароль"
             name="passwordInput"
-            onChange={handleChangePassword}
+            onChange={handleChange}
             type="password"
-            className="start-page__input"
-            value={password}
+            className={`start-page__input form__input_type_email ${
+              errors["passwordInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["passwordInput"] || ""}
             required
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
-          <button type="submit" className="start-page__button">
+            className={`form__error ${
+              errors["passwordInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["passwordInput"]}
+          </span>
+          <button
+            type="submit"
+            className={`start-page__button ${
+              !isValid ? "form__button_disabled" : ""
+            }`}
+            disabled={isDisabled}
+          >
             Зарегистрироваться
           </button>
         </form>

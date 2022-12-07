@@ -102,7 +102,7 @@ function App() {
   function handleRegister(name, email, password) {
     // if ((name, email, password)) {
     auth
-      .register(name, password, email)
+      .register(name, email, password)
       .then((res) => {
         // if (res.data) {
         // console.log(res);

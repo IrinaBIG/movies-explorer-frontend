@@ -4,10 +4,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { loginStartingValues } from "../../utils/constants";
 
 function Login({ handleLogin }) {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  const { values, handleChange, errors, setValues, resetForm } =
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation(loginStartingValues);
 
   const [isDisabled, setIsDisabled] = useState(false);
@@ -24,7 +21,7 @@ function Login({ handleLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(values["emailInput"]);
+    // console.log(values["emailInput"]);
     const {email, password} = { email: values["emailInput"], password: values["passwordInput"] }
     handleLogin(email, password);
     resetForm();
@@ -79,7 +76,7 @@ function Login({ handleLogin }) {
           <button
             type="submit"
             className={`start-page__button start-page__button_login ${
-              isDisabled ? "form__button_disabled" : ""
+              !isValid ? "form__button_disabled" : ""
             }`}
             disabled={isDisabled}
           >

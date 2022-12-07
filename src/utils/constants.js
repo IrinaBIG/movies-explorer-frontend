@@ -5,9 +5,9 @@ export const editProfileStartingValues = {
 }
 
 export const registerStartingValues = {
-    inputValues: { newPlace: '', newPlace: '' },
-    errValues: { newPlace: '', newPlace: '' },
-    errStates: { newPlace: false, newPlace: false }
+    inputValues: { name: '', email: '', password: '' },
+    errValues: { name: '', email: '', password: '' },
+    errStates: { name: false, email: false, password: false }
 }
 
 export const loginStartingValues = {
