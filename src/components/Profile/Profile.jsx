@@ -4,9 +4,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { editProfileStartingValues } from "../../utils/constants";
 
-function Profile({ handleUpdateUser, resetForm }) {
+function Profile({ handleUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
-  console.log(currentUser);
+  // console.log(currentUser);
   const { values, handleChange, errors, setValues } = useFormAndValidation(
     editProfileStartingValues
   );
@@ -15,10 +15,9 @@ function Profile({ handleUpdateUser, resetForm }) {
 
   useEffect(() => {
     if (currentUser.name && currentUser.email) {
-      // resetForm();
       setValues({ firstname: currentUser.name, email: currentUser.email });
     }
-  }, [currentUser, resetForm, setValues]);
+  }, [currentUser, setValues]);
     
   useEffect(() => {
     setIsDisabled(errors.firstname || errors.email);
@@ -45,7 +44,7 @@ function Profile({ handleUpdateUser, resetForm }) {
         name="form-in-profile"
         onSubmit={handleSubmit}
       >
-        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+        <h1 className="profile__title">Привет, {currentUser.name || currentUser.data.name}!</h1>
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input

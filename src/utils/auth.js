@@ -3,7 +3,7 @@ export const BASE_URL = 'https://api.diplomabig.students.nomoredomains.icu';
 
 const checkResponse = (res) => {
     if (res) {
-        console.dir(res)
+        // console.dir(res)
         return res.json();
     }
     return Promise.reject(`Возникла ошибка: ${res.status}`);
