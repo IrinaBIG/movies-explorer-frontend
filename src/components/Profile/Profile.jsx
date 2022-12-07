@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { editProfileStartingValues } from "../../utils/constants";
 
-function Profile({ values, handleUpdateUser }) {
+function Profile({ handleUpdateUser, resetForm }) {
   const currentUser = React.useContext(CurrentUserContext);
+  console.log(currentUser);
+  const { values, handleChange, errors, setValues } = useFormAndValidation(
+    editProfileStartingValues
+  );
   const history = useHistory();
+  const [isDisabled, setIsDisabled] = useState(false);
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      handleUpdateUser({ name: values["firstname"], email: values["email"] });
-  }
-
+  useEffect(() => {
+    if (currentUser.name && currentUser.email) {
+      // resetForm();
+      setValues({ firstname: currentUser.name, email: currentUser.email });
+    }
+  }, [currentUser, resetForm, setValues]);
+    
+  useEffect(() => {
+    setIsDisabled(errors.firstname || errors.email);
+  }, [errors.firstname, errors.email]);
+  
   function onSignOut() {
     // localStorage.removeItem("token");
     localStorage.clear();
     history.push("/");
     // currentUser('');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleUpdateUser({ name: values["firstname"], email: values["email"] });
+    console.log(values);
   }
 
   return (
@@ -24,7 +43,7 @@ function Profile({ values, handleUpdateUser }) {
         className="form"
         id="profile-form"
         name="form-in-profile"
-        // novalidate
+        onSubmit={handleSubmit}
       >
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>
         <div className="profile__data">
@@ -32,43 +51,60 @@ function Profile({ values, handleUpdateUser }) {
           <input
             type="text"
             id="name-input"
-            className="form__input form__input_type_name"
+            className={`form__input form__input_type_name ${
+              errors["firstname"] ? "form__input_type_error" : ""
+            }`}
             name="firstname"
-            defaultValue={currentUser.name}
+            onChange={handleChange}
+            value={values["firstname"] || [currentUser.name]}
             placeholder="Имя"
             required
             minLength="2"
             maxLength="30"
           />
         </div>
-        <span
+          <span
           id="name-input-error"
-          className="form__error form__input_type_error form__error_visible"
-        />
+          className={`form__error ${
+            errors["firstname"] ? "form__error_visible" : ""
+          }`}
+        >
+          {errors["firstname"]}
+        </span>
 
         <div className="profile__data profile__data_end">
           <h2 className="profile__label">E-mail</h2>
+
           <input
             type="email"
             id="email-input"
-            className="form__input form__input_type_email"
+            className={`form__input form__input_type_email ${
+              errors["email"] ? "form__input_type_error" : ""
+            }`}
             name="email"
-            defaultValue={currentUser.email}
+            onChange={handleChange}
+            value={values["email"] || [currentUser.email]}
             placeholder="E-mail"
             required
           />
         </div>
         <span
           id="email-input-error"
-          className="form__error form__input_type_error form__error_visible"
-        ></span>
+          className={`form__error ${
+            errors["email"] ? "form__error_visible" : ""
+          }`}
+        >
+          {errors["email"]}
+        </span>
 
         <button
           type="submit"
-          className="form__button"
+          className={`form__button ${
+            isDisabled ? "form__button_disabled" : ""
+          }`}
           name="add"
           aria-label="Редактировать"
-          onSubmit={handleSubmit}
+          disabled={isDisabled}
         >
           Редактировать
         </button>

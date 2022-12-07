@@ -3,13 +3,26 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
-
-function SavedMovies({ movies, onInput, onSubmitHandler, isLoading, savedMovies }) {
+function SavedMovies({
+  isChecked,
+  onInput,
+  isCheckbox,
+  onSubmitHandler,
+  isLoading,
+  savedMovies,
+  handleFindMovieFromApi,
+}) {
   return (
     <main className="main">
-      <SearchForm onInput={onInput} onSubmitHandler={onSubmitHandler} />
-      {/* <MoviesCardList movies={movies} /> */}
-      {isLoading ? ( <Preloader /> ) : ( <MoviesCardList savedMovies={savedMovies}  /> )}
+      <SearchForm
+        onInput={onInput}
+        onSubmitHandler={handleFindMovieFromApi}
+        isChecked={isChecked}
+        isCheckbox={isCheckbox}
+      />
+
+      {isLoading ? <Preloader /> : <MoviesCardList savedMovies={savedMovies} />}
+      
     </main>
   );
 }

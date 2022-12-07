@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { loginStartingValues } from "../../utils/constants";
 
 function Login({ handleLogin }) {
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { values, handleChange, errors, setValues, resetForm } =
+    useFormAndValidation(loginStartingValues);
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-}
+  const [isDisabled, setIsDisabled] = useState(false);
 
-function handleChangePassword(e) {
-    setPassword(e.target.value);
-}
+  useEffect(() => {
+    setIsDisabled(errors.emailInput || errors.passwordInput);
+  }, [errors.emailInput, errors.passwordInput]);
 
-function handleSubmit(e) {
+  useEffect(() => {
+    resetForm();
+    setValues({ emailInput: "", passwordInput: "" });
+    setIsDisabled(true);
+  }, [resetForm, setValues]);
+
+  function handleSubmit(e) {
     e.preventDefault();
-    handleLogin(password, email);
-}
+    console.log(values["emailInput"]);
+    const {email, password} = { email: values["emailInput"], password: values["passwordInput"] }
+    handleLogin(email, password);
+    resetForm();
+    // handleLogin({ email: values["emailInput"], password: values["passwordInput"] });
+  }
 
   return (
     <main className="main">
@@ -28,33 +40,48 @@ function handleSubmit(e) {
           <input
             placeholder="E-mail"
             name="emailInput"
-            onChange={handleChangeEmail}
+            onChange={handleChange}
             type="email"
-            className="start-page__input"
-            value={email}
+            className={`start-page__input form__input_type_name ${
+              errors["emailInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["emailInput"] || ''}
             required
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["emailInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["emailInput"]}
+          </span>
           <h3 className="input__title">Пароль</h3>
           <input
             placeholder="Пароль"
             name="passwordInput"
-            onChange={handleChangePassword}
+            onChange={handleChange}
             type="password"
-            className="start-page__input"
-            value={password}
+            className={`start-page__input form__input_type_email ${
+              errors["passwordInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["passwordInput"] || ''}
             required
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["passwordInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["passwordInput"]}
+          </span>
           <button
             type="submit"
-            className="start-page__button start-page__button_login"
+            className={`start-page__button start-page__button_login ${
+              isDisabled ? "form__button_disabled" : ""
+            }`}
+            disabled={isDisabled}
           >
             Войти
           </button>

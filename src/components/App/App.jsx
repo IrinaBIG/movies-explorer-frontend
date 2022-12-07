@@ -21,11 +21,12 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({ name: '', about: '' });
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [btnMoreMovies, setBtnMoreMovies] = useState(0);
   const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
+  // const [isAuth, setIsAuth] = useState(false);
   const history = useHistory();
   const location = useLocation();
  
@@ -122,11 +123,11 @@ function App() {
 
   function handleLogin(password, email) {
   
-    if (!password || !email) {
+    if (!email || !password) {
       return;
     }
     auth
-      .authorize(password, email)
+      .authorize(email, password)
       .then((data) => {
         console.log(data)
         if (data.token) {
@@ -172,7 +173,7 @@ function App() {
 
 
   function handleUpdateUser(data) {
-    // setIsLoading(true);
+    setIsLoading(true);
     mainApi.editUserInfo(data)
       .then((res) => {
         setCurrentUser(res);
@@ -180,9 +181,9 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-      // .finally(() => {
-      //   setIsLoading(false);
-      // })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   function handleClickCheckbox() {
@@ -217,8 +218,9 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
-        {/* <main> */}
+        <Header 
+        loggedIn={loggedIn}
+        />
 
         <Switch>
           <Route exact path="/">
@@ -226,8 +228,8 @@ function App() {
           </Route>
 
           <ProtectedRoute
-            loggedIn={loggedIn}
             path="/saved-movies"
+            loggedIn={loggedIn}
             component={SavedMovies}
             savedMovies={savedMovies}
             isLoading={isLoading}

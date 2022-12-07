@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { registerStartingValues } from "../../utils/constants";
 
 function Register({ handleRegister }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // const { values, handleChange, errors, isValid, setValues, resetForm }
+  // = useFormAndValidation(registerStartingValues);
+
+  // const [isDisabled, setIsDisabled] = useState(false);
+
 
   function handleChangeName(e) {
     setName(e.target.value);

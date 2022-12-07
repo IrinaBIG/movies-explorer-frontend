@@ -5,8 +5,7 @@ import profile from "../../images/profile.svg";
 import { Link, Route, Switch, NavLink } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-function Header() {
-
+function Header({ loggedIn }) {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   function handleBurgerMenuClick() {
@@ -21,23 +20,65 @@ function Header() {
     <Switch>
       <Route exact path="/">
         <header className="header header_dark-theme">
-          <Link to="/" className="header__logo">
-            <img className="logo" src={headerLogo} alt="логотип" />
-          </Link>
+          {loggedIn ? (
+            <>
+              <div className="header__movies">
+                <NavLink to="/" className="header__logo">
+                  <img className="logo" src={headerLogo} alt="логотип" />
+                </NavLink>
 
-          <div className="header__navigate">
-            <Link
-              to="/signup"
-              className="header__link header__link_dark-theme"
-            >
-              Регистрация
-            </Link>
-            <Link to="/signin" className="header__links">
-              <button className="header__link-login" type="button">
-                Войти
+                <NavLink
+                  to="/movies"
+                  activeClassName="link-active"
+                  className="header__link header__link_movies header__link_movies-dark"
+                >
+                  Фильмы
+                </NavLink>
+
+                <NavLink
+                  to="/saved-movies"
+                  activeClassName="link-active"
+                  className="header__link header__link_save header__link_movies-dark"
+                >
+                  Сохранённые фильмы
+                </NavLink>
+              </div>
+              <NavLink to="/profile" className="header__link_profile">
+                <img
+                  src={profile}
+                  alt="Ссылка на профиль"
+                  className="header__link_profile-image"
+                />
+              </NavLink>
+              <button
+                onClick={handleBurgerMenuClick}
+                className="header__burger header__burger_main"
+              >
+                <span className="header__burger_main-span"></span>
               </button>
-            </Link>
-          </div>
+              <BurgerMenu isOpen={isBurgerMenuOpen} isClose={closeBurgerMenu} />
+            </>
+          ) : (
+            <>
+              {" "}
+              <Link to="/" className="header__logo">
+                <img className="logo" src={headerLogo} alt="логотип" />
+              </Link>
+              <div className="header__navigate">
+                <Link
+                  to="/signup"
+                  className="header__link header__link_dark-theme"
+                >
+                  Регистрация
+                </Link>
+                <Link to="/signin" className="header__links">
+                  <button className="header__link-login" type="button">
+                    Войти
+                  </button>
+                </Link>
+              </div>
+            </>
+          )}
         </header>
       </Route>
 
@@ -88,7 +129,7 @@ function Header() {
               className="header__link_profile-image"
             />
           </NavLink>
-     
+
           <button onClick={handleBurgerMenuClick} className="header__burger">
             <span></span>
           </button>

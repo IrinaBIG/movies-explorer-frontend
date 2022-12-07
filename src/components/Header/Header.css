@@ -134,6 +134,10 @@
     opacity: 0.7;
 }
 
+.header__link_movies-dark {
+    color: #fff;
+}
+
 @media (max-width: 1100px) {
     .header {
         max-width: 840px;
@@ -195,6 +199,20 @@
     .header__burger:after {
         bottom: 10px;
     }
+
+    .header__burger_main {
+        background: #073042;
+    }
+
+    .header__burger_main:before,
+    .header__burger_main:after {
+        background-color: #F9F9F9;;
+    }
+ 
+    .header__burger_main span {
+        background-color: #F9F9F9;;
+    }
+
 }
 
 @media (max-width: 768px) {

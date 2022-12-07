@@ -202,6 +202,43 @@
     text-rendering: auto;
 }
 
+.form__button_disabled {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    color: #000000;
+    opacity: 0.2;
+    cursor: auto;
+}
+
+.form__button_disabled:hover {
+    opacity: 0.2;
+}
+
+.form__input_type_error {
+    border-bottom-color: #FF0000;
+    margin-bottom: 4px;
+}
+
+.form__error_visible {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF3055;
+    display: block;
+    z-index: 1;
+    height: 24px;
+    margin-bottom: 0;
+    /* position: relative; */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: auto;
+}
+
 
 /* @media (max-width: 768px) {
     .start-page {

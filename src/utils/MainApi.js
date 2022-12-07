@@ -8,11 +8,28 @@ class MainApi {
       }
     }
   
+    _getToken(){
+      return localStorage.getItem('token');
+    }
+  
+    _enterBearerToken(headers) {
+      if (!this._getToken()) {
+        return headers;
+      }
+      return {
+        ...headers, Authorization: `Bearer ${this._getToken()}`,
+      }
+    }
+
     _checkResponse = (res) => {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Возникла ошибка: ${res.status}`);
+      return res.json()
+      .then((err) => {
+        err.statusCode=res.status;
+        return Promise.reject(err);
+      })
     }
   
     // getSavedMovies() {
@@ -25,8 +42,7 @@ class MainApi {
   
     getUser() {
       return fetch(`${this._url}/users/me`, {
-        headers: this._headers,
-        //  'Authorization': `Bearer ${localStorage.getItem('token')}`,  
+        headers: this._enterBearerToken(this._headers),
       })
       .then(this._checkResponse)
     }
@@ -34,22 +50,18 @@ class MainApi {
     editUserInfo(data) {
       // console.log(data); 
       return fetch(`${this._url}/users/me`, {
-        headers: this._headers,
-        // 'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+        headers: this._enterBearerToken(this._headers),
         method: 'PATCH',
         body: JSON.stringify(data)
       })
       .then(this._checkResponse)
     }
-  
+
     addMovie(movie) {
       return fetch(`${this._url}/saved-movies`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          Accept: "application/json",
-        },
-        method: 'POST',
-        body: JSON.stringify({
+          headers: this._enterBearerToken(this._headers),
+          method: 'POST',
+          body: JSON.stringify({
           country: movie.country,
           director: movie.director,
           duration: movie.duration,
@@ -70,7 +82,7 @@ class MainApi {
   
     deleteMovie(movieId) {
       return fetch(`${this._url}/movies/${movieId}`, {
-        headers: this._headers,
+        headers: this._enterBearerToken(this._headers),
         method: 'DELETE',
       })
       .then(this._checkResponse)
@@ -84,17 +96,6 @@ class MainApi {
     //     .then(this._checkResponse)
     // }
   
-    // updateAvatar(avatarPlace) {
-    //   const body = {
-    //     avatar: avatarPlace
-    //   };
-    //   return fetch(`${this._url}/users/me/avatar`, {
-    //     headers: this._headers,
-    //     method: 'PATCH',
-    //     body: JSON.stringify(body)
-    //   })
-    //     .then(this._checkResponse)
-    // }
   }
   
   const api = new MainApi('https://api.diplomabig.students.nomoredomains.icu');
