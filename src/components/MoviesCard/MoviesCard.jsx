@@ -3,22 +3,32 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function MoviesCard({ name, duration, image, trailerLink, onMovieLike, movie }) {
+function MoviesCard({ name, duration, image, trailerLink, onMovieLike, movie, isDeleteMovies }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   // const isLiked = movie.likes.some((item) => item._id === currentUser._id);
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
-  const cardLikeButtonClassName = `movie__button $"movie__button_active"}`;
+  // const cardLikeButtonClassName = `movie__button $"movie__button_active"}`;
 
   let hour = Math.floor(duration / 60);
   let minutes = Math.floor(duration - hour * 60);
 
-  function handleLikeClick (movie) {
+  function handleLikeClick () {
     onMovieLike(movie);
 }
 
+function handleDeleteClick (){
+  isDeleteMovies(movie);
+}
+
+
+console.dir(movie);
+// const isLiked = savedMovies.some((item) => item.movieId === movie.id);
+// const isLiked = card.likes.some((item) => item._id === currentUser._id);
+
+// const cardLikeButtonClassName = `cards__button ${isLiked && "cards__button_active"}`;
 
   return (
     <ul className="movie__item">
@@ -44,6 +54,7 @@ function MoviesCard({ name, duration, image, trailerLink, onMovieLike, movie }) 
                   className="movie__button movie__button_delete"
                   type="button"
                   aria-label="Удалить"
+                  onClick={handleDeleteClick}
                 ></button>
               </Route>
             </Switch>

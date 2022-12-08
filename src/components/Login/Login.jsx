@@ -22,10 +22,12 @@ function Login({ handleLogin }) {
   function handleSubmit(e) {
     e.preventDefault();
     // console.log(values["emailInput"]);
-    const {email, password} = { email: values["emailInput"], password: values["passwordInput"] }
+    const { email, password } = {
+      email: values["emailInput"],
+      password: values["passwordInput"],
+    };
     handleLogin(email, password);
     resetForm();
-    // handleLogin({ email: values["emailInput"], password: values["passwordInput"] });
   }
 
   return (
@@ -42,7 +44,7 @@ function Login({ handleLogin }) {
             className={`start-page__input form__input_type_name ${
               errors["emailInput"] ? "form__input_type_error" : ""
             }`}
-            value={values["emailInput"] || ''}
+            value={values["emailInput"] || ""}
             required
           />
           <span
@@ -62,7 +64,7 @@ function Login({ handleLogin }) {
             className={`start-page__input form__input_type_email ${
               errors["passwordInput"] ? "form__input_type_error" : ""
             }`}
-            value={values["passwordInput"] || ''}
+            value={values["passwordInput"] || ""}
             required
           />
           <span

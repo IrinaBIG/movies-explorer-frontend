@@ -1,11 +1,8 @@
 import React from "react";
-// import React, { Suspense, lazy, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoreMovies from "../MoreMovies/MoreMovies";
 import Preloader from "../Preloader/Preloader";
-// import moviesApi from "../../utils/MoviesApi"
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-// const MoviesCardList = lazy(() => import("../MoviesCardList/MoviesCardList"));
 
 function Movies({
   movies,
@@ -16,6 +13,9 @@ function Movies({
   isCheckbox,
   onMovieLike,
 }) {
+  // const moviesSearch = movies.length === 0;
+ 
+
   return (
     <main className="main">
       <SearchForm
@@ -24,7 +24,6 @@ function Movies({
         isChecked={isChecked}
         isCheckbox={isCheckbox}
       />
-
       {isLoading ? (
         <Preloader />
       ) : (
@@ -37,3 +36,23 @@ function Movies({
 }
 
 export default Movies;
+
+// {isLoading
+//   ? (<Preloader />)
+//   : ({moviesSearch
+//     ? (<h2 className="movies__text">Ничего не найдено</h2>)
+//     : (<MoviesCardList movies={movies} onMovieLike={onMovieLike} /> )
+//     })}
+//  {/* {isLoading ? (
+//       <Preloader />
+//     ) : (
+//       <MoviesCardList movies={movies} onMovieLike={onMovieLike} />
+//     )} */}
+
+// {isLoading ? (
+//   <Preloader />
+// ) : moviesSearch ? (
+//   <h2 className="movies__text">Ничего не найдено</h2>
+// ) : (
+//   <MoviesCardList movies={movies} onMovieLike={onMovieLike} />
+// )}

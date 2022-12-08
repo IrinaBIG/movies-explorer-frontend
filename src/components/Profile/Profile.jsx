@@ -6,25 +6,24 @@ import { editProfileStartingValues } from "../../utils/constants";
 
 function Profile({ handleUpdateUser }) {
   const currentUser = React.useContext(CurrentUserContext);
-  // console.log(currentUser);
-  const { values, handleChange, errors, setValues, isValid } = useFormAndValidation(
-    editProfileStartingValues
-  );
+  const { values, handleChange, errors, setValues, isValid } =
+    useFormAndValidation(editProfileStartingValues);
   const history = useHistory();
   const [isDisabled, setIsDisabled] = useState(false);
+
+  // let userInfoControl = currentUser.name === values["nameInput"];
 
   useEffect(() => {
     if (currentUser.name || currentUser.email) {
       setValues({ firstname: currentUser.name, email: currentUser.email });
     }
   }, [currentUser, setValues]);
-    
+
   useEffect(() => {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
-  
+
   function onSignOut() {
-    // localStorage.removeItem("token");
     localStorage.clear();
     history.push("/");
     // currentUser('');
@@ -44,7 +43,9 @@ function Profile({ handleUpdateUser }) {
         name="form-in-profile"
         onSubmit={handleSubmit}
       >
-        <h1 className="profile__title">Привет, {currentUser.name || currentUser.data.name}!</h1>
+        <h1 className="profile__title">
+          Привет, {currentUser.name || currentUser.data.name}!
+        </h1>
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input
@@ -62,7 +63,7 @@ function Profile({ handleUpdateUser }) {
             maxLength="30"
           />
         </div>
-          <span
+        <span
           id="name-input-error"
           className={`form__error ${
             errors["firstname"] ? "form__error_visible" : ""
@@ -98,9 +99,9 @@ function Profile({ handleUpdateUser }) {
 
         <button
           type="submit"
-          className={`form__button ${
-            !isValid ? "form__button_disabled" : ""
-          }`}
+          // className={`form__button ${ userInfoControl ? "form__button_disabled"
+          //   : (!isValid ? "form__button_disabled" : "")}`}
+          className={`form__button ${!isValid ? "form__button_disabled" : ""}`}
           name="add"
           aria-label="Редактировать"
           disabled={isDisabled}

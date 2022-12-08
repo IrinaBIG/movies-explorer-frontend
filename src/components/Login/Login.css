@@ -93,7 +93,6 @@
     margin-top: 164px;
 }
 
-
 .start-page__button:hover {
     opacity: 0.8;
 }
@@ -239,19 +238,6 @@
     text-rendering: auto;
 }
 
-
-/* @media (max-width: 768px) {
-    .start-page {
-        max-width: 396px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        background-color: #FFF;
-        padding: 0 186px 70px;
-        min-height: 77vh;
-    }
-} */
-
 @media (max-width: 450px) {
     .start-page {
         max-width: 260px;
@@ -285,7 +271,7 @@
         font-size: 12px;
         line-height: 15px;
     }
-    
+
     .start-page__signin_login {
         margin-right: 0px;
     }

@@ -206,11 +206,13 @@
 
     .header__burger_main:before,
     .header__burger_main:after {
-        background-color: #F9F9F9;;
+        background-color: #F9F9F9;
+        ;
     }
- 
+
     .header__burger_main span {
-        background-color: #F9F9F9;;
+        background-color: #F9F9F9;
+        ;
     }
 
 }

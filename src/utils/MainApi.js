@@ -23,6 +23,7 @@ class MainApi {
 
     _checkResponse = (res) => {
       if (res.ok) {
+        console.dir(res)
         return res.json();
       }
       return res.json()
@@ -31,14 +32,6 @@ class MainApi {
         return Promise.reject(err);
       })
     }
-  
-    // getSavedMovies() {
-    //   return fetch(`${this._url}/movies`, {
-    //     headers: this._headers
-    //     // 'authorization': this._token,
-    //   })
-    //   .then(this._checkResponse)
-    // }
   
     getUser() {
       return fetch(`${this._url}/users/me`, {
@@ -57,11 +50,18 @@ class MainApi {
       .then(this._checkResponse)
     }
 
+    getMovies() {
+      return fetch(`${this._url}/movies`, {
+        headers: this._enterBearerToken(this._headers),
+      })
+      .then(this._checkResponse)
+    }
+
     addMovie(movie) {
-      return fetch(`${this._url}/saved-movies`, {
+      return fetch(`${this._url}/movies`, {
           headers: this._enterBearerToken(this._headers),
           method: 'POST',
-          body: JSON.stringify({
+          body: JSON.stringify( {
           country: movie.country,
           director: movie.director,
           duration: movie.duration,
@@ -75,7 +75,7 @@ class MainApi {
           thumbnail: (`https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`),
           // thumbnail: movie.thumbnail,
           movieId: movie.id
-        })
+        } )
       })
       .then(this._checkResponse)
     }

@@ -11,6 +11,8 @@ function SavedMovies({
   isLoading,
   savedMovies,
   handleFindMovieFromApi,
+  isSavedMovies,
+  isDeleteMovies,
 }) {
   return (
     <main className="main">
@@ -21,8 +23,15 @@ function SavedMovies({
         isCheckbox={isCheckbox}
       />
 
-      {isLoading ? <Preloader /> : <MoviesCardList savedMovies={savedMovies} />}
-      
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <MoviesCardList
+          savedMovies={savedMovies}
+          isSavedMovies={isSavedMovies}
+          isDeleteMovies={isDeleteMovies}
+        />
+      )}
     </main>
   );
 }
