@@ -37,8 +37,8 @@ function MoviesCardList({ movies, onMovieLike, savedMovies, isSavedMovies,isDele
                   key={movie.movieId}
                   movie={movie}
                   name={movie.nameRU}
-                  image={`https://api.nomoreparties.co/${movie.image.url}`}
-                  // image={movie.image}
+                  // image={`https://api.nomoreparties.co/${movie.image}`}
+                  image={movie.image}
                   id={movie._id}
                   duration={movie.duration}
                   trailerLink={movie.trailerLink}

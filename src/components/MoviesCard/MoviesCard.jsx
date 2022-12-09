@@ -24,7 +24,7 @@ function handleDeleteClick (){
 }
 
 
-console.dir(movie);
+// console.dir(movie);
 // const isLiked = savedMovies.some((item) => item.movieId === movie.id);
 // const isLiked = card.likes.some((item) => item._id === currentUser._id);
 

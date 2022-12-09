@@ -26,63 +26,15 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [btnMoreMovies, setBtnMoreMovies] = useState(0);
-  const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
-  // const [isAuth, setIsAuth] = useState(false);
   const history = useHistory();
   const location = useLocation();
+  // const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+
+  let widthOfScreen = window.innerWidth;
 
   function onInput(evt) {
     setSearch(evt.target.value);
   }
-
-  // function handleFindMovieFromApi(evt) {
-  //   evt.preventDefault();
-  //   setIsLoading(true);
-  //   moviesApi
-  //     .getMoviesFromApi(search, isChecked)
-  //     .then((res) => {
-  //       console.log(res);
-  //       const allMoviesFromApi = res;
-  //       localStorage.setItem("allMoviesFromApi", JSON.stringify(allMoviesFromApi));
-  //       const allMovies = JSON.parse(localStorage.getItem("allMoviesFromApi"));
-  //       const moviesApi = allMovies.filter((item) => {
-  //         return item.nameRU.toLowerCase().includes(search.toLowerCase());
-  //       });
-  //       const findMovies = isChecked
-  //         ? moviesApi.filter((item) => item.duration <= 40)
-  //         : moviesApi;
-  //       console.log(findMovies);
-  //       setMovies(findMovies);
-  //       setIsLoading(false);
-  //       localStorage.setItem("search", search);
-        
-  //       localStorage.setItem("findMovies", JSON.stringify(findMovies));
-  //       localStorage.setItem("checkBoxStatus", isChecked);
-  //       handleChangeWidthOfScreen();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setIsLoading(false);
-  //     });
-  // }
-
-  // function getMoviesFromApi () {
-  //   // evt.preventDefault();
-  //   // setIsLoading(true);
-  //   moviesApi
-  //     .getMoviesFromApi(search, isChecked)
-  //     .then(res => {
-  //       console.log(res);
-  //       // const allMoviesFromApi = res;
-  //       res.localStorage.setItem("allMoviesFromApi", JSON.stringify(allMoviesFromApi))
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       setIsLoading(false);
-  //     });
-  // }
-
-
 
   function handleFindMovieFromApi(evt) {
     evt.preventDefault();
@@ -90,19 +42,18 @@ function App() {
     moviesApi
       .getMoviesFromApi(search, isChecked)
       .then((res) => {
-        console.log(res);
-        
         const moviesApi = res.filter((item) => {
           return item.nameRU.toLowerCase().includes(search.toLowerCase());
         });
+        // const findMovies = handleClickCheckbox(moviesApi);
         const findMovies = isChecked
           ? moviesApi.filter((item) => item.duration <= 40)
           : moviesApi;
         console.log(findMovies);
+        localStorage.setItem("findMovies", JSON.stringify(findMovies));
         setMovies(findMovies);
         setIsLoading(false);
         localStorage.setItem("search", search);
-        localStorage.setItem("findMovies", JSON.stringify(findMovies));
         localStorage.setItem("checkBoxStatus", isChecked);
         handleChangeWidthOfScreen();
       })
@@ -111,24 +62,6 @@ function App() {
         setIsLoading(false);
       });
   }
-
-
-
-
-
-  // function handleGetSavedMovies() {
-  //   mainApi
-  //     .getMovies()
-  //     .then((res) => {
-  //       console.log(res);
-  //       setSavedMovies(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
- 
-
 
   function handleSavedAndLikesMovies(movie) {
     setIsLoading(true);
@@ -144,16 +77,10 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-      })
+      });
   }
 
-  const test = () => {
-    console.log(savedMovies);
-  }
-  test();
-
-  function handleSavedMovieDelete(c) {
-    
+  function handleDeleteSavedMovie(c) {
     mainApi
       .deleteMovie(c._id)
       .then(() => {
@@ -169,46 +96,11 @@ function App() {
       });
   }
 
-
-
-
-
-
-  // function handleDeleteSavedMovies(movie) {
-  //   e.preventDefault();
-  //   const isOwn = removeCard.owner._id === currentUser._id;
-  //   mainApi
-  //     .deleteMovie(removeCard._id, !isOwn)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setCards((state) => state.filter((res) => res._id !== removeCard._id));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
-  // function handleMovieLike(movie) {
-  //   // Снова проверяем, есть ли уже лайк на этой карточке
-  //   // const isLiked = movie.likes.some(item => item._id === currentUser._id);
-  //   // Отправляем запрос в API и получаем обновлённые данные карточки
-  //   mainApi.toggleLike(movie)
-  //     .then((newMovie) => {
-  //       setMovies((state) => state.map((c) => (c.id === movie ? newMovie : c)));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
   function handleRegister(name, email, password) {
     // if ((name, email, password)) {
     auth
       .register(name, email, password)
       .then((res) => {
-        // if (res.data) {
-        // console.log(res);
-        console.log(res);
         // setIfRegOk(true);
         history.push("/signin");
         // }
@@ -235,43 +127,36 @@ function App() {
           console.log(data.token);
           localStorage.setItem("token", data.token);
           setLoggedIn(true);
-          // handleGetUserInfo(data);
           history.push("/movies");
         }
       })
       .catch((err) => console.log(err));
   }
 
-  function handleChangeResize() {
-    setWidthOfScreen(window.innerWidth);
-  }
-
   function handleChangeWidthOfScreen() {
-    const findMovies = JSON.parse(localStorage.getItem("findMovies"));
-    console.log(findMovies);
-    if (findMovies === null) {
-      return;
-    }
-    if (widthOfScreen <= 1280) {
-      setMovies(findMovies.slice(0, 16));
+    const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+    // if (foundMovies === null) {
+    //   return;
+    // }
+    if (widthOfScreen >= 1280) {
+      setMovies(foundMovies.slice(0, 16));
       setBtnMoreMovies(4);
-    } else if (widthOfScreen === 768) {
-      setMovies(findMovies.slice(0, 8));
+    } else if (widthOfScreen >= 768 && widthOfScreen <= 1279) {
+      setMovies(foundMovies.slice(0, 8));
       setBtnMoreMovies(2);
-    } else if (widthOfScreen >= 320 && widthOfScreen <= 480) {
-      setMovies(findMovies.slice(0, 5));
+    } else if (widthOfScreen >= 320 && widthOfScreen <= 767) {
+      setMovies(foundMovies.slice(0, 5));
       setBtnMoreMovies(2);
     }
   }
 
   useEffect(() => {
-    window.addEventListener("resize", handleChangeResize);
-    handleChangeWidthOfScreen();
+    window.addEventListener("resize", handleChangeWidthOfScreen);
+    setTimeout(handleChangeWidthOfScreen, 10);
   }, []);
 
   function handleUpdateUser(data) {
-    if (loggedIn)
-    setIsLoading(true);
+    if (loggedIn) setIsLoading(true);
     mainApi
       .editUserInfo(data)
       .then((res) => {
@@ -285,9 +170,40 @@ function App() {
       });
   }
 
+
+  // function handleClickCheckbox() {
+  //   setIsChecked(isChecked
+  //         ? moviesApi.filter((item) => item.duration <= 40)
+  //         : moviesApi);
+  // }
+
+  // function handleClickCheckbox() {
+  //   setIsChecked(!isChecked);
+  // }
+
+
   function handleClickCheckbox() {
     setIsChecked(!isChecked);
+    const movies = location.pathname === "/movies";
+    const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+
+    if (!isChecked)
+      { movies
+      ? (foundMovies.filter((item) => item.duration <= 40))
+      : (savedMovies.filter((item) => item.duration <= 40))
+    }
   }
+
+  // function handleSearchCheckbox () {
+  //   const movies = location.pathname === "/movies";
+  //   const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+
+  //   if (!isChecked)
+  //     { movies
+  //     ? (foundMovies.filter((item) => item.duration <= 40))
+  //     : (savedMovies.filter((item) => item.duration <= 40))
+  //   }
+  // }
 
   useEffect(() => {
     // если у пользователя есть токен в localStorage,
@@ -311,32 +227,26 @@ function App() {
     }
   }, [history]);
 
-  // useEffect(() => {
-  //   mainApi
-  //     .getMovies()
-  //     .then((res) => {
-  //       console.log(res);
-  //       setSavedMovies(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
-
   useEffect(() => {
+
+    
+
     Promise.all([mainApi.getUser(), mainApi.getMovies()])
-      .then(([profile, {data: savedMovies} ]) => {
+      .then(([profile, { data: savedMovies }]) => {
         setCurrentUser(profile);
         console.log(profile);
         setSavedMovies(savedMovies);
+        const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+    // const searchState = JSON.parse(localStorage.getItem("search"));
+    //     setSearch(searchState)
+        setMovies(foundMovies);
+        handleChangeWidthOfScreen();
       })
       .catch((err) => {
         console.log(err);
-        history.push('/signin');
-      })
+        history.push("/signin");
+      });
   }, [history, loggedIn]);
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -359,6 +269,7 @@ function App() {
             isChecked={isChecked}
             isCheckbox={handleClickCheckbox}
             onMovieLike={handleSavedAndLikesMovies}
+            // handleSearchCheckbox={handleSearchCheckbox}
           />
 
           <ProtectedRoute
@@ -369,9 +280,8 @@ function App() {
             isLoading={isLoading}
             isChecked={isChecked}
             isCheckbox={handleClickCheckbox}
-            // isSavedMovies={handleGetSavedMovies}
-            isDeleteMovies={handleSavedMovieDelete}
-         
+            isDeleteMovies={handleDeleteSavedMovie}
+            // handleSearchCheckbox={handleSearchCheckbox}
           />
 
           <ProtectedRoute
@@ -397,7 +307,6 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
-        {/* </main> */}
         <Footer />
       </div>
     </CurrentUserContext.Provider>
@@ -405,19 +314,6 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // до
 // import { useState, useEffect } from "react";
@@ -476,7 +372,7 @@ export default App;
 //   //       setMovies(findMovies);
 //   //       setIsLoading(false);
 //   //       localStorage.setItem("search", search);
-        
+
 //   //       localStorage.setItem("findMovies", JSON.stringify(findMovies));
 //   //       localStorage.setItem("checkBoxStatus", isChecked);
 //   //       handleChangeWidthOfScreen();
@@ -503,8 +399,6 @@ export default App;
 //   //     });
 //   // }
 
-
-
 //   function handleFindMovieFromApi(evt) {
 //     evt.preventDefault();
 //     setIsLoading(true);
@@ -512,7 +406,7 @@ export default App;
 //       .getMoviesFromApi(search, isChecked)
 //       .then((res) => {
 //         console.log(res);
-        
+
 //         const moviesApi = res.filter((item) => {
 //           return item.nameRU.toLowerCase().includes(search.toLowerCase());
 //         });
@@ -533,10 +427,6 @@ export default App;
 //       });
 //   }
 
-
-
-
-
 //   function handleGetSavedMovies() {
 //     mainApi
 //       .getMovies()
@@ -548,22 +438,20 @@ export default App;
 //         console.log(err);
 //       });
 //   }
- 
 
-
-  // function handleSavedAndLikesMovies(movie) {
-  //   // setIsLoading(true);
-  //   mainApi
-  //     .addMovie(movie)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setSavedMovies([res, ...savedMovies]);
-  //       // console.log(savedMovies)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
+// function handleSavedAndLikesMovies(movie) {
+//   // setIsLoading(true);
+//   mainApi
+//     .addMovie(movie)
+//     .then((res) => {
+//       console.log(res);
+//       setSavedMovies([res, ...savedMovies]);
+//       // console.log(savedMovies)
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
 
 //   const test = () => {
 //     console.log(savedMovies);
@@ -732,7 +620,6 @@ export default App;
 //   //     });
 //   // }, []);
 
-
 //   useEffect(() => {
 //     Promise.all([mainApi.getMovies(), mainApi.getCards()])
 //       .then(([profile, cards]) => {
@@ -777,7 +664,7 @@ export default App;
 //             isChecked={isChecked}
 //             isCheckbox={handleClickCheckbox}
 //             // isSavedMovies={handleGetSavedMovies}
-         
+
 //           />
 
 //           <ProtectedRoute

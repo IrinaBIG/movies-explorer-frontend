@@ -9,9 +9,11 @@ function Profile({ handleUpdateUser }) {
   const { values, handleChange, errors, setValues, isValid } =
     useFormAndValidation(editProfileStartingValues);
   const history = useHistory();
-  const [isDisabled, setIsDisabled] = useState(false);
 
-  // let userInfoControl = currentUser.name === values["nameInput"];
+  const [isDisabled, setIsDisabled] = useState(false);
+  // const [isChange, setIsChange] = useState(false);
+
+  let userInfoControl = (values.firstname === currentUser.name) & (values.email === currentUser.email);
 
   useEffect(() => {
     if (currentUser.name || currentUser.email) {
@@ -23,15 +25,36 @@ function Profile({ handleUpdateUser }) {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
+  // useEffect(() => {
+  //   if (
+  //     (values.firstname === currentUser.name) &
+  //     (values.email === currentUser.email)
+  //   ) {
+  //     setIsDisabled(true);
+  //   }
+  // }, [currentUser.email, currentUser.name, values.email, values.firstname]);
+
+  // function isChange () {
+  //   if ((values.firstname === currentUser.name) && (values.email === currentUser.email)) {
+
+  //     setIsDisabled(true);
+  //   }
+  // }
+
+
+  
+
   function onSignOut() {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('search');
+    localStorage.removeItem('checkBoxStatus');
     history.push("/");
-    // currentUser('');
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     handleUpdateUser({ name: values["firstname"], email: values["email"] });
+    // setIsChange(true);
     console.log(values);
   }
 
@@ -99,12 +122,10 @@ function Profile({ handleUpdateUser }) {
 
         <button
           type="submit"
-          // className={`form__button ${ userInfoControl ? "form__button_disabled"
-          //   : (!isValid ? "form__button_disabled" : "")}`}
           className={`form__button ${!isValid ? "form__button_disabled" : ""}`}
           name="add"
           aria-label="Редактировать"
-          disabled={isDisabled}
+          disabled={userInfoControl || isDisabled}
         >
           Редактировать
         </button>

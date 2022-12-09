@@ -12,6 +12,7 @@ function Movies({
   isChecked,
   isCheckbox,
   onMovieLike,
+  handleSearchCheckbox
 }) {
   // const moviesSearch = movies.length === 0;
  
@@ -23,6 +24,7 @@ function Movies({
         onSubmitHandler={handleFindMovieFromApi}
         isChecked={isChecked}
         isCheckbox={isCheckbox}
+        handleSearchCheckbox={handleSearchCheckbox}
       />
       {isLoading ? (
         <Preloader />
