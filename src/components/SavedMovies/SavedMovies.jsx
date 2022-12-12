@@ -10,15 +10,18 @@ function SavedMovies({
   onSubmitHandler,
   isLoading,
   savedMovies,
-  handleFindMovieFromApi,
+  handleFindSavedMovie,
   isSavedMovies,
   isDeleteMovies,
+  isLiked,
+  searchSavedMovies,
+  search
 }) {
   return (
     <main className="main">
       <SearchForm
         onInput={onInput}
-        onSubmitHandler={handleFindMovieFromApi}
+        handleFindSavedMovie={handleFindSavedMovie}
         isChecked={isChecked}
         isCheckbox={isCheckbox}
       />
@@ -30,6 +33,9 @@ function SavedMovies({
           savedMovies={savedMovies}
           isSavedMovies={isSavedMovies}
           isDeleteMovies={isDeleteMovies}
+          isLiked={isLiked}
+          searchSavedMovies={searchSavedMovies}
+          search={search}
         />
       )}
     </main>

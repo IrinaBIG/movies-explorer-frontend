@@ -11,11 +11,13 @@ function Movies({
   isLoading,
   isChecked,
   isCheckbox,
-  onMovieLike,
-  handleSearchCheckbox
+  isSaveMovieLike,
+  handleSearchCheckbox,
+  isLiked,
+  isDeleteMovies,
+  serchNameMovies,
 }) {
   // const moviesSearch = movies.length === 0;
- 
 
   return (
     <main className="main">
@@ -25,11 +27,17 @@ function Movies({
         isChecked={isChecked}
         isCheckbox={isCheckbox}
         handleSearchCheckbox={handleSearchCheckbox}
+        serchNameMovies={serchNameMovies}
       />
       {isLoading ? (
         <Preloader />
       ) : (
-        <MoviesCardList movies={movies} onMovieLike={onMovieLike} />
+        <MoviesCardList
+          movies={movies}
+          isSaveMovieLike={isSaveMovieLike}
+          isLiked={isLiked}
+          isDeleteMovies={isDeleteMovies}
+        />
       )}
 
       <MoreMovies />

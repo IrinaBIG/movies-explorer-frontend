@@ -23,7 +23,7 @@ class MainApi {
 
     _checkResponse = (res) => {
       if (res.ok) {
-        console.dir(res)
+        // console.dir(res)
         return res.json();
       }
       return res.json()

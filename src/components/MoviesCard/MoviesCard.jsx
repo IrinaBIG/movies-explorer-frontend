@@ -1,34 +1,38 @@
 import React from "react";
-// import card from "../../images/card.svg";
 import { Route, Switch } from "react-router-dom";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function MoviesCard({ name, duration, image, trailerLink, onMovieLike, movie, isDeleteMovies }) {
-  const currentUser = React.useContext(CurrentUserContext);
+function MoviesCard({
+  name,
+  duration,
+  image,
+  trailerLink,
+  onMovieLike,
+  movie,
+  isDeleteMovies,
+  isLiked,
+}) {
 
-  // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  // const isLiked = movie.likes.some((item) => item._id === currentUser._id);
-
-  // Создаём переменную, которую после зададим в `className` для кнопки лайка
-  // const cardLikeButtonClassName = `movie__button $"movie__button_active"}`;
-
+  
   let hour = Math.floor(duration / 60);
   let minutes = Math.floor(duration - hour * 60);
 
-  function handleLikeClick () {
+  function handleLikeClick() {
     onMovieLike(movie);
-}
+  }
 
-function handleDeleteClick (){
-  isDeleteMovies(movie);
-}
+  function handleDeleteClick() {
+    isDeleteMovies(movie);
+  }
 
+ const cardLikeButtonClassName = `movie__button ${
+  isLiked(movie) ? "movie__button_active" : ""
+ }`;
 
-// console.dir(movie);
-// const isLiked = savedMovies.some((item) => item.movieId === movie.id);
-// const isLiked = card.likes.some((item) => item._id === currentUser._id);
+//  useEffect(() => {
 
-// const cardLikeButtonClassName = `cards__button ${isLiked && "cards__button_active"}`;
+ 
+// }, []);
+ 
 
   return (
     <ul className="movie__item">
@@ -41,13 +45,21 @@ function handleDeleteClick (){
           <div className="movie__buttons">
             <Switch>
               <Route path="/movies">
-                <button
-                  // className={cardLikeButtonClassName}
-                  className="movie__button"
-                  type="button"
-                  aria-label="Нравится"
-                  onClick={handleLikeClick}
-                ></button>
+                {isLiked(movie) ? (
+                  <button
+                    className={cardLikeButtonClassName}
+                    type="button"
+                    aria-label="Нравится"
+                    onClick={handleDeleteClick}
+                  ></button>
+                ) : (
+                  <button
+                    className={cardLikeButtonClassName}
+                    type="button"
+                    aria-label="Нравится"
+                    onClick={handleLikeClick}
+                  ></button>
+                )}
               </Route>
               <Route path="/saved-movies">
                 <button
@@ -60,8 +72,9 @@ function handleDeleteClick (){
             </Switch>
           </div>
         </div>
-        <p className="movie__duration">{hour}ч {minutes}м </p>
-        {/* <p className="movie__duration">{duration}</p> */}
+        <p className="movie__duration">
+          {hour}ч {minutes}м
+        </p>
       </li>
     </ul>
   );

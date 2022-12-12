@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-import { editProfileStartingValues } from "../../utils/constants";
+// import { editProfileStartingValues } from "../../utils/constants";
 
-function Profile({ handleUpdateUser }) {
-  const currentUser = React.useContext(CurrentUserContext);
+function Profile({ handleUpdateUser, onSignOut }) {
+  const currentUser = useContext(CurrentUserContext);
   const { values, handleChange, errors, setValues, isValid } =
-    useFormAndValidation(editProfileStartingValues);
+    useFormAndValidation({
+      name: currentUser.name,
+      email: currentUser.email
+    });
   const history = useHistory();
 
   const [isDisabled, setIsDisabled] = useState(false);
   // const [isChange, setIsChange] = useState(false);
 
-  let userInfoControl = (values.firstname === currentUser.name) & (values.email === currentUser.email);
-
-  useEffect(() => {
-    if (currentUser.name || currentUser.email) {
-      setValues({ firstname: currentUser.name, email: currentUser.email });
-    }
-  }, [currentUser, setValues]);
-
   useEffect(() => {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
-  // useEffect(() => {
-  //   if (
-  //     (values.firstname === currentUser.name) &
-  //     (values.email === currentUser.email)
-  //   ) {
-  //     setIsDisabled(true);
-  //   }
-  // }, [currentUser.email, currentUser.name, values.email, values.firstname]);
+  // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
+  useEffect(() => {
+    if (currentUser.name && currentUser.email) {
+      setValues({ firstname: currentUser.name, email: currentUser.email });
+      // localStorage.setItem("firstname", currentUser.name);
+      // localStorage.setItem("email", currentUser.email);
+    }
+  }, [currentUser, setValues]);
 
-  // function isChange () {
-  //   if ((values.firstname === currentUser.name) && (values.email === currentUser.email)) {
 
-  //     setIsDisabled(true);
-  //   }
+ useEffect(() => {
+    if (
+      ((values.firstname === currentUser.name && values.email === currentUser.email)) 
+    ) 
+      setIsDisabled(true)
+     }, [currentUser.email, currentUser.name, values.email, values.firstname]);
+
+  console.log(values.firstname)
+  console.log(values.email)
+  console.log(currentUser.name)
+  console.log(currentUser.email)
+
+
+  // function onSignOut() {
+  //   localStorage.removeItem('token');
+  //   // localStorage.removeItem('search');
+  //   // localStorage.removeItem('checkBoxStatus');
+  //   history.push("/");
   // }
-
-
-  
-
-  function onSignOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('search');
-    localStorage.removeItem('checkBoxStatus');
-    history.push("/");
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-    // setIsChange(true);
     console.log(values);
+    // setIsChange(e.target.closest('form').checkValidity());
   }
 
   return (
@@ -67,7 +66,7 @@ function Profile({ handleUpdateUser }) {
         onSubmit={handleSubmit}
       >
         <h1 className="profile__title">
-          Привет, {currentUser.name || currentUser.data.name}!
+          Привет, {currentUser.name}!
         </h1>
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
@@ -79,11 +78,13 @@ function Profile({ handleUpdateUser }) {
             }`}
             name="firstname"
             onChange={handleChange}
+            // onChange={ isValid ? handleChange : ""}
             value={values["firstname"] || ""}
             placeholder="Имя"
             required
             minLength="2"
             maxLength="30"
+            pattern="[A-Za-zА-Яа-яЁё\s-]+"
           />
         </div>
         <span
@@ -105,6 +106,7 @@ function Profile({ handleUpdateUser }) {
               errors["email"] ? "form__input_type_error" : ""
             }`}
             name="email"
+            // onChange={ isChange ? '' : handleChange}
             onChange={handleChange}
             value={values["email"] || ""}
             placeholder="E-mail"
@@ -125,7 +127,8 @@ function Profile({ handleUpdateUser }) {
           className={`form__button ${!isValid ? "form__button_disabled" : ""}`}
           name="add"
           aria-label="Редактировать"
-          disabled={userInfoControl || isDisabled}
+          disabled={isDisabled}
+          // disabled={userInfoControl || isDisabled}
         >
           Редактировать
         </button>

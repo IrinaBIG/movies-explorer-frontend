@@ -1,8 +1,8 @@
-export const editProfileStartingValues = {
-    inputValues: { firstname: '', email: '' },
-    errValues: { firstname: '', email: '' },
-    errStates: { firstname: false, email: false }
-}
+// export const editProfileStartingValues = {
+//     inputValues: { firstname: '', email: '' },
+//     errValues: { firstname: '', email: '' },
+//     errStates: { firstname: false, email: false }
+// }
 
 export const registerStartingValues = {
     inputValues: { name: '', email: '', password: '' },

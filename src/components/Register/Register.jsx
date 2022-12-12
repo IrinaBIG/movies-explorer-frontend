@@ -50,6 +50,7 @@ function Register({ handleRegister }) {
             required
             minLength="2"
             maxLength="30"
+            pattern="[A-Za-zА-Яа-яЁё\s-]+"
           />
           <span
             id="name-input-error"
