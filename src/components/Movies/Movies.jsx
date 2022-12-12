@@ -1,6 +1,5 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
-import MoreMovies from "../MoreMovies/MoreMovies";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
@@ -16,9 +15,10 @@ function Movies({
   isLiked,
   isDeleteMovies,
   serchNameMovies,
+  handleSwowMoreMovies,
+  serverError,
 }) {
-  // const moviesSearch = movies.length === 0;
-
+  
   return (
     <main className="main">
       <SearchForm
@@ -37,32 +37,12 @@ function Movies({
           isSaveMovieLike={isSaveMovieLike}
           isLiked={isLiked}
           isDeleteMovies={isDeleteMovies}
+          handleSwowMoreMovies={handleSwowMoreMovies}
+          serverError={serverError}
         />
       )}
-
-      <MoreMovies />
     </main>
   );
 }
 
 export default Movies;
-
-// {isLoading
-//   ? (<Preloader />)
-//   : ({moviesSearch
-//     ? (<h2 className="movies__text">Ничего не найдено</h2>)
-//     : (<MoviesCardList movies={movies} onMovieLike={onMovieLike} /> )
-//     })}
-//  {/* {isLoading ? (
-//       <Preloader />
-//     ) : (
-//       <MoviesCardList movies={movies} onMovieLike={onMovieLike} />
-//     )} */}
-
-// {isLoading ? (
-//   <Preloader />
-// ) : moviesSearch ? (
-//   <h2 className="movies__text">Ничего не найдено</h2>
-// ) : (
-//   <MoviesCardList movies={movies} onMovieLike={onMovieLike} />
-// )}

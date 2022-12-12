@@ -22,10 +22,11 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [searchSavedMovies, setSearchSavedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ name: "", email: "" });
+  const [currentUser, setCurrentUser] = useState( { name: '', email: '' } );
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [btnMoreMovies, setBtnMoreMovies] = useState(0);
+  const [serverError, setSeverError] = useState(false);
   const history = useHistory();
   const location = useLocation();
  
@@ -46,7 +47,6 @@ function App() {
         const findMovies = isChecked
           ? moviesApiSearch.filter((item) => item.duration <= 40)
           : moviesApiSearch;
-        console.log(findMovies);
         localStorage.setItem("findMovies", JSON.stringify(findMovies));
         setMovies(findMovies);
         setIsLoading(false);
@@ -57,32 +57,67 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
+        setSeverError(true);
       });
   }
 
   function handleFindSavedMovie() {
     setIsLoading(true);
     const foundSavedMovies = savedMovies.filter((item) => {
-          return item.nameRU.toLowerCase().includes(search.toLowerCase());
-        });
-        console.log(foundSavedMovies);
-        const savedMoviesCheckbox = isChecked        
-          ? foundSavedMovies.filter((item) => item.duration <= 40)
-          : foundSavedMovies;
-          setIsLoading(false);
-        setSearchSavedMovies(savedMoviesCheckbox);
-        
-      }
+      return item.nameRU.toLowerCase().includes(search.toLowerCase());
+    });
+    console.log(foundSavedMovies);
+    const savedMoviesCheckbox = isChecked
+      ? foundSavedMovies.filter((item) => item.duration <= 40)
+      : foundSavedMovies;
+    setIsLoading(false);
+    setSearchSavedMovies(savedMoviesCheckbox);
+  }
+
+
+
+  // function handleGetAllSavedMovies(){
+  //   // if (loggedIn) {
+  //     mainApi.getMovies()
+  //     .then((res) => {
+  //       // console.log(res)
+  //       setSavedMovies(res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       if (err.code === 401) {
+  //         setLoggedIn(false);
+  //       }
+  //     });
+  //   // }
+  // }
+
+  // useEffect(() => {
+  //   if (loggedIn) 
+  //   mainApi.getUser()
+  //     .then((profile) => {
+  //       setLoggedIn(true)
+  //       setCurrentUser(profile);
+  //       handleGetAllSavedMovies();
+  //       // handleChangeWidthOfScreen();
+  //       history.push(location.pathname);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setLoggedIn(false)
+  //       history.push("/signin");
+  //     });
+    
+  // }, [history, loggedIn]);
 
   function handleSavedAndLikesMovies(movie) {
     setIsLoading(true);
      mainApi
       .addMovie(movie)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSavedMovies([...savedMovies, res]);
       })
-      
       .catch((err) => {
         console.log(err);
         if (err.code === 401) {
@@ -130,8 +165,12 @@ function App() {
   }
 
   function handleCardLike(movie) {
+    console.log(savedMovies)
+    // return savedMovies.some(item => item.movieId === movie.id && item.owner === currentUser._id);
     return savedMovies.some(item => item.movieId === movie.id);
   }
+
+  
 
   function handleRegister(name, email, password) {
     auth
@@ -169,17 +208,23 @@ function App() {
       .catch((err) => console.log(err));
   }
 
- function handleWindowWidth (){
+  function handleSwowMoreMovies () {
+    const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+    setMovies(foundMovies.slice(0, movies.length + btnMoreMovies))
+  }
+
+ function handleWindowWidth() {
      setWidthOfScreen(window.innerWidth)
  }
 
   const handleChangeWidthOfScreen = useCallback(() => {
+  // useEffect(() => { 
+    
     // function handleChangeWidthOfScreen() {
       const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
-      // if (foundMovies === null) {
-      //   return;
-      // }
-      // setWidthOfScreen(window.innerWidth);
+      if (foundMovies === null) {
+        return;
+      }
       if (widthOfScreen >= 1280) {
         setMovies(foundMovies.slice(0, 16));
         setBtnMoreMovies(4);
@@ -190,26 +235,36 @@ function App() {
         setMovies(foundMovies.slice(0, 5));
         setBtnMoreMovies(2);
       }
+      // window.addEventListener("resize", handleWindowWidth);
+      // return () => {
+      //   document.removeEventListener("resize", handleWindowWidth);
+      // }
     // }
   }, [widthOfScreen]);
   
-useEffect(() => {
+
+   useEffect(() => {
+    handleChangeWidthOfScreen();
     window.addEventListener("resize", handleWindowWidth);
-    // setTimeout(handleWindowWidth, 10);
     return () => {
       document.removeEventListener("resize", handleWindowWidth);
     }
-  }, [widthOfScreen]);
+    }, [handleChangeWidthOfScreen])
+
+
+
+  
+
 
 
   function handleUpdateUser(data) {
-    setIsLoading(true);
-    // if (loggedIn) setIsLoading(true);
+    if (loggedIn) {
     mainApi
       .editUserInfo(data)
       .then((res) => {
-        console.log(res)
         setCurrentUser(res);
+        // setIsLoading(true);
+        console.log(currentUser)
       })
       .catch((err) => {
         console.log(err);
@@ -220,6 +275,7 @@ useEffect(() => {
       .finally(() => {
         setIsLoading(false);
       });
+    }
   }
 
   // function handleClickCheckbox() {
@@ -264,7 +320,6 @@ useEffect(() => {
  useEffect(() => {
     const jwt = localStorage.getItem("token");
     if (jwt) {
-
       auth
         .checkToken(jwt)
         .then((res) => {
@@ -272,30 +327,35 @@ useEffect(() => {
           if (res) {
             setCurrentUser(res);
             setLoggedIn(true);
-            history.push(location.pathname);
           }
+          history.push(location.pathname);
         })
         .catch((err) => {
           console.log(err);
           setLoggedIn(false);
-          localStorage.clear();
+          // localStorage.clear();
         });
     }
   }, [history]);
 
 
   useEffect(() => {
+    // if (loggedIn) {
     Promise.all([mainApi.getUser(), mainApi.getMovies()])
       .then(([profile, { data: savedMovies }]) => {
         setCurrentUser(profile);
         setSavedMovies(savedMovies);
-        handleChangeWidthOfScreen();
+
+        // setLoggedIn(true);
+        // handleChangeWidthOfScreen();
+        // history.push(location.pathname);
       })
       .catch((err) => {
         console.log(err);
         history.push("/signin");
       });
-  }, [handleChangeWidthOfScreen, history]);
+    // }
+  }, [history, loggedIn]);
 
  
   return (
@@ -322,6 +382,8 @@ useEffect(() => {
             isSaveMovieLike={handleSavedAndLikesMovies}
             isLiked={handleCardLike}
             isDeleteMovies={handleDeleteSavedMoviePatchMovies}
+            handleSwowMoreMovies={handleSwowMoreMovies}
+            serverError={serverError}
           />
 
           <ProtectedRoute

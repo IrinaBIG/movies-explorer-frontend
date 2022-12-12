@@ -11,7 +11,7 @@ function Profile({ handleUpdateUser, onSignOut }) {
       name: currentUser.name,
       email: currentUser.email
     });
-  const history = useHistory();
+  // const history = useHistory();
 
   const [isDisabled, setIsDisabled] = useState(false);
   // const [isChange, setIsChange] = useState(false);
@@ -20,28 +20,24 @@ function Profile({ handleUpdateUser, onSignOut }) {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
-  // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
   useEffect(() => {
-    if (currentUser.name && currentUser.email) {
-      setValues({ firstname: currentUser.name, email: currentUser.email });
-      // localStorage.setItem("firstname", currentUser.name);
-      // localStorage.setItem("email", currentUser.email);
-    }
-  }, [currentUser, setValues]);
-
-
- useEffect(() => {
     if (
       ((values.firstname === currentUser.name && values.email === currentUser.email)) 
     ) 
       setIsDisabled(true)
      }, [currentUser.email, currentUser.name, values.email, values.firstname]);
 
+  // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
+  useEffect(() => {
+    if (currentUser.name && currentUser.email) {
+      setValues({ firstname: currentUser.name, email: currentUser.email });
+    }
+  }, [currentUser, setValues]);
+
   console.log(values.firstname)
   console.log(values.email)
   console.log(currentUser.name)
   console.log(currentUser.email)
-
 
   // function onSignOut() {
   //   localStorage.removeItem('token');
@@ -53,7 +49,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
   function handleSubmit(e) {
     e.preventDefault();
     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-    console.log(values);
     // setIsChange(e.target.closest('form').checkValidity());
   }
 

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 function FilterCheckbox({ isChecked, isCheckbox, handleSearchCheckbox }) {
 
@@ -6,6 +8,16 @@ function FilterCheckbox({ isChecked, isCheckbox, handleSearchCheckbox }) {
     isCheckbox(evt.target.checked);
     handleSearchCheckbox()
   }
+
+  // const location = useLocation();
+  // const savedMovies = location.pathname === "/saved-movies";
+  // const [checkBoxStatus, setCheckBoxStatus] = useState('')
+
+  // useEffect(() => {
+  //   if (!savedMovies) {
+  //     setCheckBoxStatus(isChecked) 
+  //   } 
+  // }, [isChecked, savedMovies]);
 
   return (
     <section className="checkbox">

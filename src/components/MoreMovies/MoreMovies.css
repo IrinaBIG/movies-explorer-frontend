@@ -1,8 +1,8 @@
-.more-movies {
+/* .more-movies {
     max-width: 1280px;
     display: flex;
     padding: 61px 0px 82px;
-}
+} */
 
 /* .more-movies {
     max-width: 1280px;
@@ -11,7 +11,7 @@
     padding: 61px 0px 82px;
 } */
 
-
+/* 
 
 .more-movies__button {
     margin: auto;
@@ -31,29 +31,29 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: auto;
-}
-
+} */
+/* 
 .more-movies__button:hover {
     opacity: 0.8;
-}
+} */
 
-@media (max-width: 1230px) {
+/* @media (max-width: 1230px) {
     .more-movies {
         margin-top: 0;
     }
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .more-movies {
         padding: 61px 0px 89px;
-        /* margin-top: -121px; */
+      
     }
 }
 
 @media (max-width: 767px) {
     .more-movies {
         padding: 61px 0px 124px;
-        /* margin-top: -378px; */
+
     }
 }
 
@@ -62,4 +62,4 @@
         width: 240px;
         height: 36px;
     }
-}
+} */
