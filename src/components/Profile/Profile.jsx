@@ -5,13 +5,17 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 // import { editProfileStartingValues } from "../../utils/constants";
 
 function Profile({ handleUpdateUser, onSignOut }) {
+  
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser.name); 
+  
   const { values, handleChange, errors, setValues, isValid } =
-    useFormAndValidation({
-      name: currentUser.name,
-      email: currentUser.email
-    });
-  // const history = useHistory();
+    useFormAndValidation(
+      {
+      firstname: currentUser.name,
+      email: currentUser.email,
+    }
+    );
 
   const [isDisabled, setIsDisabled] = useState(false);
   // const [isChange, setIsChange] = useState(false);
@@ -20,37 +24,41 @@ function Profile({ handleUpdateUser, onSignOut }) {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
-  useEffect(() => {
-    if (
-      ((values.firstname === currentUser.name && values.email === currentUser.email)) 
-    ) 
-      setIsDisabled(true)
-     }, [currentUser.email, currentUser.name, values.email, values.firstname]);
+ 
 
   // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
-  useEffect(() => {
-    if (currentUser.name && currentUser.email) {
-      setValues({ firstname: currentUser.name, email: currentUser.email });
-    }
-  }, [currentUser, setValues]);
 
-  console.log(values.firstname)
-  console.log(values.email)
-  console.log(currentUser.name)
-  console.log(currentUser.email)
-
-  // function onSignOut() {
-  //   localStorage.removeItem('token');
-  //   // localStorage.removeItem('search');
-  //   // localStorage.removeItem('checkBoxStatus');
-  //   history.push("/");
-  // }
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log('1');
     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-    // setIsChange(e.target.closest('form').checkValidity());
+    console.log('2');
+    console.log(currentUser.name);
   }
+  
+  useEffect(() => {
+    console.log(currentUser.name);
+    console.log("hello");
+    if (currentUser.name && currentUser.email) {
+      console.log(currentUser.name);
+      console.log("yes");
+      setValues({ firstname: currentUser.name, email: currentUser.email });
+    }
+    console.log(currentUser.name)
+  }, [currentUser.email, currentUser.name, setValues]);
+
+  console.log(currentUser.name); 
+
+  // useEffect(() => {
+  //   if (
+  //     values.firstname === currentUser.name &&
+  //     values.email === currentUser.email
+  //     ) 
+  //     setIsDisabled(true);
+  //   }, [currentUser.email, currentUser.name, values.email, values.firstname, currentUser]);
+    
+  // console.log(currentUser)
 
   return (
     <main className="main">
@@ -60,9 +68,8 @@ function Profile({ handleUpdateUser, onSignOut }) {
         name="form-in-profile"
         onSubmit={handleSubmit}
       >
-        <h1 className="profile__title">
-          Привет, {currentUser.name}!
-        </h1>
+        <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
+        {/* <h1 className="profile__title">{`Привет, ${currentUser?.name}!`}</h1> */}
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input
@@ -73,7 +80,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
             }`}
             name="firstname"
             onChange={handleChange}
-            // onChange={ isValid ? handleChange : ""}
             value={values["firstname"] || ""}
             placeholder="Имя"
             required
@@ -81,6 +87,7 @@ function Profile({ handleUpdateUser, onSignOut }) {
             maxLength="30"
             pattern="[A-Za-zА-Яа-яЁё\s-]+"
           />
+          
         </div>
         <span
           id="name-input-error"
@@ -101,7 +108,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
               errors["email"] ? "form__input_type_error" : ""
             }`}
             name="email"
-            // onChange={ isChange ? '' : handleChange}
             onChange={handleChange}
             value={values["email"] || ""}
             placeholder="E-mail"
@@ -123,7 +129,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
           name="add"
           aria-label="Редактировать"
           disabled={isDisabled}
-          // disabled={userInfoControl || isDisabled}
         >
           Редактировать
         </button>

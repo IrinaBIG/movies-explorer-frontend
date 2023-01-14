@@ -1,6 +1,9 @@
+import { BASE_URL } from "./constants";
+
 class MainApi {
     constructor(url, token) {
       this._url = url;
+      // console.log(url);
       this._token = token;
       this._headers = {
         'Content-Type': 'application/json',
@@ -32,7 +35,14 @@ class MainApi {
         return Promise.reject(err);
       })
     }
-  
+
+    // getUser() {
+    //   return fetch(`${this._url}/users/me`, {
+    //     headers: this._headers,
+    //   })
+    //   .then(this._checkResponse)
+    // }
+
     getUser() {
       return fetch(`${this._url}/users/me`, {
         headers: this._enterBearerToken(this._headers),
@@ -41,7 +51,7 @@ class MainApi {
     }
   
     editUserInfo(data) {
-      // console.log(data); 
+      console.log(data); 
       return fetch(`${this._url}/users/me`, {
         headers: this._enterBearerToken(this._headers),
         method: 'PATCH',
@@ -59,7 +69,7 @@ class MainApi {
 
     addMovie(movie) {
       return fetch(`${this._url}/movies`, {
-          headers: this._enterBearerToken(this._headers),
+        headers: this._enterBearerToken(this._headers),
           method: 'POST',
           body: JSON.stringify( {
           country: movie.country,
@@ -98,6 +108,7 @@ class MainApi {
   
   }
   
-  const api = new MainApi('https://api.diplomabig.students.nomoredomains.icu');
+  const api = new MainApi(BASE_URL);
+  // const api = new MainApi('https://api.diplomabig.students.nomoredomains.icu');
   
   export default api;

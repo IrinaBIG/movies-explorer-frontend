@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.diplomabig.students.nomoredomains.icu';
+import { BASE_URL } from "./constants";
+// export const BASE_URL = 'https://api.diplomabig.students.nomoredomains.icu';
 
 const checkResponse = (res) => {
     if (res) {
