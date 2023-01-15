@@ -80,8 +80,11 @@ function App() {
      mainApi
       .addMovie(movie)
       .then((res) => {
-         const newSavedMovie = [...savedMovies, res];
+        console.log(res);
+         const newSavedMovie = [...savedMovies, res.data];
+         console.log(newSavedMovie);
         setSavedMovies(newSavedMovie);
+        // handleCardLike(movie);
         // setSavedMovies([...savedMovies, res]);
       })
       .catch((err) => {
@@ -96,7 +99,12 @@ function App() {
       });
   }
 
-  function handleDeleteSavedMoviePatchMovies(c) {
+  function handleCardLike(movie) {
+    return savedMovies.some(item => item.movieId === movie.id && item.owner === currentUser._id);
+    // return savedMovies.some(item => item.movieId === movie.id);
+  }
+
+  function handleDislikeAndDeleteMovie(c) {
     const movie = savedMovies.find(item => item.movieId === (c.id || c.moveId));
     mainApi
       .deleteMovie(movie._id)
@@ -129,12 +137,6 @@ function App() {
           setLoggedIn(false);
         }
       });
-  }
-
-  function handleCardLike(movie) {
-
-    return savedMovies.some(item => item.movieId === movie.id && item.owner === currentUser._id);
-    // return savedMovies.some(item => item.movieId === movie.id);
   }
 
   function handleRegister(name, email, password) {
@@ -218,11 +220,11 @@ function App() {
   function handleUpdateUser(data) {
     setIsLoading(true);
     if (loggedIn) {
-      console.log(data)
+      // console.log(data)
     mainApi
       .editUserInfo(data)
       .then((res) => {
-        console.log({name: res.data.name, email: res.data.email});
+        // console.log({name: res.data.name, email: res.data.email});
         setCurrentUser({name: res.data.name, email: res.data.email});
         // setCurrentUser(res);
         // console.log(currentUser);
@@ -240,7 +242,7 @@ function App() {
       });
     }
   }
-  console.log(currentUser);
+  // console.log(currentUser);
   // function handleClickCheckbox() {
   //   setIsChecked(isChecked
   //         ? moviesApi.filter((item) => item.duration <= 40)
@@ -303,7 +305,7 @@ function App() {
     Promise.all([mainApi.getUser(), mainApi.getMovies()])
       .then(([profile, { data: savedMovies }]) => {
         setCurrentUser(profile);
-        console.log(profile);
+        // console.log(profile);
         setSavedMovies(savedMovies);
         setLoggedIn(true);
         // handleChangeWidthOfScreen();
@@ -345,7 +347,7 @@ function App() {
             isCheckbox={handleClickCheckbox}
             isSaveMovieLike={handleSavedAndLikesMovies}
             isLiked={handleCardLike}
-            isDeleteMovies={handleDeleteSavedMoviePatchMovies}
+            isDeleteMovies={handleDislikeAndDeleteMovie}
             handleSwowMoreMovies={handleSwowMoreMovies}
             serverError={serverError}
           />
@@ -359,6 +361,7 @@ function App() {
             isLoading={isLoading}
             isChecked={isChecked}
             isCheckbox={handleClickCheckbox}
+            isSaveMovieLike={handleSavedAndLikesMovies} // тут нужен? убрать везде
             isDeleteMovies={handleDeleteSavedMovie}
             handleFindSavedMovie={handleFindSavedMovie}
             isLiked={handleCardLike}

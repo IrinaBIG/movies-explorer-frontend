@@ -18,8 +18,8 @@ function MoviesCardList({
   console.log(savedMovies);
   const location = useLocation();
   const moviesApi = location.pathname === "/movies";
-  // const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
-  // const moviesSearch = foundMovies.length === 0;
+  const foundMovies = JSON.parse(localStorage.getItem("findMovies"));
+  const moviesSearch = foundMovies.length === 0;
 
   return (
     <>
@@ -63,7 +63,7 @@ function MoviesCardList({
             })}
       </section>
 
-      {/* {moviesApi ? (
+      {moviesApi ? (
         movies.length < foundMovies.length ? (
           <button
             type="button"
@@ -77,9 +77,13 @@ function MoviesCardList({
         )
       ) : (
         ""
-      )} */}
+      )}
 
-      {/* {moviesSearch ? <h2 className="movies__text">Ничего не найдено</h2> : ""} */}
+      {moviesApi 
+      ? (moviesSearch ? <h2 className="movies__text">Ничего не найдено</h2> : "")
+      : ''
+      }
+      
     </>
   );
 }

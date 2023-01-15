@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 // import { editProfileStartingValues } from "../../utils/constants";
@@ -7,8 +7,8 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 function Profile({ handleUpdateUser, onSignOut }) {
   
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser.name); 
-  
+  // console.log(currentUser.name); 
+
   const { values, handleChange, errors, setValues, isValid } =
     useFormAndValidation(
       {
@@ -24,31 +24,25 @@ function Profile({ handleUpdateUser, onSignOut }) {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
- 
-
   // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
-
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('1');
     handleUpdateUser({ name: values["firstname"], email: values["email"] });
-    console.log('2');
-    console.log(currentUser.name);
   }
   
   useEffect(() => {
-    console.log(currentUser.name);
-    console.log("hello");
+    // console.log(currentUser.name);
+    // console.log("hello");
     if (currentUser.name && currentUser.email) {
-      console.log(currentUser.name);
-      console.log("yes");
+      // console.log(currentUser.name);
+      // console.log("yes");
       setValues({ firstname: currentUser.name, email: currentUser.email });
     }
-    console.log(currentUser.name)
+    // console.log(currentUser.name)
   }, [currentUser.email, currentUser.name, setValues]);
 
-  console.log(currentUser.name); 
+  // console.log(currentUser.name); 
 
   // useEffect(() => {
   //   if (

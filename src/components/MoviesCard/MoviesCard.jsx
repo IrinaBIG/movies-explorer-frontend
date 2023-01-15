@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 function MoviesCard({
@@ -12,21 +12,25 @@ function MoviesCard({
   isLiked,
 }) {
 
+  // console.log(isLiked(movie));
   
   let hour = Math.floor(duration / 60);
   let minutes = Math.floor(duration - hour * 60);
 
+  const cardLikeButtonClassName = `movie__button ${
+   isLiked(movie) ? "movie__button_active" : ""
+  }`;
+
   function handleLikeClick() {
     onMovieLike(movie);
+    // console.log(isLiked(movie));
   }
 
   function handleDeleteClick() {
     isDeleteMovies(movie);
+    // console.log(isLiked(movie));
   }
 
- const cardLikeButtonClassName = `movie__button ${
-  isLiked(movie) ? "movie__button_active" : ""
- }`;
 
 //  useEffect(() => {
 
@@ -49,7 +53,7 @@ function MoviesCard({
                   <button
                     className={cardLikeButtonClassName}
                     type="button"
-                    aria-label="Нравится"
+                    aria-label="Дизлайк"
                     onClick={handleDeleteClick}
                   ></button>
                 ) : (
