@@ -15,7 +15,9 @@ function SavedMovies({
   isDeleteMovies,
   isLiked,
   searchSavedMovies,
-  search
+  handleGetAllSavedMovies,
+  searchNameSavedMovies,
+  // search
 }) {
   return (
     <main className="main">
@@ -24,6 +26,7 @@ function SavedMovies({
         handleFindSavedMovie={handleFindSavedMovie}
         isChecked={isChecked}
         isCheckbox={isCheckbox}
+        searchNameSavedMovies={searchNameSavedMovies}
       />
 
       {isLoading ? (
@@ -35,7 +38,8 @@ function SavedMovies({
           isDeleteMovies={isDeleteMovies}
           isLiked={isLiked}
           searchSavedMovies={searchSavedMovies}
-          search={search}
+          // handleGetAllSavedMovies={handleGetAllSavedMovies}
+          // search={search}
         />
       )}
     </main>

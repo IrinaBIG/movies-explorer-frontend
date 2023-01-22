@@ -24,7 +24,7 @@ function Profile({ handleUpdateUser, onSignOut }) {
     setIsDisabled(errors.firstname || errors.email);
   }, [errors.firstname, errors.email]);
 
-  // let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
+  let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -48,11 +48,21 @@ function Profile({ handleUpdateUser, onSignOut }) {
   //   if (
   //     values.firstname === currentUser.name &&
   //     values.email === currentUser.email
-  //     ) 
+  //   ) {
   //     setIsDisabled(true);
-  //   }, [currentUser.email, currentUser.name, values.email, values.firstname, currentUser]);
+  //   }
+  //   // console.log(currentUser.email)
+  //   console.log(currentUser.name)
+  //   // console.log(values.email)
+  //   console.log(values.firstname)
+  //   console.log(isDisabled)
+  // }, [currentUser.email, currentUser.name, isDisabled, values.email, values.firstname]);
     
-  // console.log(currentUser)
+  // console.log(currentUser.email)
+  console.log(currentUser.name)
+  // console.log(values.email)
+ console.log(values.firstname)
+
 
   return (
     <main className="main">
@@ -119,7 +129,7 @@ function Profile({ handleUpdateUser, onSignOut }) {
 
         <button
           type="submit"
-          className={`form__button ${!isValid ? "form__button_disabled" : ""}`}
+          className={`form__button ${userInfoControl ? 'form__button-profile_disabled' : (isValid ? "" : "form__button-profile_disabled")}`}
           name="add"
           aria-label="Редактировать"
           disabled={isDisabled}

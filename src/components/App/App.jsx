@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useHistory, useLocation } from "react-router";
 import Header from "../Header/Header";
@@ -16,34 +16,35 @@ import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute";
 import Preloader from "../Preloader/Preloader";
+// import { useMemo } from "react";
 
 function App() {
-  const [search, setSearch] = useState("");
+  // const [searchWord, setSearchWord] = useState("");
+  
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
-  const [searchSavedMovies, setSearchSavedMovies] = useState([]);
+  const [searchSavedMovies, setSearchSavedMovies] = useState(savedMovies);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState( {} );
   const [loggedIn, setLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(false);
   const [btnMoreMovies, setBtnMoreMovies] = useState(0);
   const [serverError, setSeverError] = useState(false);
   const [isNotChecked, setIsNotChecked] = useState(true);
   const history = useHistory();
   const location = useLocation();
-   const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
+  const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
 
-  function onInput(evt) {
-    setSearch(evt.target.value);
-  }
 
-  function handleFindMovieFromApi() {
+  function handleFindMovieFromApi(word) {
+    console.log(word)
     setIsLoading(true);
     moviesApi
-      .getMoviesFromApi(search, isChecked)
+      .getMoviesFromApi(isChecked)
       .then((res) => {
         const moviesApiSearch = res.filter((item) => {
-          return item.nameRU.toLowerCase().includes(search.toLowerCase());
+          return item.nameRU.toLowerCase().includes(word.toLowerCase());
         });
         const findMovies = isChecked
           ? moviesApiSearch.filter((item) => item.duration <= 40)
@@ -51,7 +52,7 @@ function App() {
         localStorage.setItem("findMovies", JSON.stringify(findMovies));
         setMovies(findMovies);
         setIsLoading(false);
-        localStorage.setItem("search", search);
+        localStorage.setItem("search", word);
         localStorage.setItem("checkBoxStatus", isChecked);
         handleChangeWidthOfScreen();
       })
@@ -62,18 +63,25 @@ function App() {
       });
   }
 
-  function handleFindSavedMovie() {
+  function handleFindSavedMovie(search) {
     setIsLoading(true);
+    console.log(savedMovies);
     const foundSavedMovies = savedMovies.filter((item) => {
       return item.nameRU.toLowerCase().includes(search.toLowerCase());
     });
     console.log(foundSavedMovies);
-    const savedMoviesCheckbox = isChecked
+    const savedMoviesCheckbox = isCheckedSavedMovies
       ? foundSavedMovies.filter((item) => item.duration <= 40)
       : foundSavedMovies;
-    setIsLoading(false);
-    setSearchSavedMovies(savedMoviesCheckbox);
+      localStorage.setItem("savedMoviesSearch", search);
+      localStorage.setItem("checkBoxStatusSavedMovies", isCheckedSavedMovies);
+      setSearchSavedMovies(savedMoviesCheckbox);
+      console.log(savedMoviesCheckbox);
+      console.log(searchSavedMovies);
+      setIsLoading(false);
   }
+
+  console.log(searchSavedMovies);
 
   function handleSavedAndLikesMovies(movie) {
     // setIsLoading(true);
@@ -276,8 +284,11 @@ function App() {
   //   }
   // }
   function onSignOut() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
+    // localStorage.removeItem("findMovies");
+    // localStorage.removeItem("search");
     // localStorage.clear();
+    setCurrentUser({});
     history.push("/");
   }
 
@@ -300,7 +311,25 @@ function App() {
     }
   }, [history, loggedIn]);
 
-  useEffect(() => {
+// function handleGetAllSavedMovies () {
+//   mainApi.getMovies()
+//       .then(({ data: savedMovies }) => {
+//         setSavedMovies(savedMovies);
+//         setLoggedIn(true);
+//         // handleChangeWidthOfScreen();
+//         // history.push(location.pathname);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         history.push("/signin");
+//       })
+//       .finally(() => {
+//         setIsNotChecked(false);
+//       });
+// }
+  
+  
+  useMemo(() => {
 
     Promise.all([mainApi.getUser(), mainApi.getMovies()])
       .then(([profile, { data: savedMovies }]) => {
@@ -318,7 +347,28 @@ function App() {
       .finally(() => {
         setIsNotChecked(false);
       });
-  }, [history, loggedIn]);
+  }, [history]);
+
+
+  // useEffect(() => {
+
+  //   Promise.all([mainApi.getUser(), mainApi.getMovies()])
+  //     .then(([profile, { data: savedMovies }]) => {
+  //       setCurrentUser(profile);
+  //       // console.log(profile);
+  //       setSavedMovies(savedMovies);
+  //       setLoggedIn(true);
+  //       // handleChangeWidthOfScreen();
+  //       // history.push(location.pathname);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       history.push("/signin");
+  //     })
+  //     .finally(() => {
+  //       setIsNotChecked(false);
+  //     });
+  // }, [history, loggedIn]);
 
   if (isNotChecked) {
     return ( <Preloader /> );
@@ -339,8 +389,8 @@ function App() {
             loggedIn={loggedIn}
             component={Movies}
             movies={movies}
-            onInput={onInput}
-            serchNameMovies={localStorage.getItem("search")}
+            // onInput={onInput}
+            searchNameMovies={localStorage.getItem("search")}
             handleFindMovieFromApi={handleFindMovieFromApi}
             isLoading={isLoading}
             isChecked={isChecked}
@@ -356,8 +406,9 @@ function App() {
             path="/saved-movies"
             loggedIn={loggedIn}
             component={SavedMovies}
-            onInput={onInput}
+            // onInput={onInput}
             savedMovies={savedMovies}
+            // savedMovies={searchSavedMovies}
             isLoading={isLoading}
             isChecked={isChecked}
             isCheckbox={handleClickCheckbox}
@@ -366,7 +417,9 @@ function App() {
             handleFindSavedMovie={handleFindSavedMovie}
             isLiked={handleCardLike}
             searchSavedMovies={searchSavedMovies}
-            search={search}
+            searchNameSavedMovies={localStorage.getItem("savedMoviesSearch")}
+            // search={searchWord}
+            // handleGetAllSavedMovies={handleGetAllSavedMovies}
           />
 
           <ProtectedRoute
