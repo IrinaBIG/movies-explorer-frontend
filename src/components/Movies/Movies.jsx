@@ -5,40 +5,40 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 function Movies({
   movies,
-  // onInput,
   handleFindMovieFromApi,
   isLoading,
   isChecked,
   isCheckbox,
-  isSaveMovieLike,
+  onSaveMovieLike,
   handleSearchCheckbox,
-  isLiked,
-  isDeleteMovies,
+  handleCardLike,
+  handleDeleteMovies,
   searchNameMovies,
   handleSwowMoreMovies,
   serverError,
+  handleFiltredCheckbox,
 }) {
-  
   return (
     <main className="main">
       <SearchForm
-        // onInput={onInput}
         onSubmitHandler={handleFindMovieFromApi}
         isChecked={isChecked}
         isCheckbox={isCheckbox}
         handleSearchCheckbox={handleSearchCheckbox}
         searchNameMovies={searchNameMovies}
+        handleFiltredCheckbox={handleFiltredCheckbox}
       />
       {isLoading ? (
         <Preloader />
       ) : (
         <MoviesCardList
           movies={movies}
-          isSaveMovieLike={isSaveMovieLike}
-          isLiked={isLiked}
-          isDeleteMovies={isDeleteMovies}
+          onSaveMovieLike={onSaveMovieLike}
+          handleCardLike={handleCardLike}
+          handleDeleteMovies={handleDeleteMovies}
           handleSwowMoreMovies={handleSwowMoreMovies}
           serverError={serverError}
+          isChecked={isChecked}
         />
       )}
     </main>

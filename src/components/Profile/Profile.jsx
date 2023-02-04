@@ -2,67 +2,43 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-// import { editProfileStartingValues } from "../../utils/constants";
 
-function Profile({ handleUpdateUser, onSignOut }) {
-  
+function Profile({
+  handleUpdateUser,
+  onSignOut,
+  errorTextProfile,
+  isUpdate,
+}) {
   const currentUser = useContext(CurrentUserContext);
-  // console.log(currentUser.name); 
-
   const { values, handleChange, errors, setValues, isValid } =
-    useFormAndValidation(
-      {
+    useFormAndValidation({
       firstname: currentUser.name,
       email: currentUser.email,
-    }
-    );
+    });
 
+  let userInfoControl =
+    values.firstname === currentUser.name && values.email === currentUser.email;
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
     setIsDisabled(errors.firstname || errors.email);
-  }, [errors.firstname, errors.email]);
-
-  let userInfoControl = (values.firstname === currentUser.name) && (values.email === currentUser.email);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    handleUpdateUser({ name: values["firstname"], email: values["email"] });
-  }
-  
-  useEffect(() => {
-    // console.log(currentUser.name);
-    // console.log("hello");
-    if (currentUser.name && currentUser.email) {
-      // console.log(currentUser.name);
-      // console.log("yes");
-      setValues({ firstname: currentUser.name, email: currentUser.email });
+    if (userInfoControl) {
+      setIsDisabled(true);
+      return;
     }
-    // console.log(currentUser.name)
-  }, [currentUser.email, currentUser.name, setValues]);
+  }, [errors.firstname, errors.email, userInfoControl]);
 
-  // console.log(currentUser.name); 
+   function handleSubmit(e) {
+     e.preventDefault();
+     handleUpdateUser({ name: values["firstname"], email: values["email"] });
+   }
 
-  // useEffect(() => {
-  //   if (
-  //     values.firstname === currentUser.name &&
-  //     values.email === currentUser.email
-  //   ) {
-  //     setIsDisabled(true);
-  //   }
-  //   // console.log(currentUser.email)
-  //   console.log(currentUser.name)
-  //   // console.log(values.email)
-  //   console.log(values.firstname)
-  //   console.log(isDisabled)
-  // }, [currentUser.email, currentUser.name, isDisabled, values.email, values.firstname]);
-    
-  // console.log(currentUser.email)
-  console.log(currentUser.name)
-  // console.log(values.email)
- console.log(values.firstname)
 
+  useEffect(() => {
+    if (currentUser.name && currentUser.email) {
+      setValues({ firstname: currentUser.name, email: currentUser.email });
+    }    
+  }, [currentUser.email, currentUser.name, setValues, isUpdate]);
 
   return (
     <main className="main">
@@ -73,7 +49,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
         onSubmit={handleSubmit}
       >
         <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
-        {/* <h1 className="profile__title">{`Привет, ${currentUser?.name}!`}</h1> */}
         <div className="profile__data">
           <h2 className="profile__label">Имя</h2>
           <input
@@ -91,7 +66,6 @@ function Profile({ handleUpdateUser, onSignOut }) {
             maxLength="30"
             pattern="[A-Za-zА-Яа-яЁё\s-]+"
           />
-          
         </div>
         <span
           id="name-input-error"
@@ -129,10 +103,17 @@ function Profile({ handleUpdateUser, onSignOut }) {
 
         <button
           type="submit"
-          className={`form__button ${userInfoControl ? 'form__button-profile_disabled' : (isValid ? "" : "form__button-profile_disabled")}`}
+          className={`form__button ${
+            userInfoControl
+              ? "form__button-profile_disabled"
+              : isValid
+              ? ""
+              : "form__button-profile_disabled"
+          }`}
           name="add"
           aria-label="Редактировать"
           disabled={isDisabled}
+          // onClick={handleShowMessageUpdate}
         >
           Редактировать
         </button>
@@ -143,6 +124,16 @@ function Profile({ handleUpdateUser, onSignOut }) {
           Выйти из аккаунта
         </Link>
       </div>
+
+      {isUpdate ? 
+        <p className="profile__message profile__message_success">
+          Данные успешно обновлены!
+        </p>
+       : 
+        <p className="profile__message profile__message_fail">
+          {errorTextProfile}
+        </p>
+      }     
     </main>
   );
 }

@@ -1,30 +1,28 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useEffect } from "react";
 
-function FilterCheckbox({ isChecked, isCheckbox, handleSearchCheckbox }) {
+function FilterCheckbox({ isChecked, handleFiltredCheckbox }) {
 
-  const handleChangeCheckbox =(evt) => {
-    isCheckbox(evt.target.checked);
-    handleSearchCheckbox()
-  }
+  function handleChangeCheckbox(e) {
+    handleFiltredCheckbox(e.target.checked);
+    console.log(e.target.checked, 'зашел в чекбокс')
+  };
 
-  // const location = useLocation();
-  // const savedMovies = location.pathname === "/saved-movies";
-  // const [checkBoxStatus, setCheckBoxStatus] = useState('')
+ 
 
-  // useEffect(() => {
-  //   if (!savedMovies) {
-  //     setCheckBoxStatus(isChecked) 
-  //   } 
-  // }, [isChecked, savedMovies]);
 
   return (
     <section className="checkbox">
-       <label className="checkbox">
-          <input type="checkbox" checked={isChecked} onChange={handleChangeCheckbox} className="checkbox__input" />
-          <span className="checkbox__switch"></span>
-        </label>
+      <label className="checkbox">
+        <input
+          type="checkbox"
+          // checked={isChecked}
+          onChange={handleChangeCheckbox}
+          defaultChecked={isChecked}
+          className="checkbox__input"
+        />
+        <span className="checkbox__switch"></span>
+      </label>
     </section>
   );
 }

@@ -1,45 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
 function SavedMovies({
-  isChecked,
+  // isChecked,
+  isCheckedSave,
+
   onInput,
   isCheckbox,
-  onSubmitHandler,
   isLoading,
   savedMovies,
   handleFindSavedMovie,
   isSavedMovies,
-  isDeleteMovies,
-  isLiked,
+  handleDeleteSavedMovies,
+  handleCardLike,
   searchSavedMovies,
-  handleGetAllSavedMovies,
   searchNameSavedMovies,
-  // search
+  searchMovies,
+  handleFiltredCheckbox,
 }) {
   return (
     <main className="main">
       <SearchForm
         onInput={onInput}
         handleFindSavedMovie={handleFindSavedMovie}
-        isChecked={isChecked}
+        // handleFindSavedMovie={() => {}}
+        // isChecked={isChecked}
+        isChecked={isCheckedSave}
+
         isCheckbox={isCheckbox}
         searchNameSavedMovies={searchNameSavedMovies}
+        searchMovies={searchMovies}
+        handleFiltredCheckbox={handleFiltredCheckbox}
       />
 
       {isLoading ? (
         <Preloader />
       ) : (
         <MoviesCardList
-          savedMovies={savedMovies}
+          movies={savedMovies}
           isSavedMovies={isSavedMovies}
-          isDeleteMovies={isDeleteMovies}
-          isLiked={isLiked}
+          handleDeleteSavedMovies={handleDeleteSavedMovies}
+          handleCardLike={handleCardLike}
           searchSavedMovies={searchSavedMovies}
-          // handleGetAllSavedMovies={handleGetAllSavedMovies}
-          // search={search}
+          isChecked={isCheckedSave}
         />
       )}
     </main>

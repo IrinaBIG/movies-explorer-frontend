@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { loginStartingValues } from "../../utils/constants";
 
-function Login({ handleLogin }) {
+function Login({ handleLogin}) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation(loginStartingValues);
 
@@ -21,7 +21,6 @@ function Login({ handleLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(values["emailInput"]);
     const { email, password } = {
       email: values["emailInput"],
       password: values["passwordInput"],

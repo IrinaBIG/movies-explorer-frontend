@@ -1,55 +1,45 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 function MoviesCard({
-  name,
-  duration,
-  image,
-  trailerLink,
-  onMovieLike,
+  onSaveMovieLike,
   movie,
   isDeleteMovies,
-  isLiked,
+  handleCardLike,
 }) {
-
-  // console.log(isLiked(movie));
-  
-  let hour = Math.floor(duration / 60);
-  let minutes = Math.floor(duration - hour * 60);
+  let hour = Math.floor(movie.duration / 60);
+  let minutes = Math.floor(movie.duration - hour * 60);
 
   const cardLikeButtonClassName = `movie__button ${
-   isLiked(movie) ? "movie__button_active" : ""
+    handleCardLike(movie) ? "movie__button_active" : ""
   }`;
 
   function handleLikeClick() {
-    onMovieLike(movie);
-    // console.log(isLiked(movie));
+    onSaveMovieLike(movie);
   }
 
   function handleDeleteClick() {
     isDeleteMovies(movie);
-    // console.log(isLiked(movie));
   }
 
-
-//  useEffect(() => {
-
- 
-// }, []);
- 
-
   return (
-    <ul className="movie__item">
-      <li>
-        <a href={trailerLink} target="_blank" rel="noreferrer">
-          <img className="movie__image" src={image} alt={name} />
+      <li className="movie__item">
+        <a href={movie.trailerLink} target="_blank" rel="noreferrer">
+          <img
+            className="movie__image"
+            src={
+              movie.thumbnail ||
+              `https://api.nomoreparties.co/${movie.image.url}`
+            }
+            alt={movie.nameRU}
+          />
         </a>
         <div className="movie__data">
-          <p className="movie__name">{name}</p>
+          <p className="movie__name">{movie.nameRU}</p>
           <div className="movie__buttons">
             <Switch>
               <Route path="/movies">
-                {isLiked(movie) ? (
+                {handleCardLike(movie) ? (
                   <button
                     className={cardLikeButtonClassName}
                     type="button"
@@ -80,7 +70,6 @@ function MoviesCard({
           {hour}ч {minutes}м
         </p>
       </li>
-    </ul>
   );
 }
 

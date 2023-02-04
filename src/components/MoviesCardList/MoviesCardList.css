@@ -19,12 +19,10 @@
     max-width: 1280px;
     display: flex;
     padding: 61px 0px 82px;
-} 
+}
 
 
-.more-movies__button {
- 
-    
+.more-movies__button {    
     height: 36px;
     background: #F9F9F9;
     border: none;
@@ -45,25 +43,14 @@
     text-rendering: auto;
 }
 
-/* .more-movies__button {
-    margin: 70px auto;
-    width: 320px;
-    height: 36px;
-    background: #F9F9F9;
-    border: none;
-    cursor: pointer;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    text-rendering: auto;
-} */
+.movie__item {
+    background-color: #FFF;
+    overflow: hidden;
+    position: relative;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
 
 .more-movies__button:hover {
     opacity: 0.8;

@@ -63,6 +63,26 @@
     text-rendering: auto;
 }
 
+.profile__message {
+    position: relative;   
+}
+
+.profile__message_success {
+    position: absolute;
+    top: 500px;
+    left: 540px;
+    color: green;
+    font-size: 20px;
+}
+
+.profile__message_fail {
+    position: absolute;
+    top: 500px;
+    left: 449px;
+    color: red;
+    font-size: 20px;
+}
+
 .form__input {
     width: 100%;
     max-width: 142px;
@@ -118,7 +138,7 @@
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     color: #000;
     opacity: 0.2;
-    cursor: auto;
+    cursor: pointer;
 }
 
 .form__button_disabled:hover {
