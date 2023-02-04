@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 
 function SavedMovies({
-  // isChecked,
   isCheckedSave,
-
   onInput,
   isCheckbox,
   isLoading,
@@ -25,10 +23,7 @@ function SavedMovies({
       <SearchForm
         onInput={onInput}
         handleFindSavedMovie={handleFindSavedMovie}
-        // handleFindSavedMovie={() => {}}
-        // isChecked={isChecked}
         isChecked={isCheckedSave}
-
         isCheckbox={isCheckbox}
         searchNameSavedMovies={searchNameSavedMovies}
         searchMovies={searchMovies}

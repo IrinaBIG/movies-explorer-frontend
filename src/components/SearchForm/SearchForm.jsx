@@ -14,7 +14,6 @@ function SearchForm({
   searchNameSavedMovies,
   handleFiltredCheckbox,
 }) {
-
   const [value, setValue] = useState("");
   const [errors, setErrors] = useState("");
 

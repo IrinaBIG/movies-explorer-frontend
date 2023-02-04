@@ -17,8 +17,6 @@ function MoviesCardList({
   const moviesPatch = location.pathname === "/movies";
   const foundMovies = JSON.parse(localStorage.getItem("findMovies")) ?? "";
 
-  // console.log(movies);
-  // console.log(foundMovies);
   const searchShortsMovies = (movies) => {
     return movies.filter((item) => item.duration <= 40);
   };
@@ -26,10 +24,7 @@ function MoviesCardList({
   useEffect(() => {
     const arr = isChecked ? searchShortsMovies(movies) : movies;
     setNewArrMovies(arr);
-    // localStorage.setItem("findMovies", JSON.stringify(arr));
-  }, [isChecked, movies])
-  
-  // let newArrMovies = isChecked ? searchShortsMovies(movies) : movies;
+  }, [isChecked, movies]);
 
   if ("allBeatfilmMovies" in localStorage && movies.length === 0)
     return <h2 className="movies__text">Ничего не найдено</h2>;
@@ -43,7 +38,7 @@ function MoviesCardList({
         </h2>
       )}
       <section className="movies-list">
-      {newArrMovies.map((movie) => {
+        {newArrMovies.map((movie) => {
           return (
             <MoviesCard
               movie={movie}
