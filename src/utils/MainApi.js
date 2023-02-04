@@ -6,7 +6,7 @@ class MainApi {
     this._token = token;
     this._headers = {
       'Content-Type': 'application/json',
-      Accept: "application/json",
+      // Accept: "application/json",
     }
   }
 
