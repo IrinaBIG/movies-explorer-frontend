@@ -13,21 +13,21 @@ function MoviesCardList({
   handleDeleteMovies,
 }) {
   const location = useLocation();
-  // const [newArrMovies, setNewArrMovies] = useState([]);
+  const [newArrMovies, setNewArrMovies] = useState([]);
   const moviesPatch = location.pathname === "/movies";
   const foundMovies = JSON.parse(localStorage.getItem("findMovies")) ?? "";
 
-  console.log(movies);
-  console.log(foundMovies);
-  // const searchShortsMovies = (movies) => {
-  //   return movies.filter((item) => item.duration <= 40);
-  // };
+  // console.log(movies);
+  // console.log(foundMovies);
+  const searchShortsMovies = (movies) => {
+    return movies.filter((item) => item.duration <= 40);
+  };
 
-  // useEffect(() => {
-  //   const arr = isChecked ? searchShortsMovies(movies) : movies;
-  //   setNewArrMovies(arr);
-  //   // localStorage.setItem("findMovies", JSON.stringify(arr));
-  // }, [isChecked, movies])
+  useEffect(() => {
+    const arr = isChecked ? searchShortsMovies(movies) : movies;
+    setNewArrMovies(arr);
+    // localStorage.setItem("findMovies", JSON.stringify(arr));
+  }, [isChecked, movies])
   
   // let newArrMovies = isChecked ? searchShortsMovies(movies) : movies;
 
@@ -43,7 +43,7 @@ function MoviesCardList({
         </h2>
       )}
       <section className="movies-list">
-        {movies.map((movie) => {
+      {newArrMovies.map((movie) => {
           return (
             <MoviesCard
               movie={movie}

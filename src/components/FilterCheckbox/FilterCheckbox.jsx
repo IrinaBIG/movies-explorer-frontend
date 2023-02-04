@@ -1,14 +1,17 @@
 import React from "react";
-import { useEffect } from "react";
 
 function FilterCheckbox({ isChecked, handleFiltredCheckbox }) {
 
-  function handleChangeCheckbox(e) {
-    handleFiltredCheckbox(e.target.checked);
-    console.log(e.target.checked, 'зашел в чекбокс')
+  console.log(isChecked, '111111111')
+
+  function handleChangeCheckbox() {
+    const isCheck = localStorage.getItem("checkBoxStatusSavedMovies" || "checkBoxStatus");
+    handleFiltredCheckbox(isCheck);
+    console.log(isChecked, 'зашел в чекбокс')
+    console.log(isChecked, 'yyyyyyyyy')
   };
 
- 
+  console.log(isChecked, '2222222222')
 
 
   return (

@@ -42,6 +42,16 @@ function SearchForm({
 
   function handleSubmitSavedMovies(e) {
     e.preventDefault();
+    if (value === null) {
+      setErrors("Нужно ввести ключевое слово");
+      setTimeout(setErrors, 1000);
+      return;
+    }
+    if (value.length === 0) {
+      setErrors("Нужно ввести ключевое слово");
+      setTimeout(setErrors, 1000);
+      return;
+    }
     handleFindSavedMovie(value);
   }
 

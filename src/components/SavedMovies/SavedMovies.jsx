@@ -10,7 +10,7 @@ function SavedMovies({
   onInput,
   isCheckbox,
   isLoading,
-  savedMovies,
+  movies,
   handleFindSavedMovie,
   isSavedMovies,
   handleDeleteSavedMovies,
@@ -39,7 +39,7 @@ function SavedMovies({
         <Preloader />
       ) : (
         <MoviesCardList
-          movies={savedMovies}
+          movies={movies}
           isSavedMovies={isSavedMovies}
           handleDeleteSavedMovies={handleDeleteSavedMovies}
           handleCardLike={handleCardLike}

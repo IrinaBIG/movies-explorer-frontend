@@ -19,12 +19,12 @@ import Preloader from "../Preloader/Preloader";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState(JSON.parse(localStorage.getItem("moviesSaved")) || []);
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isChecked, setIsChecked] = useState(null);
-  const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(false);
+  const [isChecked, setIsChecked] = useState(localStorage.getItem("checkBoxStatus"));
+  const [isCheckedSavedMovies, setIsCheckedSavedMovies] = useState(localStorage.getItem("checkBoxStatusSavedMovies") || false);
   const [btnMoreMovies, setBtnMoreMovies] = useState(0);
   const [isServerError, setIsServerError] = useState(false);
   const [isNotChecked, setIsNotChecked] = useState(true);
@@ -35,29 +35,21 @@ function App() {
   const [errorTextProfile, setErrorTextProfile] = useState("");
   const moviesPath = location.pathname === "/movies";
   const moviesSavedPath = location.pathname === "/saved-movies";
+  // const [errorTextSearch, setErrorTextProfile] = useState("");
 
-
-  const handleFiltredCheckbox = () => {  
+  const handleFiltredCheckbox = () => {
     if (moviesPath) {
       setIsChecked(!isChecked);
-      localStorage.setItem("checkBoxStatus", isChecked);
+      localStorage.setItem("checkBoxStatus", !isChecked);
     } else if (moviesSavedPath) {
       setIsCheckedSavedMovies(!isCheckedSavedMovies);
-      localStorage.setItem("checkBoxStatusSavedMovies", isCheckedSavedMovies);
+      localStorage.setItem("checkBoxStatusSavedMovies", !isCheckedSavedMovies);
     }
   };
 
-  // useEffect(() => {
-  //   localStorage.getItem("checkBoxStatus", isChecked);
-  //   localStorage.getItem("checkBoxStatusSavedMovies", isCheckedSavedMovies);
-  // }, [isChecked, isCheckedSavedMovies])
-
   useMemo(() => {
-   
-      setIsChecked(localStorage.getItem("checkBoxStatus"));
-    
-      setIsCheckedSavedMovies(localStorage.getItem("checkBoxStatusSavedMovies"));
-  
+    setIsChecked(localStorage.getItem("checkBoxStatus"));
+    setIsCheckedSavedMovies(localStorage.getItem("checkBoxStatusSavedMovies"));
   }, []);
 
   function handleFindMovieFromApi(word) {
@@ -69,12 +61,12 @@ function App() {
       );
       setIsChecked(localStorage.getItem("checkBoxStatus", isChecked));
       const moviesApiSearch = beatfilmMoviesArr.filter((item) => {
-        const isValidName = item.nameRU
+        const isSearchedName = item.nameRU
           .toLowerCase()
           .includes(word.toLowerCase());
         const isShorts = isChecked ? item.duration <= 40 : true;
         // return isValidName;
-        return isValidName && isShorts;
+        return isSearchedName && isShorts;
       });
       setMovies(moviesApiSearch);
       localStorage.setItem("findMovies", JSON.stringify(moviesApiSearch));
@@ -88,15 +80,18 @@ function App() {
         .then((res) => {
           const allBeatfilmMovies = res;
           const moviesFromApiSearch = allBeatfilmMovies.filter((item) => {
-            const isValidName = item.nameRU
+            const isSearchedName = item.nameRU
               .toLowerCase()
               .includes(word.toLowerCase());
             const isShorts = isChecked ? item.duration <= 40 : true;
             // return isValidName;
-            return isValidName && isShorts;
+            return isSearchedName && isShorts;
           });
           setMovies(moviesFromApiSearch);
-          localStorage.setItem("findMovies", JSON.stringify(moviesFromApiSearch));
+          localStorage.setItem(
+            "findMovies",
+            JSON.stringify(moviesFromApiSearch)
+          );
           setIsLoading(false);
           localStorage.setItem(
             "allBeatfilmMovies",
@@ -109,7 +104,9 @@ function App() {
         .catch((err) => {
           console.log(err);
           setIsLoading(false);
+          if (err.statusCode === 500) {
           setIsServerError(true);
+          }
         })
         .finally(() => {
           setIsNotChecked(false);
@@ -118,31 +115,35 @@ function App() {
     }
   }
 
-  function handleFindSavedMovie(search) {
+ function handleFindSavedMovie (search){
     setIsLoading(true);
-    mainApi
-      .getMovies()
-      .then(({ data: res }) => {
-        setIsLoading(false);
-        const savedMoviesSearch = res.filter((item) => {
-          const isValidName = item.nameRU
-            .toLowerCase()
-            .includes(search.toLowerCase());
-          const isShorts = isCheckedSavedMovies ? item.duration <= 40 : true;
-          return isValidName && isShorts;
-        });
-        setSavedMovies(savedMoviesSearch);
-        localStorage.setItem("savedMoviesSearch", search);
-        localStorage.setItem("checkBoxStatusSavedMovies", isCheckedSavedMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      }) 
-      .finally(() => {
-        setIsNotChecked(false);
-        setIsLoading(false);
-      });
-  }
+    const allSavedMovies = JSON.parse(localStorage.getItem("allSavedMovies"));
+    setIsChecked(localStorage.getItem("checkBoxStatusSavedMovies", isChecked));
+    setIsLoading(false);
+    const savedMoviesSearch = allSavedMovies.filter((item) => {
+      const isSearchedName = item.nameRU
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      // console.log(isSearchedName);
+      const isShorts = isCheckedSavedMovies ? item.duration <= 40 : true;
+      return isSearchedName && isShorts;
+    });
+    setSavedMovies(savedMoviesSearch);
+    console.log(savedMoviesSearch);
+    setIsLoading(false);
+    localStorage.setItem("moviesSaved", JSON.stringify(savedMoviesSearch));
+    localStorage.setItem("savedMoviesSearch", search);
+    localStorage.setItem("checkBoxStatusSavedMovies", isCheckedSavedMovies);
+    // localStorage.setItem("savedMoviesSearch", JSON.stringify(savedMoviesSearch));
+}
+
+console.log(savedMovies);
+
+  // useEffect(() => {
+  //   const savedMovies = JSON.parse(localStorage.getItem("allSavedMovies"));
+  //   setSavedMovies(savedMovies);
+  //   console.log(savedMovies, 'eeeeee');
+  // }, []);
 
 
   // function handleFindSavedMovie(search) {
@@ -164,7 +165,7 @@ function App() {
   //     })
   //     .catch((err) => {
   //       console.log(err);
-  //     }) 
+  //     })
   //     .finally(() => {
   //       setIsNotChecked(false);
   //       setIsLoading(false);
@@ -353,25 +354,30 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([mainApi.getUser(), mainApi.getMovies()])
-      .then(([profile, { data: savedMovies }]) => {
-        setIsLoggedIn(true);
-        setCurrentUser(profile);
-        setSavedMovies(savedMovies);
-        // handleChangeWidthOfScreen();
-        localStorage.setItem("allSavedMovies", JSON.stringify(savedMovies));
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsNotChecked(false);
-      });
-    // if ("findMovies" in localStorage) {
-    //   setMovies(JSON.parse(localStorage.getItem("findMovies")));
-    //   setIsChecked(localStorage.getItem("checkBoxStatus"));
-    // }
-  }, [handleChangeWidthOfScreen, isLoggedIn]);
+    // const savedMovies = JSON.parse(
+    //   localStorage.getItem("allSavedMovies")
+    // );
+    if ("allSavedMovies" in localStorage) {
+      console.log(savedMovies, 'promise')
+      setSavedMovies(savedMovies);
+    } else {
+      Promise.all([mainApi.getUser(), mainApi.getMovies()])
+        .then(([profile, { data: savedMovies }]) => {
+          setCurrentUser(profile);
+          setSavedMovies(savedMovies);
+          // const isCheckedSavedMovies = setIsCheckedSavedMovies(false);
+          localStorage.setItem("allSavedMovies", JSON.stringify(savedMovies));
+          // localStorage.setItem("savedMoviesSearch", search);
+          localStorage.setItem("checkBoxStatusSavedMovies", false);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsNotChecked(false);
+        });
+    }
+  }, [isCheckedSavedMovies, isLoggedIn, savedMovies]);
 
   if (isNotChecked) {
     return <Preloader />;
@@ -409,7 +415,7 @@ function App() {
             path="/saved-movies"
             loggedIn={isLoggedIn}
             component={SavedMovies}
-            savedMovies={savedMovies}
+            movies={savedMovies}
             isLoading={isLoading}
             isCheckedSave={isCheckedSavedMovies}
             onSaveMovieLike={handleSavedAndLikesMovies}
