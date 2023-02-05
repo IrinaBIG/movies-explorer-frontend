@@ -339,7 +339,6 @@ function App() {
   useEffect(() => {
     const jwt = localStorage.getItem("token");
     if (jwt) {
-      console.log("hello");
       mainApi
         .getUser()
         .then((profile) => {
