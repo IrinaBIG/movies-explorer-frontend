@@ -1,5 +1,8 @@
 4 часть диплома
 
+Ссылка на фронтенд-часть приложения
+http://irinabigdiploma.nomoredomainsclub.ru
+
 ссылка на пул реквест
 https://github.com/IrinaBIG/movies-explorer-frontend/pull/2
 
