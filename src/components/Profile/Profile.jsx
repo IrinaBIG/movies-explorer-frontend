@@ -31,6 +31,7 @@ function Profile({
    function handleSubmit(e) {
      e.preventDefault();
      handleUpdateUser({ name: values["firstname"], email: values["email"] });
+     setIsDisabled(true);
    }
 
 

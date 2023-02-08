@@ -8,7 +8,8 @@ function Register({ handleRegister }) {
     useFormAndValidation(registerStartingValues);
 
   const [isDisabled, setIsDisabled] = useState(false);
-
+ 
+  
   useEffect(() => {
     setIsDisabled(
       errors.nameInput && errors.emailInput && errors.passwordInput
@@ -71,6 +72,7 @@ function Register({ handleRegister }) {
             }`}
             value={values["emailInput"] || ""}
             required
+            pattern=".+@.+\..+"
           />
           <span
             id="name-input-error"

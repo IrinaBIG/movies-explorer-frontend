@@ -45,6 +45,7 @@ function Login({ handleLogin}) {
             }`}
             value={values["emailInput"] || ""}
             required
+            pattern=".+@.+\..+"
           />
           <span
             id="name-input-error"
