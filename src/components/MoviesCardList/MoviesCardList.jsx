@@ -39,7 +39,7 @@ function MoviesCardList({
           или сервер недоступен. Подождите немного и попробуйте ещё раз
         </h2>
       )}
-      <section className="movies-list">
+      <ul className="movies-list">
         {newArrMovies.map((movie) => {
           return (
             <MoviesCard
@@ -51,7 +51,7 @@ function MoviesCardList({
             />
           );
         })}
-      </section>
+      </ul>
 
 
   {moviesPatch ? (
