@@ -19,6 +19,7 @@ function SearchForm({
 
   const location = useLocation();
   const savedMoviesPatch = location.pathname === "/saved-movies";
+  const moviesPatch = location.pathname === "/movies";
 
   function handleChangeInput(e) {
     setValue(e.target.value);
@@ -45,12 +46,12 @@ function SearchForm({
   }
 
   useMemo(() => {
-    if (!savedMoviesPatch) {
+    if (moviesPatch) {
       setValue(searchNameMovies);
     } else {
       setValue(searchNameSavedMovies);
     }
-  }, [savedMoviesPatch, searchNameMovies, searchNameSavedMovies]);
+  }, [moviesPatch, searchNameMovies, searchNameSavedMovies]);
 
   return (
     <section className="search">

@@ -20,7 +20,7 @@ import Preloader from "../Preloader/Preloader";
 function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState(
-    JSON.parse(localStorage.getItem("moviesSaved")) || []
+    JSON.parse(localStorage.getItem("moviesSaved") || "[]") 
   );
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -116,7 +116,7 @@ function App() {
   function handleFindSavedMovie(search) {
     setIsLoading(true);
     const allSavedMovies = JSON.parse(localStorage.getItem("allSavedMovies"));
-    setIsChecked(localStorage.getItem("checkBoxStatusSavedMovies" === "true"));
+    setIsChecked(localStorage.getItem("checkBoxStatusSavedMovies") === "true");
     setIsLoading(false);
     const savedMoviesSearch = allSavedMovies.filter((item) => {
       const isSearchedName = item.nameRU
@@ -151,7 +151,8 @@ function App() {
   }
 
   function handleCardLike(movie) {
-    return savedMovies.some(
+    const allSavedMovies = JSON.parse(localStorage.getItem("allSavedMovies"));
+    return allSavedMovies.some(
       (item) => item.movieId === movie.id && item.owner === currentUser._id
     );
   }
@@ -206,7 +207,6 @@ function App() {
       .register(name, email, password)
       .then((res) => {
         if (res.name) {
-          console.log(res, "1");
           setCurrentUser(res);
           return auth.authorize(password, email);
         } else { return}
@@ -215,7 +215,6 @@ function App() {
         if (!res) {
           return
         } else {
-          console.log(res, "token?")
           setIsLoggedIn(true);
             localStorage.setItem("token", res.token);
             history.push("/movies");
