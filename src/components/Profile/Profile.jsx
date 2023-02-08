@@ -91,6 +91,7 @@ function Profile({
             value={values["email"] || ""}
             placeholder="E-mail"
             required
+            pattern=".+@.+\..+"
           />
         </div>
         <span
