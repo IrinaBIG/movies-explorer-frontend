@@ -440,10 +440,12 @@ function App() {
 
           <Route path="/signup">
             <Register handleRegister={handleRegister} />
+            {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signup" />}
           </Route>
 
           <Route path="/signin">
             <Login handleLogin={handleLogin} />
+            {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
           <Route exact path="/">
