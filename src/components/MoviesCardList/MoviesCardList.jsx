@@ -16,7 +16,7 @@ function MoviesCardList({
   const [newArrMovies, setNewArrMovies] = useState([]);
   const moviesPatch = location.pathname === "/movies";
   const foundMovies = JSON.parse(localStorage.getItem("findMovies")) ?? "";
-  const findShortMovies = JSON.parse(localStorage.getItem("findShortMovies")) ?? "";
+  // const findShortMovies = JSON.parse(localStorage.getItem("findShortMovies")) ?? "";
 
   const searchShortsMovies = (movies) => {
     return movies.filter((item) => item.duration <= 40);
