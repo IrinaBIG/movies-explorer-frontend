@@ -16,6 +16,7 @@ function MoviesCardList({
   const [newArrMovies, setNewArrMovies] = useState([]);
   const moviesPatch = location.pathname === "/movies";
   const foundMovies = JSON.parse(localStorage.getItem("findMovies")) ?? "";
+  const findShortMovies = JSON.parse(localStorage.getItem("findShortMovies")) ?? "";
 
   const searchShortsMovies = (movies) => {
     return movies.filter((item) => item.duration <= 40);
@@ -24,6 +25,7 @@ function MoviesCardList({
   useEffect(() => {
     const arr = isChecked ? searchShortsMovies(movies) : movies;
     setNewArrMovies(arr);
+    localStorage.setItem("findShortMovies", JSON.stringify(arr));
   }, [isChecked, movies]);
 
   if ("allBeatfilmMovies" in localStorage && movies.length === 0)
@@ -51,7 +53,8 @@ function MoviesCardList({
         })}
       </section>
 
-      {moviesPatch ? (
+
+  {moviesPatch ? (
         movies.length < foundMovies.length ? (
           <button
             type="button"
@@ -65,7 +68,22 @@ function MoviesCardList({
         )
       ) : (
         ""
-      )}
+      )} 
+    
+ {/* {moviesPatch ? (movies ? (movies.length < foundMovies.length ? (((<button
+            type="button"
+            className="more-movies__button"
+            onClick={handleSwowMoreMovies}
+          >
+            Ещё
+          </button>)
+        )
+        : (""))
+        : (""))
+        : (""))
+      } */}
+
+
     </>
   );
 }

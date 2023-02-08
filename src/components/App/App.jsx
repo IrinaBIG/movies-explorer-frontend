@@ -201,6 +201,33 @@ function App() {
       });
   }
 
+  // function handleRegister(name, email, password) {
+  //   auth
+  //     .register(name, email, password)
+  //     .then((res) => {
+  //       if (res.statusCode === 200) {
+  //         console.log(res, '1')
+  //         setCurrentUser(res);
+  //         return auth.authorize(email, password);
+  //       } else {
+  //         return
+  //       }
+  //     })
+  //     .then((res) => {
+  //       console.log(res, '2')
+        
+  //       setIsLoggedIn(true);
+  //       localStorage.setItem("token", res.token);
+  //       history.push("/movies");
+       
+  //      })
+  //     .catch((err) => {
+  //       console.log(err);
+  
+  //     });
+  // }
+
+
   function handleRegister(name, email, password) {
     auth
       .register(name, email, password)

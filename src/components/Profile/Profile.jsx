@@ -120,7 +120,7 @@ function Profile({
       </form>
 
       <div className="profile__out">
-        <Link to="/signin" className="profile__out-link" onClick={onSignOut}>
+        <Link to="/" className="profile__out-link" onClick={onSignOut}>
           Выйти из аккаунта
         </Link>
       </div>
