@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { REGISTER_STARTING_VALUES } from "../../utils/constants";
 
-function Register({ handleRegister }) {
+function Register({ handleRegister, errorTextRegister }) {
   const { values, handleChange, errors, setValues, resetForm, isValid } =
     useFormAndValidation(REGISTER_STARTING_VALUES);
 
@@ -119,6 +119,9 @@ function Register({ handleRegister }) {
             Войти
           </Link>
         </div>
+        <p className="login__message login__message_fail">
+          {errorTextRegister}
+        </p>
       </section>
     </main>
   );

@@ -68,19 +68,17 @@
 }
 
 .profile__message_success {
-    position: absolute;
-    top: 500px;
-    left: 540px;
+   text-align: center;
     color: green;
     font-size: 20px;
+    z-index: 3;
 }
 
 .profile__message_fail {
-    position: absolute;
-    top: 500px;
-    left: 449px;
+   text-align: center;
     color: red;
     font-size: 20px;
+    z-index: 3;
 }
 
 .form__input {

@@ -57,6 +57,8 @@ function App() {
   const [widthOfScreen, setWidthOfScreen] = useState(window.innerWidth);
   const [isUpdate, setIsUpdate] = useState(null);
   const [errorTextProfile, setErrorTextProfile] = useState("");
+  const [errorTextLogin, setErrorTextLogin] = useState("");
+  const [errorTextRegister, setErrorTextRegister] = useState("");
   const moviesPath = location.pathname === "/movies";
   const moviesSavedPath = location.pathname === "/saved-movies";
 
@@ -230,7 +232,9 @@ function App() {
           setCurrentUser(res);
           return auth.authorize(password, email);
         } else {
-          return;
+          console.log(res);
+          setErrorTextRegister(res.message);
+          setTimeout(setErrorTextRegister, VISIBLE_MESSAGE_TIME);
         }
       })
       .then((res) => {
@@ -272,14 +276,18 @@ function App() {
     auth
       .authorize(email, password)
       .then((data) => {
+        console.log(data);
         if (data.token) {
           setIsLoggedIn(true);
           localStorage.setItem("token", data.token);
           history.push("/movies");
+        } else {
+          setErrorTextLogin(data.message);
+          setTimeout(setErrorTextLogin, VISIBLE_MESSAGE_TIME);
         }
       })
       .catch((err) => {
-        console.log(err.statusCode);
+        console.log(err);
       });
   }
 
@@ -325,19 +333,25 @@ function App() {
       return;
     }
     if (widthOfScreen >= SCREEN_WIDTH_1280) {
-      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_16));
+      setMovies(
+        foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_16)
+      );
       setBtnMoreMovies(MOVIES_TO_LOAD_4);
     } else if (
       widthOfScreen >= SCREEN_WIDTH_768 &&
       widthOfScreen <= SCREEN_WIDTH_1279
     ) {
-      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_8));
+      setMovies(
+        foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_8)
+      );
       setBtnMoreMovies(MOVIES_TO_LOAD_2);
     } else if (
       widthOfScreen >= SCREEN_WIDTH_320 &&
       widthOfScreen <= SCREEN_WIDTH_767
     ) {
-      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_5));
+      setMovies(
+        foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_5)
+      );
       setBtnMoreMovies(MOVIES_TO_LOAD_2);
     }
   }, [widthOfScreen]);
@@ -451,12 +465,15 @@ function App() {
           />
 
           <Route path="/signup">
-            <Register handleRegister={handleRegister} />
+            <Register
+              handleRegister={handleRegister}
+              errorTextRegister={errorTextRegister}
+            />
             {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signup" />}
           </Route>
 
           <Route path="/signin">
-            <Login handleLogin={handleLogin} />
+            <Login handleLogin={handleLogin} errorTextLogin={errorTextLogin} />
             {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
