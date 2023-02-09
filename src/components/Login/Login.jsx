@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-import { loginStartingValues } from "../../utils/constants";
+import { LOGIN_STARTING_VALUES } from "../../utils/constants";
 
 function Login({ handleLogin}) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
-    useFormAndValidation(loginStartingValues);
+    useFormAndValidation(LOGIN_STARTING_VALUES);
 
   const [isDisabled, setIsDisabled] = useState(false);
 

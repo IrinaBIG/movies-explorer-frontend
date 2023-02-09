@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
-import { registerStartingValues } from "../../utils/constants";
+import { REGISTER_STARTING_VALUES } from "../../utils/constants";
 
 function Register({ handleRegister }) {
   const { values, handleChange, errors, setValues, resetForm, isValid } =
-    useFormAndValidation(registerStartingValues);
+    useFormAndValidation(REGISTER_STARTING_VALUES);
 
   const [isDisabled, setIsDisabled] = useState(false);
  

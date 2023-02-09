@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { DURATION_TIME } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({
@@ -19,7 +20,7 @@ function MoviesCardList({
   // const findShortMovies = JSON.parse(localStorage.getItem("findShortMovies")) ?? "";
 
   const searchShortsMovies = (movies) => {
-    return movies.filter((item) => item.duration <= 40);
+    return movies.filter((item) => item.duration <= DURATION_TIME);
   };
 
   useEffect(() => {

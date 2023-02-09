@@ -3,6 +3,7 @@ import loupe from "../../images/loupe.svg";
 import separator from "../../images/inputSeparator.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useLocation } from "react-router-dom";
+import { VISIBLE_MESSAGE_TIME } from "../../utils/constants";
 
 function SearchForm({
   onSubmitHandler,
@@ -29,12 +30,12 @@ function SearchForm({
     e.preventDefault();
     if (value === null) {
       setErrors("Нужно ввести ключевое слово");
-      setTimeout(setErrors, 1000);
+      setTimeout(setErrors, VISIBLE_MESSAGE_TIME);
       return;
     }
     if (value.length === 0) {
       setErrors("Нужно ввести ключевое слово");
-      setTimeout(setErrors, 1000);
+      setTimeout(setErrors, VISIBLE_MESSAGE_TIME);
       return;
     }
     onSubmitHandler(value);

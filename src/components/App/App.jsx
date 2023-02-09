@@ -16,11 +16,29 @@ import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute";
 import Preloader from "../Preloader/Preloader";
+import {
+  DURATION_TIME,
+  INTERNAL_SERVER_ERROR,
+  SCREEN_WIDTH_1279,
+  SCREEN_WIDTH_1280,
+  SCREEN_WIDTH_320,
+  SCREEN_WIDTH_767,
+  SCREEN_WIDTH_768,
+  VISIBLE_MESSAGE_TIME,
+  UNAUTHORIZED,
+  CONFLICT_ERROR,
+  MOVIES_TO_LOAD_2,
+  MOVIES_TO_LOAD_4,
+  MOVIES_VISIBLE_INDEX_0,
+  MOVIES_VISIBLE_INDEX_16,
+  MOVIES_VISIBLE_INDEX_8,
+  MOVIES_VISIBLE_INDEX_5,
+} from "../../utils/constants";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState(
-    JSON.parse(localStorage.getItem("moviesSaved") || "[]") 
+    JSON.parse(localStorage.getItem("moviesSaved") || "[]")
   );
   const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -64,7 +82,7 @@ function App() {
         const isSearchedName = item.nameRU
           .toLowerCase()
           .includes(word.toLowerCase());
-        const isShorts = isChecked ? item.duration <= 40 : true;
+        const isShorts = isChecked ? item.duration <= DURATION_TIME : true;
         return isSearchedName && isShorts;
       });
       setMovies(moviesApiSearch);
@@ -82,7 +100,7 @@ function App() {
             const isSearchedName = item.nameRU
               .toLowerCase()
               .includes(word.toLowerCase());
-            const isShorts = isChecked ? item.duration <= 40 : true;
+            const isShorts = isChecked ? item.duration <= DURATION_TIME : true;
             return isSearchedName && isShorts;
           });
           setMovies(moviesFromApiSearch);
@@ -102,7 +120,7 @@ function App() {
         .catch((err) => {
           console.log(err);
           setIsLoading(false);
-          if (err.statusCode === 500) {
+          if (err.statusCode === INTERNAL_SERVER_ERROR) {
             setIsServerError(true);
           }
         })
@@ -122,7 +140,9 @@ function App() {
       const isSearchedName = item.nameRU
         .toLowerCase()
         .includes(search.toLowerCase());
-      const isShorts = isCheckedSavedMovies ? item.duration <= 40 : true;
+      const isShorts = isCheckedSavedMovies
+        ? item.duration <= DURATION_TIME
+        : true;
       return isSearchedName && isShorts;
     });
     setSavedMovies(savedMoviesSearch);
@@ -140,7 +160,7 @@ function App() {
         localStorage.setItem("allSavedMovies", JSON.stringify(newSavedMovie));
       })
       .catch((err) => {
-        if (err.code === 401) {
+        if (err.code === UNAUTHORIZED) {
           setIsLoggedIn(false);
         }
       })
@@ -175,7 +195,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err.code === 401) {
+        if (err.code === UNAUTHORIZED) {
           setIsLoggedIn(false);
         }
       });
@@ -196,7 +216,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err.code === 401) {
+        if (err.code === UNAUTHORIZED) {
           setIsLoggedIn(false);
         }
       });
@@ -209,15 +229,17 @@ function App() {
         if (res.name) {
           setCurrentUser(res);
           return auth.authorize(password, email);
-        } else { return}
+        } else {
+          return;
+        }
       })
       .then((res) => {
         if (!res) {
-          return
+          return;
         } else {
           setIsLoggedIn(true);
-            localStorage.setItem("token", res.token);
-            history.push("/movies");
+          localStorage.setItem("token", res.token);
+          history.push("/movies");
         }
       })
       .catch((err) => {
@@ -268,18 +290,18 @@ function App() {
       .then((res) => {
         setCurrentUser({ name: res.data.name, email: res.data.email });
         setIsUpdate(true);
-        setTimeout(setIsUpdate, 700);
+        setTimeout(setIsUpdate, VISIBLE_MESSAGE_TIME);
       })
       .catch((err) => {
-        if (err.statusCode === 401) {
+        if (err.statusCode === UNAUTHORIZED) {
           setIsLoggedIn(false);
         }
-        if (err.statusCode === 409) {
+        if (err.statusCode === CONFLICT_ERROR) {
           setIsServerError(true);
           setErrorTextProfile(err.message);
-          setTimeout(setErrorTextProfile, 700);
+          setTimeout(setErrorTextProfile, VISIBLE_MESSAGE_TIME);
           setIsUpdate(false);
-          setTimeout(setIsUpdate, 700);
+          setTimeout(setIsUpdate, VISIBLE_MESSAGE_TIME);
         }
       })
       .finally(() => {
@@ -302,15 +324,21 @@ function App() {
     if (foundMovies === null) {
       return;
     }
-    if (widthOfScreen >= 1280) {
-      setMovies(foundMovies.slice(0, 16));
-      setBtnMoreMovies(4);
-    } else if (widthOfScreen >= 768 && widthOfScreen <= 1279) {
-      setMovies(foundMovies.slice(0, 8));
-      setBtnMoreMovies(2);
-    } else if (widthOfScreen >= 320 && widthOfScreen <= 767) {
-      setMovies(foundMovies.slice(0, 5));
-      setBtnMoreMovies(2);
+    if (widthOfScreen >= SCREEN_WIDTH_1280) {
+      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_16));
+      setBtnMoreMovies(MOVIES_TO_LOAD_4);
+    } else if (
+      widthOfScreen >= SCREEN_WIDTH_768 &&
+      widthOfScreen <= SCREEN_WIDTH_1279
+    ) {
+      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_8));
+      setBtnMoreMovies(MOVIES_TO_LOAD_2);
+    } else if (
+      widthOfScreen >= SCREEN_WIDTH_320 &&
+      widthOfScreen <= SCREEN_WIDTH_767
+    ) {
+      setMovies(foundMovies.slice(MOVIES_VISIBLE_INDEX_0, MOVIES_VISIBLE_INDEX_5));
+      setBtnMoreMovies(MOVIES_TO_LOAD_2);
     }
   }, [widthOfScreen]);
 
