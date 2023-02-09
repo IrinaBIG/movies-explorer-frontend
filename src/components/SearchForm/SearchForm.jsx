@@ -1,12 +1,68 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import loupe from "../../images/loupe.svg";
 import separator from "../../images/inputSeparator.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { useLocation } from "react-router-dom";
+import { VISIBLE_MESSAGE_TIME } from "../../utils/constants";
 
-function SearchForm() {
+function SearchForm({
+  onSubmitHandler,
+  isChecked,
+  isCheckbox,
+  handleFindSavedMovie,
+  handleSearchCheckbox,
+  searchNameMovies,
+  searchNameSavedMovies,
+  handleFiltredCheckbox,
+}) {
+  const [value, setValue] = useState("");
+  const [errors, setErrors] = useState("");
+
+  const location = useLocation();
+  const savedMoviesPatch = location.pathname === "/saved-movies";
+  const moviesPatch = location.pathname === "/movies";
+
+  function handleChangeInput(e) {
+    setValue(e.target.value);
+  }
+
+  function handleSubmitMovies(e) {
+    e.preventDefault();
+    if (value === null) {
+      setErrors("Нужно ввести ключевое слово");
+      setTimeout(setErrors, VISIBLE_MESSAGE_TIME);
+      return;
+    }
+    if (value.length === 0) {
+      setErrors("Нужно ввести ключевое слово");
+      setTimeout(setErrors, VISIBLE_MESSAGE_TIME);
+      return;
+    }
+    onSubmitHandler(value);
+  }
+
+  function handleSubmitSavedMovies(e) {
+    e.preventDefault();
+    handleFindSavedMovie(value);
+  }
+
+  useMemo(() => {
+    if (moviesPatch) {
+      setValue(searchNameMovies);
+    } else {
+      setValue(searchNameSavedMovies);
+    }
+  }, [moviesPatch, searchNameMovies, searchNameSavedMovies]);
+
   return (
     <section className="search">
-      <form className="search__movies">
+      <form
+        className="search__movies"
+        onSubmit={
+          savedMoviesPatch ? handleSubmitSavedMovies : handleSubmitMovies
+        }
+        noValidate
+      >
         <img
           src={loupe}
           alt="декоративный элемент - лупа"
@@ -16,15 +72,25 @@ function SearchForm() {
           type="text"
           className="search__input"
           placeholder="Фильм"
+          name="searchInput"
+          id="search-input"
           required
+          onChange={handleChangeInput}
+          defaultValue={value}
         />
+        {errors && <span className="search__span">{errors}</span>}
         <button type="submit" className="search__input-find"></button>
         <img
           src={separator}
           alt="декоративный элемент - разделитель"
           className="search__input-separator"
-        />      
-        <FilterCheckbox />
+        />
+        <FilterCheckbox
+          isChecked={isChecked}
+          isCheckbox={isCheckbox}
+          handleSearchCheckbox={handleSearchCheckbox}
+          handleFiltredCheckbox={handleFiltredCheckbox}
+        />
         <h3 className="search__short-movies">Короткометражки</h3>
       </form>
     </section>

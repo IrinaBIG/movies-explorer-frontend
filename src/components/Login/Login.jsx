@@ -1,51 +1,100 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { LOGIN_STARTING_VALUES } from "../../utils/constants";
 
-function Login() {
+function Login({ handleLogin, errorTextLogin}) {
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation(LOGIN_STARTING_VALUES);
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsDisabled(errors.emailInput || errors.passwordInput);
+  }, [errors.emailInput, errors.passwordInput]);
+
+  useEffect(() => {
+    resetForm();
+    setValues({ emailInput: "", passwordInput: "" });
+    setIsDisabled(true);
+  }, [resetForm, setValues]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const { email, password } = {
+      email: values["emailInput"],
+      password: values["passwordInput"],
+    };
+    handleLogin(email, password);
+    resetForm();
+    setIsDisabled(true);
+  }
+
   return (
     <main className="main">
       <section className="start-page">
         <p className="start-page__title">Рады видеть!</p>
-        <form className="start-page__form">
+        <form onSubmit={handleSubmit} className="start-page__form">
           <h3 className="input__title">E-mail</h3>
           <input
             placeholder="E-mail"
             name="emailInput"
+            onChange={handleChange}
             type="email"
-            className="start-page__input"
-            //   value={password}
+            className={`start-page__input form__input_type_name ${
+              errors["emailInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["emailInput"] || ""}
             required
+            pattern=".+@.+\..+"
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["emailInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["emailInput"]}
+          </span>
           <h3 className="input__title">Пароль</h3>
           <input
             placeholder="Пароль"
             name="passwordInput"
+            onChange={handleChange}
             type="password"
-            className="start-page__input"
-            //   value={password}
+            className={`start-page__input form__input_type_email ${
+              errors["passwordInput"] ? "form__input_type_error" : ""
+            }`}
+            value={values["passwordInput"] || ""}
             required
           />
           <span
             id="name-input-error"
-            className="form__error form__input_type_error form__error_visible"
-          />
+            className={`form__error ${
+              errors["passwordInput"] ? "form__error_visible" : ""
+            }`}
+          >
+            {errors["passwordInput"]}
+          </span>
           <button
             type="submit"
-            className="start-page__button start-page__button_login"
+            className={`start-page__button start-page__button_login ${
+              !isValid ? "form__button_disabled" : ""
+            }`}
+            disabled={isDisabled}
           >
             Войти
           </button>
         </form>
         <div className="start-page__signin start-page__signin_login">
           <p className="start-page__question">Ещё не зарегистрированы?</p>
-          <Link to="/sign-up" className="start-page__register-link">
+          <Link to="/signup" className="start-page__register-link">
             Регистрация
           </Link>
         </div>
+        <p className="login__message login__message_fail">
+          {errorTextLogin}
+        </p>
       </section>
     </main>
   );

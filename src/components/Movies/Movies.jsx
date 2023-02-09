@@ -1,17 +1,46 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import SearchForm from "../SearchForm/SearchForm";
-import MoreMovies from "../MoreMovies/MoreMovies";
 import Preloader from "../Preloader/Preloader";
-const MoviesCardList = lazy(() => import("../MoviesCardList/MoviesCardList"));
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies() {
+function Movies({
+  movies,
+  handleFindMovieFromApi,
+  isLoading,
+  isChecked,
+  isCheckbox,
+  onSaveMovieLike,
+  handleSearchCheckbox,
+  handleCardLike,
+  handleDeleteMovies,
+  searchNameMovies,
+  handleSwowMoreMovies,
+  serverError,
+  handleFiltredCheckbox,
+}) {
   return (
     <main className="main">
-      <SearchForm />
-      <Suspense fallback={<Preloader />}>
-        <MoviesCardList />
-      </Suspense>
-      <MoreMovies />
+      <SearchForm
+        onSubmitHandler={handleFindMovieFromApi}
+        isChecked={isChecked}
+        isCheckbox={isCheckbox}
+        handleSearchCheckbox={handleSearchCheckbox}
+        searchNameMovies={searchNameMovies}
+        handleFiltredCheckbox={handleFiltredCheckbox}
+      />
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <MoviesCardList
+          movies={movies}
+          onSaveMovieLike={onSaveMovieLike}
+          handleCardLike={handleCardLike}
+          handleDeleteMovies={handleDeleteMovies}
+          handleSwowMoreMovies={handleSwowMoreMovies}
+          serverError={serverError}
+          isChecked={isChecked}
+        />
+      )}
     </main>
   );
 }

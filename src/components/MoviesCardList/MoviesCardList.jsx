@@ -1,33 +1,75 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { DURATION_TIME } from "../../utils/constants";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+function MoviesCardList({
+  movies,
+  onSaveMovieLike,
+  handleDeleteSavedMovies,
+  handleCardLike,
+  handleSwowMoreMovies,
+  serverError,
+  isChecked,
+  handleDeleteMovies,
+}) {
+  const location = useLocation();
+  const [newArrMovies, setNewArrMovies] = useState([]);
+  const moviesPatch = location.pathname === "/movies";
+  const foundMovies = JSON.parse(localStorage.getItem("findMovies")) ?? "";
+  // const findShortMovies = JSON.parse(localStorage.getItem("findShortMovies")) ?? "";
 
-  // строки 8-14 сделаны только для демонстрации верстки
-  const [movies, setMovies] = useState([]);
+  const searchShortsMovies = (movies) => {
+    return movies.filter((item) => item.duration <= DURATION_TIME);
+  };
 
-  React.useEffect(() => {
-    fetch("https://api.nomoreparties.co/beatfilm-movies")
-      .then((res) => res.json())
-      .then((res) => setMovies(res));
-  }, []);
+  useEffect(() => {
+    const arr = isChecked ? searchShortsMovies(movies) : movies;
+    setNewArrMovies(arr);
+    // localStorage.setItem("findShortMovies", JSON.stringify(arr));
+  }, [isChecked, movies]);
+
+  if ("allBeatfilmMovies" in localStorage && movies.length === 0)
+    return <h2 className="movies__text">Ничего не найдено</h2>;
 
   return (
-    <section className="movies-list">
-      {movies.slice(0, 16).map((item) => {
-        return (
-          <MoviesCard
-            card={item}
-            key={item.id}
-            name={item.nameRU}
-            link={item.link}
-            _id={item._id}
-            likes={item.likes}
-          />
-        );
-      })}
-    </section>
+    <>
+      {serverError && (
+        <h2 className="movies__text">
+          Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз
+        </h2>
+      )}
+      <ul className="movies-list">
+        {newArrMovies.map((movie) => {
+          return (
+            <MoviesCard
+              movie={movie}
+              key={movie.id || movie.movieId}
+              isDeleteMovies={handleDeleteMovies || handleDeleteSavedMovies}
+              handleCardLike={handleCardLike}
+              onSaveMovieLike={onSaveMovieLike}
+            />
+          );
+        })}
+      </ul>
+
+      {moviesPatch ? (
+        movies.length < foundMovies.length ? (
+          <button
+            type="button"
+            className="more-movies__button"
+            onClick={handleSwowMoreMovies}
+          >
+            Ещё
+          </button>
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
+    </>
   );
 }
 
