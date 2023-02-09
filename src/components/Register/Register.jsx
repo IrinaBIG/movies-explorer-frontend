@@ -31,6 +31,7 @@ function Register({ handleRegister }) {
     };
     handleRegister(name, email, password);
     resetForm();
+    setIsDisabled(true);
   }
 
   return (

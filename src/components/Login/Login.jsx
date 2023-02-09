@@ -27,6 +27,7 @@ function Login({ handleLogin}) {
     };
     handleLogin(email, password);
     resetForm();
+    setIsDisabled(true);
   }
 
   return (
